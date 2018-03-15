@@ -1,0 +1,429 @@
+﻿<Window x:Class="Учёт_технических_средств.Windows.ArchiveWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:helpers="clr-namespace:Учёт_технических_средств.Helpers"
+        Title="ArchiveWindow" Height="800" Width="1000">
+    <Window.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- IG Theme -->
+                <!--<ResourceDictionary Source="Themes/IG/IG.MSControls.Core.Implicit.xaml" />
+                <ResourceDictionary Source="Themes/IG/IG.MSControls.Toolkit.Implicit.xaml" />-->
+
+                <!-- Metro Theme -->
+                <!--<ResourceDictionary Source="Themes/Metro/Metro.MSControls.Core.Implicit.xaml" />
+                <ResourceDictionary Source="Themes/Metro/Metro.MSControls.Toolkit.Implicit.xaml" />-->
+
+                <!-- MetroDark Theme -->
+                <!--<ResourceDictionary Source="../Styles/IG/IG.MSControls.Core.Implicit.xaml" />
+                <ResourceDictionary Source="../Styles/IG/IG.MSControls.Toolkit.Implicit.xaml" />-->
+
+                <!-- Office2010Blue Theme -->
+                <!--<ResourceDictionary Source="Themes/Office2010Blue/Office2010Blue.MSControls.Core.Implicit.xaml" />
+                <ResourceDictionary Source="Themes/Office2010Blue/Office2010Blue.MSControls.Toolkit.Implicit.xaml" />-->
+                <ResourceDictionary Source="../Styles/IG/IG.MSControls.Core.Implicit.xaml" />
+                <ResourceDictionary Source="../Styles/IG/IG.MSControls.Toolkit.Implicit.xaml" />
+                <!-- Office2013 Theme -->
+                <!--<ResourceDictionary Source="Themes/Office2013/Office2013.MSControls.Core.Implicit.xaml" />
+                <ResourceDictionary Source="Themes/Office2013/Office2013.MSControls.Toolkit.Implicit.xaml" />-->
+
+            </ResourceDictionary.MergedDictionaries>
+
+            <SolidColorBrush x:Key="BackgroundKey" Color="{StaticResource Color_009}" />
+
+            <!-- Dark Theme -->
+            <!--<SolidColorBrush x:Key="BackgroundKey" Color="#FF181818" />-->
+
+            <Style x:Key="HeaderTextBlockStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="FontFamily" Value="Segoe UI" />
+                <Setter Property="Foreground" Value="#FF00AADE" />
+            </Style>
+            <Style x:Key="DataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="FontSize" Value="13.3"/>
+                <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource ForegroundBrush}"/>
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="Background" Value="{StaticResource BackgroundKey}"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="Margin" Value="5 0 5 0"/>
+
+
+            </Style>
+            <Style x:Key="DataGridRowStyle" TargetType="DataGridRow">
+                <Setter Property="Background" Value="{StaticResource BackgroundKey}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource ForegroundBrush}"/>
+                <Setter Property="BorderThickness" Value="1 1 0 0"/>
+            </Style>
+            <DataTemplate x:Key="CheckBoxTemplate" >
+
+                <CheckBox Name="chBox" Style="{StaticResource CheckBoxStyle}" IsChecked="{Binding Path=Checked}" />
+
+            </DataTemplate>
+            <DataTemplate x:Key="ListBoxTemplate">
+
+            </DataTemplate>
+            <Style x:Key="DataGridCellStyle" TargetType="{x:Type DataGridCell}">
+                <Setter Property="Background" Value="{StaticResource BackgroundKey}"/>
+                <Setter Property="FontSize" Value="13.3" />
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="FontFamily" Value="Segoe UI" />
+                <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
+
+
+            </Style>
+
+            <Style x:Key="SubHeaderTextBlockStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontFamily" Value="Segoe UI" />
+                <Setter Property="Foreground" Value="#FF00AADE" />
+            </Style>
+
+            <Style x:Key="DataGridHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+
+            
+            <helpers:BoolVisibleConverter x:Key="BoolVisibleConverter"></helpers:BoolVisibleConverter>
+            <helpers:StatesBrushConverter x:Key="StatesBrushConverter"></helpers:StatesBrushConverter>
+            <helpers:StatesStringConverter x:Key="StatesStringConverter"/>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Name="MainGrid" Background="{StaticResource BackgroundKey}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="2" Name="ExportPanel">
+            <Grid Height="100">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Name="MarkedPanel">
+            <Grid Height="100">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+
+                </Grid.ColumnDefinitions>
+
+
+                <Button Name="restoreBtn" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Восстановить"
+                        Width="200" Height="30" Click="restoreBtn_Click" />
+                <Button Name="deleteBtn" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="Удалить безвозвратно"
+                        Width="200" Height="30" Click="deleteBtn_Click"/>
+
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Name="SomePanel">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label  Content="Поиск по базе" Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center"/>
+
+                <TextBox Text="{Binding Path=SearchKey}" Name="SearchField" Grid.Row="1" Style="{StaticResource TextBoxStyle}"/>
+                <Button Name="srchBtn" Style="{StaticResource ButtonStyle}" Grid.Row="1" Grid.Column="1" Content="Поиск"
+                        Click="SearchButton_Click"/>
+
+            </Grid>
+        </StackPanel>
+
+
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50" />
+                <helpers:RowDefinitionExtended  Height="140" Visible="{Binding ElementName=showTableChkBox, Path=IsChecked}"/>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Name="bdLabel" Content="Архив" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       HorizontalAlignment="Center"  VerticalAlignment="Center" Grid.Row="0"/>
+
+            <CheckBox Style="{StaticResource CheckBoxStyle}" Content="Выбор столбцов" Grid.Row="1" Name="showTableChkBox" 
+                      HorizontalAlignment="Left" IsChecked="True" />
+            <StackPanel Grid.Row="2" >
+                <Grid  Name="chkBoxGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="exploitationPlaceVisible"         Content="Место эксплуатации"               
+                            IsChecked="{Binding Path=ExploitationPlaceChosen}"  Grid.Row="0" Grid.Column="0" FontSize="11"/>
+                    <CheckBox x:Name="factoryNumberVisible"             Content="Номер заводской"                  
+                            IsChecked="{Binding Path=FactoryNumberChosen}"  Grid.Row="1" Grid.Column="0" FontSize="11"/>
+                    <CheckBox x:Name="inventoryNumberVisible"           Content="Инвентаризационный номер"         
+                            IsChecked="{Binding Path=inventoryNumberChosen}"  Grid.Row="2" Grid.Column="0" FontSize="11"/>
+                    <CheckBox x:Name="bbtNomenclatureVisible"           Content="Номенклатура ВВТ"                 
+                            IsChecked="{Binding Path=BbtNomenclatureChosen}"  Grid.Row="3" Grid.Column="0" FontSize="11"/>
+                    <CheckBox x:Name="purposeVisible"                   Content="Назначение изделия"               
+                            IsChecked="{Binding Path=PurposeChosen}"  Grid.Row="4" Grid.Column="0" FontSize="11"/>
+                    <CheckBox x:Name="manufacturerVisible"              Content="Организация-изготовитель"         
+                            IsChecked="{Binding Path=ManufacturerChosen}"  Grid.Row="0" Grid.Column="1" FontSize="11"/>
+                    <CheckBox x:Name="productionDateVisible"            Content="Дата изготовления"                
+                            IsChecked="{Binding Path=ProductionDateChosen}"  Grid.Row="1" Grid.Column="1" FontSize="11"/>
+                    <CheckBox x:Name="guaranteeVisible"                 Content="Срок гарантии"                    
+                            IsChecked="{Binding Path=GuaranteeChosen}"  Grid.Row="2" Grid.Column="1" FontSize="11"/>
+                    <CheckBox x:Name="endDateVisible"                   Content="Дата оконч. обязательств"         
+                            IsChecked="{Binding Path=EndDateChosen}"  Grid.Row="3" Grid.Column="1" FontSize="11"/>
+                    <CheckBox x:Name="exploitationPeriodVisible"        Content="Срок эксплуатации"                
+                            IsChecked="{Binding Path=ExploitationPeriodChosen}"  Grid.Row="4" Grid.Column="1" FontSize="11"/>
+                    <CheckBox x:Name="confirmationDocVisible"           Content="Документ на принятие на хранение" 
+                            IsChecked="{Binding Path=ConfirmationDocChosen}"  Grid.Row="0" Grid.Column="2" FontSize="11"/>
+                    <CheckBox x:Name="receivingDateVisible"             Content="Дата принятия на хранение"        
+                            IsChecked="{Binding Path=ReceivingDateChosen}"  Grid.Row="1" Grid.Column="2" FontSize="11"/>
+                    <CheckBox x:Name="orderNumberVisible"               Content="№ приказа о вводе в эксп."        
+                            IsChecked="{Binding Path=OrderNumberChosen}"  Grid.Row="2" Grid.Column="2" FontSize="11"/>
+                    <CheckBox x:Name="exploitationDateVisible"          Content="Дата ввода в эксплуатацию"        
+                            IsChecked="{Binding Path=ExploitationDateChosen}"  Grid.Row="3" Grid.Column="2" FontSize="11"/>
+                    <CheckBox x:Name="primaryCostVisible"               Content="Первоначальная стоимость"         
+                            IsChecked="{Binding Path=PrimaryCostChosen}"  Grid.Row="4" Grid.Column="2" FontSize="11"/>
+                    <CheckBox x:Name="aurumVisible"                     Content="Драг. металлы, золото"            
+                            IsChecked="{Binding Path=AurumChosen}"  Grid.Row="0" Grid.Column="3" FontSize="11"/>
+                    <CheckBox x:Name="argentumVisible"                  Content="Драг. металлы, серебро"           
+                            IsChecked="{Binding Path=ArgentumChosen}"  Grid.Row="1" Grid.Column="3" FontSize="11"/>
+                    <CheckBox x:Name="platinumVisible"                  Content="Драг. металлы, платина"           
+                            IsChecked="{Binding Path=PlatinumChosen}"  Grid.Row="2" Grid.Column="3" FontSize="11"/>
+                    <CheckBox x:Name="mpgVisible"                       Content="Драг. металлы, мпг"               
+                            IsChecked="{Binding Path=MpgChosen}"  Grid.Row="3" Grid.Column="3" FontSize="11"/>
+                    <CheckBox x:Name="conditionVisible"                 Content="Состояние"                        
+                            IsChecked="{Binding Path=ConditionChosen}"  Grid.Row="4" Grid.Column="3" FontSize="11"/>
+                    <CheckBox x:Name="serviceDateVisible"               Content="Дата сервисного обслуживания"     
+                            IsChecked="{Binding Path=ServiceDateChosen}"  Grid.Row="0" Grid.Column="4" FontSize="11"/>
+                    <CheckBox x:Name="writeoffVisible"                  Content="Год списания"                     
+                            IsChecked="{Binding Path=WriteoffChosen}"  Grid.Row="1" Grid.Column="4" FontSize="11"/>
+                    <CheckBox x:Name="commentVisible"                   Content="Примечания"                       
+                            IsChecked="{Binding Path=commentChosen}"  Grid.Row="2" Grid.Column="4" FontSize="11"/>
+                </Grid>
+
+            </StackPanel>
+
+            <DockPanel Grid.Row="3">
+
+
+                <DataGrid Name="mainDataGrid" Background="{StaticResource BackgroundKey}" Grid.Row="0" Grid.Column="0" Margin="0 5 0 0"
+                          VerticalGridLinesBrush="{StaticResource ForegroundBrush}" HorizontalGridLinesBrush="{StaticResource ForegroundBrush}" 
+                          GridLinesVisibility="All" ClipToBounds="True" RowHeaderWidth="0"
+                          AutoGenerateColumns="False"  ScrollViewer.CanContentScroll="True" 
+                          ScrollViewer.VerticalScrollBarVisibility="Visible"  ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+                          Foreground="{StaticResource Brush05}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}" 
+                          RowStyle="{StaticResource DataGridRowStyle}"  
+                          >
+
+                    <DataGrid.Columns>
+
+                        <DataGridTemplateColumn 
+                                                CellStyle="{StaticResource DataGridCellStyle}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox Style="{StaticResource CheckBoxStyle}" IsChecked="{Binding Path=ProductChosen, UpdateSourceTrigger=PropertyChanged}"/>
+                                </DataTemplate>
+
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <CheckBox Style="{StaticResource CheckBoxStyle}" 
+                                              IsChecked="{Binding Path=ProductChosen, Mode=TwoWay}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="№ п/п" Width="60" IsReadOnly="True"
+                                            CellStyle="{StaticResource DataGridCellStyle}"  
+                                            Binding="{Binding Path=Number}"/>
+
+                        <DataGridTextColumn Header="Место эксплуатации" Width="Auto" Binding="{Binding Path=ExploitationPlace}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True"
+                                            Visibility="{Binding Source={x:Reference exploitationPlaceVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"/>
+
+                        <DataGridTextColumn Header="Наименование изделия" Width="Auto" Binding="{Binding Path=Name}" IsReadOnly="True"
+                                            CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Header="Ответственное лицо"   Width="Auto" Binding="{Binding Path=ResponsiblePerson}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True" />
+                        <DataGridComboBoxColumn Header="Статус" x:Name="productStateColumn"  IsReadOnly="True"
+                                              
+                                              SelectedValueBinding="{Binding Path=State}">
+                            <DataGridComboBoxColumn.CellStyle>
+                                <Style  TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Background" Value="{Binding Path=State, Converter={StaticResource StatesBrushConverter}}"/>
+                                    <Setter Property="FontSize" Value="13.3" />
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="FontFamily" Value="Segoe UI" />
+
+
+
+                                </Style>
+                            </DataGridComboBoxColumn.CellStyle>
+                        </DataGridComboBoxColumn>
+
+                        <DataGridTextColumn Header="Номер заводской" Width="Auto" Binding="{Binding Path=FactoryNumber}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True"
+                                            Visibility="{Binding Source={x:Reference factoryNumberVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"
+                                            />
+                        <DataGridTextColumn Header="Инвентаризационный номер" Width="Auto" Binding="{Binding Path=InventoryNumber}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True"
+                                            Visibility="{Binding Source={x:Reference inventoryNumberVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"
+                                            />
+                        <DataGridTextColumn Header="Номенклатура ВВТ" Width="Auto" Binding="{Binding Path=BbtNomenclature}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True"
+                                            Visibility="{Binding Source={x:Reference bbtNomenclatureVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"/>
+                        <DataGridTextColumn Header="Назначение изделия" Width="Auto" Binding="{Binding Path=Purpose}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True"
+                                            Visibility="{Binding Source={x:Reference purposeVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"/>
+                        <DataGridTextColumn Header="Организация-изготовитель" Width="Auto" Binding="{Binding Path=Manufacturer}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True"
+                                            Visibility="{Binding Source={x:Reference manufacturerVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"/>
+                        <DataGridTextColumn Header="Дата изготовления" Width="Auto" Binding="{Binding Path=ProductionDate}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True"
+                                            Visibility="{Binding Source={x:Reference productionDateVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"
+                                            />
+                        <DataGridTextColumn Header="Срок гарантии" Width="Auto" Binding="{Binding Path=Guarantee}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True"
+                                            Visibility="{Binding Source={x:Reference guaranteeVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"
+                                            />
+                        <DataGridTextColumn Header="Дата окончания обязательств" Width="Auto" Binding="{Binding Path=EndDate}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True"
+                                            Visibility="{Binding Source={x:Reference endDateVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"
+                                            />
+                        <DataGridTextColumn Header="Срок эксплуатации" Width="Auto" Binding="{Binding Path=ExploitationPeriod}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True"
+                                            Visibility="{Binding Source={x:Reference exploitationPeriodVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"
+                                            />
+                        <DataGridTextColumn Header="Наименование документа, подтверждающего принятие изделия на ответственное хранение" 
+                                            Width="Auto" Binding="{Binding Path=ConfirmationDoc}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True"
+                                            Visibility="{Binding Source={x:Reference confirmationDocVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"
+                                            />
+                        <DataGridTextColumn Header="Дата принятия объекта на ответственное хранение" Width="Auto" 
+                                            Binding="{Binding Path=ReceivingDate}" IsReadOnly="True"
+                                            CellStyle="{StaticResource DataGridCellStyle}"
+                                            Visibility="{Binding Source={x:Reference receivingDateVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"
+                                            />
+                        <DataGridTextColumn Header="№ приказа о вводе в эксплуатацию" Width="Auto" Binding="{Binding Path=OrderNumber}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True"
+                                            Visibility="{Binding Source={x:Reference orderNumberVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"
+                                            />
+                        <DataGridTextColumn Header="Дата приказа о вводе в эксплуатацию" Width="Auto" Binding="{Binding Path=ExploitationDate}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True"
+                                            Visibility="{Binding Source={x:Reference exploitationDateVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"
+                                            />
+                        <DataGridTextColumn Header="Первоначальная стоимость" Width="Auto" Binding="{Binding Path=PrimaryCost}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True"
+                                            Visibility="{Binding Source={x:Reference primaryCostVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"/>
+                        <DataGridTextColumn Header="Драг. металлы, золото, грамм" Width="Auto" Binding="{Binding Path=Aurum}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True"
+                                            Visibility="{Binding Source={x:Reference aurumVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"
+                                            />
+                        <DataGridTextColumn Header="Драг. металлы, серебро, грамм" Width="Auto" Binding="{Binding Path=Argentum}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True"
+                                            Visibility="{Binding Source={x:Reference argentumVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"
+                                            />
+                        <DataGridTextColumn Header="Драг. металлы, платина, грамм" Width="Auto" Binding="{Binding Path=Platinum}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True"
+                                            Visibility="{Binding Source={x:Reference platinumVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"
+                                            />
+                        <DataGridTextColumn Header="Драг. металлы, МПГ, грамм" Width="Auto" Binding="{Binding Path=MpgDate}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True"
+                                            Visibility="{Binding Source={x:Reference mpgVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"
+                                            />
+                        <DataGridTextColumn Header="Состояние изделия" 
+                                            Width="Auto" Binding="{Binding Path=Condition}" IsReadOnly="True"
+                                            CellStyle="{StaticResource DataGridCellStyle}"
+                                            Visibility="{Binding Source={x:Reference conditionVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"
+                                            />
+                        <DataGridTextColumn Header="Дата последнего сервисного обслуживания" Width="Auto" 
+                                            Binding="{Binding Path=ServiceDate}" IsReadOnly="True"
+                                            CellStyle="{StaticResource DataGridCellStyle}"
+                                            Visibility="{Binding Source={x:Reference serviceDateVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"
+                                            />
+                        <DataGridTextColumn Header="Планируемый год списания" Width="Auto" Binding="{Binding Path=Write_off}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True"
+                                            Visibility="{Binding Source={x:Reference writeoffVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"
+                                            />
+                        <DataGridTextColumn Header="Примечания" Width="Auto" Binding="{Binding Path=Comment}"
+                                            CellStyle="{StaticResource DataGridCellStyle}" IsReadOnly="True"
+                                            Visibility="{Binding Source={x:Reference commentVisible}, Path=IsChecked,
+                            Converter={StaticResource BoolVisibleConverter}}"
+                                            />
+
+                    </DataGrid.Columns>
+
+                </DataGrid>
+            </DockPanel>
+        </Grid>
+
+
+
+
+
+    </Grid>
+</Window>
