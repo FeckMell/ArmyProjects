@@ -24,5 +24,16 @@ namespace Deji
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            Deji.DB_DejDataSet dB_DejDataSet = ((Deji.DB_DejDataSet)(this.FindResource("dB_DejDataSet")));
+            // Load data into the table Record. You can modify this code as needed.
+            Deji.DB_DejDataSetTableAdapters.RecordTableAdapter dB_DejDataSetRecordTableAdapter = new Deji.DB_DejDataSetTableAdapters.RecordTableAdapter();
+            dB_DejDataSetRecordTableAdapter.Fill(dB_DejDataSet.Record);
+            System.Windows.Data.CollectionViewSource recordViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("recordViewSource")));
+            recordViewSource.View.MoveCurrentToFirst();
+        }
     }
 }
