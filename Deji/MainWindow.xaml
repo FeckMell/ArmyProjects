@@ -4,24 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Deji"
+        xmlns:local1="clr-namespace:Deji.Data"
         mc:Ignorable="d"
         Title="MainWindow" Loaded="Window_Loaded" Width="800" Height="450" Background="#FF857979">
-    
+
     <Window.Resources>
-        <local:DB_DejDataSet x:Key="dB_DejDataSet"/>
+        <local1:DB_DejDataSet x:Key="dB_DejDataSet"/>
         <CollectionViewSource x:Key="recordViewSource" Source="{Binding Record, Source={StaticResource dB_DejDataSet}}"/>
         <CollectionViewSource x:Key="unitsViewSource" Source="{Binding Units, Source={StaticResource dB_DejDataSet}}"/>
     </Window.Resources>
-    
-    
+
+
     <Grid HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="757" Height="409" DataContext="{StaticResource recordViewSource}">
         <Grid.RowDefinitions>
             <RowDefinition Height="7*"/>
             <RowDefinition Height="41*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="228*"/>
-            <ColumnDefinition Width="529*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <DataGrid x:Name="recordDataGrid" AutoGenerateColumns="False" Grid.Column="1" Grid.Row="1" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,10,10,0" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
@@ -63,8 +64,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Orientation="Vertical" Margin="10,0,0,0" Grid.Column="0">
-            <Label Content="Поиск" HorizontalAlignment="Center" VerticalAlignment="Center" Width="228" Height="26" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" VerticalAlignment="Top" Width="228" ToolTip="Введите часть ФИО" VerticalContentAlignment="Center" FontStyle="Italic"/>
+            <Label Content="Поиск" HorizontalAlignment="Left" VerticalAlignment="Top" Width="179" Height="26" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="White"/>
+            <TextBox HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" VerticalAlignment="Top" ToolTip="Введите часть ФИО" VerticalContentAlignment="Center" FontStyle="Italic" Width="179"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Margin="10" Orientation="Horizontal">
             <Button Content="Добавить&#xA;&quot;человека&quot;" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="36"/>
@@ -73,8 +74,8 @@
         </StackPanel>
         <DataGrid x:Name="unitsDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource unitsViewSource}}" Margin="10,10,0,0" Grid.Row="1" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="millitaryPartColumn" Binding="{Binding MillitaryPart}" Header="Millitary Part" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="ФИО" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="millitaryPartColumn" Binding="{Binding MillitaryPart}" Header="Часть" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

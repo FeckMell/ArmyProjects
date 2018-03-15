@@ -1,4 +1,4 @@
-﻿namespace Deji
+﻿namespace Deji.Data
 {
 
 

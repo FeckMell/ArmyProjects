@@ -149,7 +149,7 @@ SELECT Id, Name, MillitaryPart FROM Units WHERE (Id = @Id)</CommandText>
   <xs:element name="DB_DejDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DB_DejDataSet" msprop:Generator_UserDSName="DB_DejDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Record" msprop:Generator_TableClassName="RecordDataTable" msprop:Generator_TableVarName="tableRecord" msprop:Generator_RowChangedName="RecordRowChanged" msprop:Generator_TablePropName="Record" msprop:Generator_RowDeletingName="RecordRowDeleting" msprop:Generator_RowChangingName="RecordRowChanging" msprop:Generator_RowEvHandlerName="RecordRowChangeEventHandler" msprop:Generator_RowDeletedName="RecordRowDeleted" msprop:Generator_RowClassName="RecordRow" msprop:Generator_UserTableName="Record" msprop:Generator_RowEvArgName="RecordRowChangeEvent">
+        <xs:element name="Record" msprop:Generator_TableClassName="RecordDataTable" msprop:Generator_TableVarName="tableRecord" msprop:Generator_TablePropName="Record" msprop:Generator_RowDeletingName="RecordRowDeleting" msprop:Generator_RowChangingName="RecordRowChanging" msprop:Generator_RowEvHandlerName="RecordRowChangeEventHandler" msprop:Generator_RowDeletedName="RecordRowDeleted" msprop:Generator_UserTableName="Record" msprop:Generator_RowChangedName="RecordRowChanged" msprop:Generator_RowEvArgName="RecordRowChangeEvent" msprop:Generator_RowClassName="RecordRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -168,7 +168,7 @@ SELECT Id, Name, MillitaryPart FROM Units WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Units" msprop:Generator_TableClassName="UnitsDataTable" msprop:Generator_TableVarName="tableUnits" msprop:Generator_RowChangedName="UnitsRowChanged" msprop:Generator_TablePropName="Units" msprop:Generator_RowDeletingName="UnitsRowDeleting" msprop:Generator_RowChangingName="UnitsRowChanging" msprop:Generator_RowEvHandlerName="UnitsRowChangeEventHandler" msprop:Generator_RowDeletedName="UnitsRowDeleted" msprop:Generator_RowClassName="UnitsRow" msprop:Generator_UserTableName="Units" msprop:Generator_RowEvArgName="UnitsRowChangeEvent">
+        <xs:element name="Units" msprop:Generator_TableClassName="UnitsDataTable" msprop:Generator_TableVarName="tableUnits" msprop:Generator_TablePropName="Units" msprop:Generator_RowDeletingName="UnitsRowDeleting" msprop:Generator_RowChangingName="UnitsRowChanging" msprop:Generator_RowEvHandlerName="UnitsRowChangeEventHandler" msprop:Generator_RowDeletedName="UnitsRowDeleted" msprop:Generator_UserTableName="Units" msprop:Generator_RowChangedName="UnitsRowChanged" msprop:Generator_RowEvArgName="UnitsRowChangeEvent" msprop:Generator_RowClassName="UnitsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -193,5 +193,9 @@ SELECT Id, Name, MillitaryPart FROM Units WHERE (Id = @Id)</CommandText>
       <xs:selector xpath=".//mstns:Units" />
       <xs:field xpath="mstns:Id" />
     </xs:unique>
+    <xs:keyref name="FK_Units_Record" refer="Units_Constraint1" msdata:ConstraintOnly="true">
+      <xs:selector xpath=".//mstns:Record" />
+      <xs:field xpath="mstns:IdMan" />
+    </xs:keyref>
   </xs:element>
 </xs:schema>

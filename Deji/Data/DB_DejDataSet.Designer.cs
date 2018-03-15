@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Deji {
+namespace Deji.Data {
     
     
     /// <summary>
@@ -232,6 +232,14 @@ namespace Deji {
             base.Tables.Add(this.tableRecord);
             this.tableUnits = new UnitsDataTable();
             base.Tables.Add(this.tableUnits);
+            global::System.Data.ForeignKeyConstraint fkc;
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_Units_Record", new global::System.Data.DataColumn[] {
+                        this.tableUnits.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableRecord.IdManColumn});
+            this.tableRecord.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1266,7 +1274,7 @@ namespace Deji {
         }
     }
 }
-namespace Deji.DB_DejDataSetTableAdapters {
+namespace Deji.Data.DB_DejDataSetTableAdapters {
     
     
     /// <summary>
@@ -2206,21 +2214,21 @@ SELECT Id, Name, MillitaryPart FROM Units WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateUpdatedRows(DB_DejDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._recordTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Record.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._recordTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._unitsTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Units.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._unitsTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._recordTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Record.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._recordTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -2234,19 +2242,19 @@ SELECT Id, Name, MillitaryPart FROM Units WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateInsertedRows(DB_DejDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._recordTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Record.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._recordTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._unitsTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Units.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._unitsTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._recordTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Record.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._recordTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -2260,19 +2268,19 @@ SELECT Id, Name, MillitaryPart FROM Units WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateDeletedRows(DB_DejDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._unitsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Units.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._unitsTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._recordTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Record.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._recordTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._unitsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Units.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._unitsTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
