@@ -4,18 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Deji"
-        xmlns:local1="clr-namespace:Deji.Data"
         mc:Ignorable="d"
-        Title="MainWindow" Loaded="Window_Loaded" Width="800" Height="450" Background="#FF857979">
+        Title="MainWindow" Width="800" Height="450" Background="#FF857979">
 
-    <Window.Resources>
-        <local1:DB_DejDataSet x:Key="dB_DejDataSet"/>
-        <CollectionViewSource x:Key="recordViewSource" Source="{Binding Record, Source={StaticResource dB_DejDataSet}}"/>
-        <CollectionViewSource x:Key="unitsViewSource" Source="{Binding Units, Source={StaticResource dB_DejDataSet}}"/>
-    </Window.Resources>
-
-
-    <Grid HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="757" Height="409" DataContext="{StaticResource recordViewSource}">
+    <Grid HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="757" Height="409">
         <Grid.RowDefinitions>
             <RowDefinition Height="7*"/>
             <RowDefinition Height="41*"/>
@@ -24,45 +16,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="recordDataGrid" AutoGenerateColumns="False" Grid.Column="1" Grid.Row="1" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,10,10,0" RowDetailsVisibilityMode="VisibleWhenSelected">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn x:Name="dateColumn" Header="Дата" Width="SizeToHeader">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Label Content="{Binding Path=Date}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="timeColumn" Header="Время" Width="SizeToHeader">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Label Content="{Binding Path=Time}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="arrivalColumn" Header="Пришёл" Width="SizeToHeader">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Label Content="{Binding Path=Arrival}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="drochitColumn" Header="Дрочит" Width="SizeToHeader">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Label Content="{Binding Path=Drochit}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="commentColumn" Header="Комментарий" Width="SizeToHeader">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Path=Comment}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        
         <StackPanel Orientation="Vertical" Margin="10,0,0,0" Grid.Column="0">
             <Label Content="Поиск" HorizontalAlignment="Left" VerticalAlignment="Top" Width="179" Height="26" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="White"/>
             <TextBox HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" VerticalAlignment="Top" ToolTip="Введите часть ФИО" VerticalContentAlignment="Center" FontStyle="Italic" Width="179"/>
@@ -72,12 +26,6 @@
             <Button Content="Добавить&#xA;запись" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.04,-1" Height="36" HorizontalContentAlignment="Center"/>
             <Button Content="Инфо о&#xA;программе" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-1.253,1.2" Height="36"/>
         </StackPanel>
-        <DataGrid x:Name="unitsDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource unitsViewSource}}" Margin="10,10,0,0" Grid.Row="1" RowDetailsVisibilityMode="VisibleWhenSelected">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="ФИО" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="millitaryPartColumn" Binding="{Binding MillitaryPart}" Header="Часть" Width="SizeToHeader"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        
     </Grid>
-    <!--<Grid DataContext="{StaticResource recordViewSource}"/>-->
 </Window>

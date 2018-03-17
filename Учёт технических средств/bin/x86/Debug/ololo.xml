@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Products>
+  <Product>
+    <Name>"Специализированный автоматизированный учебный комплекс". Учебная аудитория "ИнтегралЪ МК" </Name>
+    <Index>0</Index>
+    <ExploitationPlace>36360</ExploitationPlace>
+    <FactoryNumber>0</FactoryNumber>
+    <InventoryNumber></InventoryNumber>
+    <BbtNomenclature>специальная техника</BbtNomenclature>
+    <Purpose>Автоматизированный учебный комплекс</Purpose>
+    <Manufacturer>ЗАО "ИнтегралЪ"</Manufacturer>
+    <ProductionDate />
+    <Guarantee>2 года </Guarantee>
+    <EndDate />
+    <ExploitationPeriod>9 лет</ExploitationPeriod>
+    <ConfirmationDoc>накладная</ConfirmationDoc>
+    <ReceivingDate />
+    <OrderNumber>Пр. командира в.ч. 36360 № 159</OrderNumber>
+    <ExploitationDate />
+    <PrimaryCost>1606962,74</PrimaryCost>
+    <Aurum>0</Aurum>
+    <Argentum>0</Argentum>
+    <Platinum>0</Platinum>
+    <Mpg>0</Mpg>
+    <ResponsiblePerson>начальник 3 цикла Миненков Алексей Юрьевич</ResponsiblePerson>
+    <Condition>работоспособно</Condition>
+    <ServiceDate />
+    <Write_off>0</Write_off>
+    <Comment></Comment>
+    <State>Usual</State>
+  </Product>
+  <Product>
+    <Name>Изделие 83т040.06.05 с адаптацией под спецзадачи</Name>
+    <Index>0</Index>
+    <ExploitationPlace>36360</ExploitationPlace>
+    <FactoryNumber>CN7BXA6343</FactoryNumber>
+    <InventoryNumber></InventoryNumber>
+    <BbtNomenclature>специальная техника</BbtNomenclature>
+    <Purpose>Сканер</Purpose>
+    <Manufacturer>ЗАО "ТехносервЪ А\С"</Manufacturer>
+    <ProductionDate />
+    <Guarantee>3 года </Guarantee>
+    <EndDate />
+    <ExploitationPeriod>0,5 года</ExploitationPeriod>
+    <ConfirmationDoc>накладная</ConfirmationDoc>
+    <ReceivingDate />
+    <OrderNumber>Пр. командира в.ч. 36360 № 34</OrderNumber>
+    <ExploitationDate />
+    <PrimaryCost>10030</PrimaryCost>
+    <Aurum>0</Aurum>
+    <Argentum>0</Argentum>
+    <Platinum>0</Platinum>
+    <Mpg>0</Mpg>
+    <ResponsiblePerson>начальник 3 цикла Миненков Алексей Юрьевич</ResponsiblePerson>
+    <Condition>работоспособно</Condition>
+    <ServiceDate />
+    <Write_off>0</Write_off>
+    <Comment></Comment>
+    <State>Usual</State>
+  </Product>
+  <Product>
+    <Name>ПЭВМ Celeron 2600</Name>
+    <Index>0</Index>
+    <ExploitationPlace>36360</ExploitationPlace>
+    <FactoryNumber>0309М0184</FactoryNumber>
+    <InventoryNumber></InventoryNumber>
+    <BbtNomenclature>специальная техника</BbtNomenclature>
+    <Purpose>ПЭВМ</Purpose>
+    <Manufacturer>0</Manufacturer>
+    <ProductionDate />
+    <Guarantee>0</Guarantee>
+    <EndDate />
+    <ExploitationPeriod>11 лет</ExploitationPeriod>
+    <ConfirmationDoc>накладная</ConfirmationDoc>
+    <ReceivingDate />
+    <OrderNumber>Пр. командира в.ч. 36360 № 7</OrderNumber>
+    <ExploitationDate />
+    <PrimaryCost>51281,64</PrimaryCost>
+    <Aurum>0</Aurum>
+    <Argentum>0</Argentum>
+    <Platinum>0</Platinum>
+    <Mpg>0</Mpg>
+    <ResponsiblePerson>начальник 3 цикла Миненков Алексей Юрьевич</ResponsiblePerson>
+    <Condition>не работоспособно</Condition>
+    <ServiceDate />
+    <Write_off>0</Write_off>
+    <Comment></Comment>
+    <State>Usual</State>
+  </Product>
+  <Product>
+    <Name>Блок АРНП</Name>
+    <Index>ЦИ2.511.001</Index>
+    <ExploitationPlace>36360</ExploitationPlace>
+    <FactoryNumber>25</FactoryNumber>
+    <InventoryNumber></InventoryNumber>
+    <BbtNomenclature>специальная техника</BbtNomenclature>
+    <Purpose>Предназначена для определения плоских прямоугольных координат и дирекционного угла оператора, дальности до пункта назначения и дирекционного угла на него, а также координат объектов и ориентира.</Purpose>
+    <Manufacturer>в/ч 25714</Manufacturer>
+    <ProductionDate />
+    <Guarantee>2 года </Guarantee>
+    <EndDate />
+    <ExploitationPeriod>18 лет</ExploitationPeriod>
+    <ConfirmationDoc>накладная</ConfirmationDoc>
+    <ReceivingDate />
+    <OrderNumber>Пр. командира в.ч.  36360 № 165</OrderNumber>
+    <ExploitationDate />
+    <PrimaryCost>257,5</PrimaryCost>
+    <Aurum>0</Aurum>
+    <Argentum>0</Argentum>
+    <Platinum>0</Platinum>
+    <Mpg>0</Mpg>
+    <ResponsiblePerson>начальник цикла Лагутик Дмитрий Викторович</ResponsiblePerson>
+    <Condition>неработоспособно</Condition>
+    <ServiceDate />
+    <Write_off>0</Write_off>
+    <Comment></Comment>
+    <State>Usual</State>
+  </Product>
+  <Product>
+    <Name>Блок АРНП</Name>
+    <Index>ЦИ2.511.001</Index>
+    <ExploitationPlace>36360</ExploitationPlace>
+    <FactoryNumber>42</FactoryNumber>
+    <InventoryNumber></InventoryNumber>
+    <BbtNomenclature>специальная техника</BbtNomenclature>
+    <Purpose>Предназначена для определения плоских прямоугольных координат и дирекционного угла оператора, дальности до пункта назначения и дирекционного угла на него, а также координат объектов и ориентира.</Purpose>
+    <Manufacturer>в/ч 25714</Manufacturer>
+    <ProductionDate />
+    <Guarantee>2 года </Guarantee>
+    <EndDate />
+    <ExploitationPeriod>18 лет</ExploitationPeriod>
+    <ConfirmationDoc>накладная</ConfirmationDoc>
+    <ReceivingDate />
+    <OrderNumber>Пр. командира в.ч.  36360 № 165</OrderNumber>
+    <ExploitationDate />
+    <PrimaryCost>257,5</PrimaryCost>
+    <Aurum>0</Aurum>
+    <Argentum>0</Argentum>
+    <Platinum>0</Platinum>
+    <Mpg>0</Mpg>
+    <ResponsiblePerson>начальник цикла Лагутик Дмитрий Викторович</ResponsiblePerson>
+    <Condition>неработоспособно</Condition>
+    <ServiceDate />
+    <Write_off>0</Write_off>
+    <Comment></Comment>
+    <State>Usual</State>
+  </Product>
+  <Product>
+    <Name>Блок АРНП</Name>
+    <Index>ЦИ2.511.001</Index>
+    <ExploitationPlace>36360</ExploitationPlace>
+    <FactoryNumber>48</FactoryNumber>
+    <InventoryNumber></InventoryNumber>
+    <BbtNomenclature>специальная техника</BbtNomenclature>
+    <Purpose>Предназначена для определения плоских прямоугольных координат и дирекционного угла оператора, дальности до пункта назначения и дирекционного угла на него, а также координат объектов и ориентира.</Purpose>
+    <Manufacturer>в/ч 25714</Manufacturer>
+    <ProductionDate />
+    <Guarantee>2 года </Guarantee>
+    <EndDate />
+    <ExploitationPeriod>18 лет</ExploitationPeriod>
+    <ConfirmationDoc>накладная</ConfirmationDoc>
+    <ReceivingDate />
+    <OrderNumber>Пр. командира в.ч.  36360 № 165</OrderNumber>
+    <ExploitationDate />
+    <PrimaryCost>257,5</PrimaryCost>
+    <Aurum>0</Aurum>
+    <Argentum>0</Argentum>
+    <Platinum>0</Platinum>
+    <Mpg>0</Mpg>
+    <ResponsiblePerson>начальник цикла Лагутик Дмитрий Викторович</ResponsiblePerson>
+    <Condition>неработоспособно</Condition>
+    <ServiceDate />
+    <Write_off>0</Write_off>
+    <Comment></Comment>
+    <State>Usual</State>
+  </Product>
+  <Product>
+    <Name>Блок АРНП</Name>
+    <Index>ЦИ2.511.001</Index>
+    <ExploitationPlace>36360</ExploitationPlace>
+    <FactoryNumber>56</FactoryNumber>
+    <InventoryNumber></InventoryNumber>
+    <BbtNomenclature>специальная техника</BbtNomenclature>
+    <Purpose>Предназначена для определения плоских прямоугольных координат и дирекционного угла оператора, дальности до пункта назначения и дирекционного угла на него, а также координат объектов и ориентира.</Purpose>
+    <Manufacturer>в/ч 25714</Manufacturer>
+    <ProductionDate />
+    <Guarantee>2 года </Guarantee>
+    <EndDate />
+    <ExploitationPeriod>18 лет</ExploitationPeriod>
+    <ConfirmationDoc>накладная</ConfirmationDoc>
+    <ReceivingDate />
+    <OrderNumber>Пр. командира в.ч.  36360 № 165</OrderNumber>
+    <ExploitationDate />
+    <PrimaryCost>257,5</PrimaryCost>
+    <Aurum>0</Aurum>
+    <Argentum>0</Argentum>
+    <Platinum>0</Platinum>
+    <Mpg>0</Mpg>
+    <ResponsiblePerson>начальник цикла Лагутик Дмитрий Викторович</ResponsiblePerson>
+    <Condition>неработоспособно</Condition>
+    <ServiceDate />
+    <Write_off>0</Write_off>
+    <Comment></Comment>
+    <State>Usual</State>
+  </Product>
+  <Product>
+    <Name>Блок АРНП</Name>
+    <Index>ЦИ2.511.001</Index>
+    <ExploitationPlace>36360</ExploitationPlace>
+    <FactoryNumber>65</FactoryNumber>
+    <InventoryNumber></InventoryNumber>
+    <BbtNomenclature>специальная техника</BbtNomenclature>
+    <Purpose>Предназначена для определения плоских прямоугольных координат и дирекционного угла оператора, дальности до пункта назначения и дирекционного угла на него, а также координат объектов и ориентира.</Purpose>
+    <Manufacturer>в/ч 25714</Manufacturer>
+    <ProductionDate />
+    <Guarantee>2 года </Guarantee>
+    <EndDate />
+    <ExploitationPeriod>18 лет</ExploitationPeriod>
+    <ConfirmationDoc>накладная</ConfirmationDoc>
+    <ReceivingDate />
+    <OrderNumber>Пр. командира в.ч.  36360 № 165</OrderNumber>
+    <ExploitationDate />
+    <PrimaryCost>257,5</PrimaryCost>
+    <Aurum>0</Aurum>
+    <Argentum>0</Argentum>
+    <Platinum>0</Platinum>
+    <Mpg>0</Mpg>
+    <ResponsiblePerson>начальник цикла Лагутик Дмитрий Викторович</ResponsiblePerson>
+    <Condition>неработоспособно</Condition>
+    <ServiceDate />
+    <Write_off>0</Write_off>
+    <Comment></Comment>
+    <State>Usual</State>
+  </Product>
+  <Product>
+    <Name>Генератор шума «ГНОМ-3»</Name>
+    <Index>3.541.053</Index>
+    <ExploitationPlace>36360</ExploitationPlace>
+    <FactoryNumber>97141</FactoryNumber>
+    <InventoryNumber></InventoryNumber>
+    <BbtNomenclature>специальная техника</BbtNomenclature>
+    <Purpose>предназначен для совместной работы с устройствами электронной вычислительной техники</Purpose>
+    <Manufacturer>ОТК99</Manufacturer>
+    <ProductionDate />
+    <Guarantee>18 месяцев</Guarantee>
+    <EndDate />
+    <ExploitationPeriod>14 лет</ExploitationPeriod>
+    <ConfirmationDoc>накладная</ConfirmationDoc>
+    <ReceivingDate />
+    <OrderNumber>Пр. командира в.ч.  36360 № 12</OrderNumber>
+    <ExploitationDate />
+    <PrimaryCost>3399</PrimaryCost>
+    <Aurum>0</Aurum>
+    <Argentum>0</Argentum>
+    <Platinum>0</Platinum>
+    <Mpg>0</Mpg>
+    <ResponsiblePerson>начальник цикла Лагутик Дмитрий Викторович</ResponsiblePerson>
+    <Condition>неработоспособно</Condition>
+    <ServiceDate />
+    <Write_off>0</Write_off>
+    <Comment></Comment>
+    <State>Usual</State>
+  </Product>
+  <Product>
+    <Name>Генератор шума «ГНОМ-3»</Name>
+    <Index>3.541.053</Index>
+    <ExploitationPlace>36360</ExploitationPlace>
+    <FactoryNumber>0082</FactoryNumber>
+    <InventoryNumber></InventoryNumber>
+    <BbtNomenclature>специальная техника</BbtNomenclature>
+    <Purpose>предназначен для совместной работы с устройствами электронной вычислительной техники</Purpose>
+    <Manufacturer>ОТК99</Manufacturer>
+    <ProductionDate />
+    <Guarantee>18 месяцев</Guarantee>
+    <EndDate />
+    <ExploitationPeriod>14 лет</ExploitationPeriod>
+    <ConfirmationDoc>накладная</ConfirmationDoc>
+    <ReceivingDate />
+    <OrderNumber>Пр. командира в.ч.  36360 № 12</OrderNumber>
+    <ExploitationDate />
+    <PrimaryCost>3399</PrimaryCost>
+    <Aurum>0</Aurum>
+    <Argentum>0</Argentum>
+    <Platinum>0</Platinum>
+    <Mpg>0</Mpg>
+    <ResponsiblePerson>начальник цикла Лагутик Дмитрий Викторович</ResponsiblePerson>
+    <Condition>неработоспособно</Condition>
+    <ServiceDate />
+    <Write_off>0</Write_off>
+    <Comment></Comment>
+    <State>Usual</State>
+  </Product>
+  <Product>
+    <Name>Диктофон цифровой Olimpus DS-30 с выносным микрофоном МЕ-15</Name>
+    <Index>0</Index>
+    <ExploitationPlace>36360</ExploitationPlace>
+    <FactoryNumber>1540</FactoryNumber>
+    <InventoryNumber></InventoryNumber>
+    <BbtNomenclature>специальная техника</BbtNomenclature>
+    <Purpose>предназначен для записи звуковой информации</Purpose>
+    <Manufacturer>импортное</Manufacturer>
+    <ProductionDate />
+    <Guarantee>1 год</Guarantee>
+    <EndDate />
+    <ExploitationPeriod>7 лет</ExploitationPeriod>
+    <ConfirmationDoc>накладная</ConfirmationDoc>
+    <ReceivingDate />
+    <OrderNumber>Пр. командира в.ч.  36360 № 120</OrderNumber>
+    <ExploitationDate />
+    <PrimaryCost>5750</PrimaryCost>
+    <Aurum>0</Aurum>
+    <Argentum>0</Argentum>
+    <Platinum>0</Platinum>
+    <Mpg>0</Mpg>
+    <ResponsiblePerson>начальник цикла Лагутик Дмитрий Викторович</ResponsiblePerson>
+    <Condition>работоспособно</Condition>
+    <ServiceDate />
+    <Write_off>0</Write_off>
+    <Comment></Comment>
+    <State>Usual</State>
+  </Product>
+  <Product>
+    <Name>Изделие ПОР</Name>
+    <Index>5.149.023</Index>
+    <ExploitationPlace>36360</ExploitationPlace>
+    <FactoryNumber>91/6178 № 807</FactoryNumber>
+    <InventoryNumber></InventoryNumber>
+    <BbtNomenclature>специальная техника</BbtNomenclature>
+    <Purpose>предназначен для обнаружения растяжек взрывных и сигнализационных устройств</Purpose>
+    <Manufacturer>ФГУП «Курский НИИ» МО РФ</Manufacturer>
+    <ProductionDate />
+    <Guarantee>3 года</Guarantee>
+    <EndDate />
+    <ExploitationPeriod>9 лет</ExploitationPeriod>
+    <ConfirmationDoc>накладная</ConfirmationDoc>
+    <ReceivingDate />
+    <OrderNumber>Пр. командира в.ч.  36360 № 61</OrderNumber>
+    <ExploitationDate />
+    <PrimaryCost>15576</PrimaryCost>
+    <Aurum>0</Aurum>
+    <Argentum>0</Argentum>
+    <Platinum>0</Platinum>
+    <Mpg>0</Mpg>
+    <ResponsiblePerson>начальник цикла Лагутик Дмитрий Викторович</ResponsiblePerson>
+    <Condition>работоспособно</Condition>
+    <ServiceDate />
+    <Write_off>0</Write_off>
+    <Comment></Comment>
+    <State>Usual</State>
+  </Product>
+  <Product>
+    <Name>Изделие ПОР</Name>
+    <Index>5.149.023</Index>
+    <ExploitationPlace>36360</ExploitationPlace>
+    <FactoryNumber>91/6178 № 808</FactoryNumber>
+    <InventoryNumber></InventoryNumber>
+    <BbtNomenclature>специальная техника</BbtNomenclature>
+    <Purpose>предназначен для обнаружения растяжек взрывных и сигнализационных устройств</Purpose>
+    <Manufacturer>ФГУП «Курский НИИ» МО РФ</Manufacturer>
+    <ProductionDate />
+    <Guarantee>3 года</Guarantee>
+    <EndDate />
+    <ExploitationPeriod>9 лет</ExploitationPeriod>
+    <ConfirmationDoc>накладная</ConfirmationDoc>
+    <ReceivingDate />
+    <OrderNumber>Пр. командира в.ч.  36360 № 61</OrderNumber>
+    <ExploitationDate />
+    <PrimaryCost>15576</PrimaryCost>
+    <Aurum>0</Aurum>
+    <Argentum>0</Argentum>
+    <Platinum>0</Platinum>
+    <Mpg>0</Mpg>
+    <ResponsiblePerson>начальник цикла Лагутик Дмитрий Викторович</ResponsiblePerson>
+    <Condition>работоспособно</Condition>
+    <ServiceDate />
+    <Write_off>0</Write_off>
+    <Comment></Comment>
+    <State>Usual</State>
+  </Product>
+  <Product>
+    <Name>Изделие ПОР</Name>
+    <Index>5.149.023</Index>
+    <ExploitationPlace>36360</ExploitationPlace>
+    <FactoryNumber>453</FactoryNumber>
+    <InventoryNumber></InventoryNumber>
+    <BbtNomenclature>специальная техника</BbtNomenclature>
+    <Purpose>предназначен для обнаружения растяжек взрывных и сигнализационных устройств</Purpose>
+    <Manufacturer>ФГУП «Курский НИИ» МО РФ</Manufacturer>
+    <ProductionDate />
+    <Guarantee>3 года</Guarantee>
+    <EndDate />
+    <ExploitationPeriod>10 лет</ExploitationPeriod>
+    <ConfirmationDoc>накладная</ConfirmationDoc>
+    <ReceivingDate />
+    <OrderNumber>Пр. командира в.ч.  36360 № 64</OrderNumber>
+    <ExploitationDate />
+    <PrimaryCost>18474,08</PrimaryCost>
+    <Aurum>0</Aurum>
+    <Argentum>0</Argentum>
+    <Platinum>0</Platinum>
+    <Mpg>0</Mpg>
+    <ResponsiblePerson>начальник цикла Лагутик Дмитрий Викторович</ResponsiblePerson>
+    <Condition>выработало срок эксплуатации</Condition>
+    <ServiceDate />
+    <Write_off>0</Write_off>
+    <Comment></Comment>
+    <State>Usual</State>
+  </Product>
+  <Product>
+    <Name>Изделие ПОР</Name>
+    <Index>5.149.023</Index>
+    <ExploitationPlace>36360</ExploitationPlace>
+    <FactoryNumber>454</FactoryNumber>
+    <InventoryNumber></InventoryNumber>
+    <BbtNomenclature>специальная техника</BbtNomenclature>
+    <Purpose>предназначен для обнаружения растяжек взрывных и сигнализационных устройств</Purpose>
+    <Manufacturer>ФГУП «Курский НИИ» МО РФ</Manufacturer>
+    <ProductionDate />
+    <Guarantee>3 года</Guarantee>
+    <EndDate />
+    <ExploitationPeriod>10 лет</ExploitationPeriod>
+    <ConfirmationDoc>накладная</ConfirmationDoc>
+    <ReceivingDate />
+    <OrderNumber>Пр. командира в.ч.  36360 № 64</OrderNumber>
+    <ExploitationDate />
+    <PrimaryCost>18474,08</PrimaryCost>
+    <Aurum>0</Aurum>
+    <Argentum>0</Argentum>
+    <Platinum>0</Platinum>
+    <Mpg>0</Mpg>
+    <ResponsiblePerson>начальник цикла Лагутик Дмитрий Викторович</ResponsiblePerson>
+    <Condition>выработало срок эксплуатации</Condition>
+    <ServiceDate />
+    <Write_off>0</Write_off>
+    <Comment></Comment>
+    <State>Usual</State>
+  </Product>
+  <Product>
+    <Name>УМСД оо</Name>
+    <Index>2.009.025</Index>
+    <ExploitationPlace>36360</ExploitationPlace>
+    <FactoryNumber>б/н</FactoryNumber>
+    <InventoryNumber></InventoryNumber>
+    <BbtNomenclature>специальная техника</BbtNomenclature>
+    <Purpose>предназначен для маркирования объектов в СВЧ диапазоне</Purpose>
+    <Manufacturer>ФГУП «Курский НИИ» МО РФ</Manufacturer>
+    <ProductionDate />
+    <Guarantee>нет</Guarantee>
+    <EndDate />
+    <ExploitationPeriod>12 лет</ExploitationPeriod>
+    <ConfirmationDoc>накладная</ConfirmationDoc>
+    <ReceivingDate />
+    <OrderNumber>Пр. командира в.ч.  36360 № 81</OrderNumber>
+    <ExploitationDate />
+    <PrimaryCost>1648</PrimaryCost>
+    <Aurum>0</Aurum>
+    <Argentum>0</Argentum>
+    <Platinum>0</Platinum>
+    <Mpg>0</Mpg>
+    <ResponsiblePerson>начальник цикла Лагутик Дмитрий Викторович</ResponsiblePerson>
+    <Condition>выработало срок эксплуатации</Condition>
+    <ServiceDate />
+    <Write_off>0</Write_off>
+    <Comment></Comment>
+    <State>Usual</State>
+  </Product>
+  <Product>
+    <Name>УМСД</Name>
+    <Index>2.009.025</Index>
+    <ExploitationPlace>36360</ExploitationPlace>
+    <FactoryNumber>91/6155 - 121</FactoryNumber>
+    <InventoryNumber></InventoryNumber>
+    <BbtNomenclature>специальная техника</BbtNomenclature>
+    <Purpose>предназначен для маркирования объектов в СВЧ диапазоне</Purpose>
+    <Manufacturer>ФГУП «Курский НИИ» МО РФ</Manufacturer>
+    <ProductionDate />
+    <Guarantee>2 года</Guarantee>
+    <EndDate />
+    <ExploitationPeriod>10 лет</ExploitationPeriod>
+    <ConfirmationDoc>накладная</ConfirmationDoc>
+    <ReceivingDate />
+    <OrderNumber>Пр. командира в.ч.  36360 № 64</OrderNumber>
+    <ExploitationDate />
+    <PrimaryCost>108656,76</PrimaryCost>
+    <Aurum>0</Aurum>
+    <Argentum>0</Argentum>
+    <Platinum>0</Platinum>
+    <Mpg>0</Mpg>
+    <ResponsiblePerson>начальник цикла Лагутик Дмитрий Викторович</ResponsiblePerson>
+    <Condition>выработало срок эксплуатации</Condition>
+    <ServiceDate />
+    <Write_off>0</Write_off>
+    <Comment></Comment>
+    <State>Usual</State>
+  </Product>
+</Products>

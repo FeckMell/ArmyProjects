@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+  <DefaultResponsible>Не указано</DefaultResponsible>
+  <DefaultExpluatationPlace>В/ч 36360</DefaultExpluatationPlace>
+  <ExploitationPlaceChosen>true</ExploitationPlaceChosen>
+  <IndexChosen>true</IndexChosen>
+  <FactoryNumberChosen>false</FactoryNumberChosen>
+  <InventoryNumberChosen>false</InventoryNumberChosen>
+  <BbtNomenclatureChosen>false</BbtNomenclatureChosen>
+  <PurposeChosen>false</PurposeChosen>
+  <ManufacturerChosen>false</ManufacturerChosen>
+  <ProductionDateChosen>true</ProductionDateChosen>
+  <GuaranteeChosen>false</GuaranteeChosen>
+  <EndDateChosen>false</EndDateChosen>
+  <ExploitationPeriodChosen>false</ExploitationPeriodChosen>
+  <ConfirmationDocChosen>false</ConfirmationDocChosen>
+  <ReceivingDateChosen>false</ReceivingDateChosen>
+  <OrderNumberChosen>false</OrderNumberChosen>
+  <ExploitationDateChosen>false</ExploitationDateChosen>
+  <PrimaryCostChosen>true</PrimaryCostChosen>
+  <AurumChosen>false</AurumChosen>
+  <ArgentumChosen>false</ArgentumChosen>
+  <PlatinumChosen>false</PlatinumChosen>
+  <MpgChosen>false</MpgChosen>
+  <ResponsiblePersonChosen>true</ResponsiblePersonChosen>
+  <ConditionChosen>false</ConditionChosen>
+  <ServiceDateChosen>false</ServiceDateChosen>
+  <Write_offChosen>false</Write_offChosen>
+  <CommentChosen>false</CommentChosen>
+  <StateChosen>false</StateChosen>
+</Settings>
