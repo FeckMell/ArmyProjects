@@ -23,6 +23,21 @@ namespace Deji
         public MainWindow()
         {
             InitializeComponent();
+
+            //Display
+            UnitsStore.Init(GridUnits);
+            RecordsStore.Init(GridRecords);
+
+            SQLConnector.Init("InitString");
+            SearchController.Init();
+        }
+
+        private void FocusRowUnits(object sender, SelectionChangedEventArgs e)
+        {
+            //Получение элемента строки: ((e.Source as DataGrid).CurrentCell.Item as UnitElement)
+            RecordsStore.Display((e.Source as DataGrid).CurrentCell.Item as UnitElement);
+
+           // MessageBox.Show("call\nType:"+ (e.Source as DataGrid).CurrentCell.Item.GetType()+"\nData:"+ ((e.Source as DataGrid).CurrentCell.Item as UnitElement).ThatName);
         }
     }
 }
