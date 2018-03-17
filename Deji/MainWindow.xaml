@@ -16,7 +16,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        
+
         <StackPanel Orientation="Vertical" Margin="10,0,0,0" Grid.Column="0">
             <Label Content="Поиск" HorizontalAlignment="Left" VerticalAlignment="Top" Width="179" Height="26" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="White"/>
             <TextBox HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" VerticalAlignment="Top" ToolTip="Введите часть ФИО" VerticalContentAlignment="Center" FontStyle="Italic" Width="179"/>
@@ -26,6 +26,31 @@
             <Button Content="Добавить&#xA;запись" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.04,-1" Height="36" HorizontalContentAlignment="Center"/>
             <Button Content="Инфо о&#xA;программе" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-1.253,1.2" Height="36"/>
         </StackPanel>
-        
+
+
+        <DataGrid Name="GridUnits" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Height="339" Margin="10,10,0,0" VerticalAlignment="Top" Width="179"
+                  GridLinesVisibility="All" ClipToBounds="True" AutoGenerateColumns="False"  ScrollViewer.CanContentScroll="True"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible"  ScrollViewer.HorizontalScrollBarVisibility="Visible" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Звание" Width="Auto" Binding="{Binding Path=thatRank}"/>
+                <DataGridTextColumn Header="ФИО" Width="Auto" Binding="{Binding Path=thatName}"/>
+                <DataGridTextColumn Header="Должность" Width="Auto" Binding="{Binding Path=thatType}"/>
+                <DataGridTextColumn Header="Часть" Width="Auto" Binding="{Binding Path=thatPart}"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+            
+        <DataGrid Name="GridRecords" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="339" Margin="10,10,0,0" VerticalAlignment="Top" Width="558"
+                  GridLinesVisibility="All" ClipToBounds="True" AutoGenerateColumns="False"  ScrollViewer.CanContentScroll="True"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible"  ScrollViewer.HorizontalScrollBarVisibility="Visible" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дата" Width="Auto" Binding="{Binding Path=thatDate}"/>
+                <DataGridTextColumn Header="Время" Width="Auto" Binding="{Binding Path=thatTime}"/>
+                <DataGridTextColumn Header="Пришёл" Width="Auto" Binding="{Binding Path=thatArrival}"/>
+                <DataGridTextColumn Header="Дрочит" Width="Auto" Binding="{Binding Path=thatDrochit}"/>
+                <DataGridTextColumn Header="Комментарий" Width="Auto" Binding="{Binding Path=thatComment}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Window>

@@ -7,22 +7,22 @@ namespace Deji
 {
     public static class UnitsController
     {
-        public void Init()
+        public static void Init()
         {
             throw new System.NotImplementedException();
         }
 
-        public void AddUnit()
+        public static void AddUnit()
         {
             throw new System.NotImplementedException();
         }
 
-        public void ModifyUnit()
+        public static void ModifyUnit()
         {
             throw new System.NotImplementedException();
         }
 
-        public void DelUnit()
+        public static void DelUnit()
         {
             throw new System.NotImplementedException();
         }

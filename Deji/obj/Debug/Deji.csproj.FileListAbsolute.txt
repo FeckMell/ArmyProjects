@@ -1,0 +1,5 @@
+D:\WORK\ArmyProjects\Deji\obj\Debug\Deji.csprojResolveAssemblyReference.cache
+D:\WORK\ArmyProjects\Deji\obj\Debug\MainWindow.g.cs
+D:\WORK\ArmyProjects\Deji\obj\Debug\App.g.cs
+D:\WORK\ArmyProjects\Deji\obj\Debug\Deji_MarkupCompile.cache
+D:\WORK\ArmyProjects\Deji\obj\Debug\Deji_MarkupCompile.lref
