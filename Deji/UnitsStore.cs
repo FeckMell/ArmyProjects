@@ -11,18 +11,23 @@ namespace Deji
     {
         private static bool DEBUG = false;
         private static ObservableCollection<UnitElement> thatUnits = new ObservableCollection<UnitElement>();
-
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
         public static void Update(List<List<object>> data_)
         {
+            thatUnits.Clear();
             foreach(List<object> e in data_)
             {
-                thatUnits.Add(new UnitElement((int)e[0], (string)e[1], (string)e[2], (string)e[3], (string)e[4]));
+                thatUnits.Add(new UnitElement(Int32.Parse(e[0].ToString()), (string)e[1], (string)e[2], (string)e[3], (string)e[4]));
             }
         }
-
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
         public static void Init(DataGrid grid_)
         {
             grid_.ItemsSource = thatUnits;
         }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
     }
 }

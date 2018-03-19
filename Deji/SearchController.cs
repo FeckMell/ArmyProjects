@@ -2,42 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace Deji
 {
     public static class SearchController
     {
         private static bool DEBUG = true;
-        //private static SQLConnector thatSQLConnector = new SQLConnector();
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
         public static void Init()
+        {            
+            UnitsStore.Update(SQLConnector.Select("select * from dbo.Units"));
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        public static void PerformSearch(string data_)
         {
-            //thatSQLConnector.Init("InitString");
-            List<List<object>> resultUnits;
-
-            if (DEBUG)
+            string s;
+            if (data_ == "" || data_ == null)
             {
-                resultUnits = new List<List<object>>();
-
-                object[] o1 = { 2, "Попович", "Майор", "36360", "Ответственный" };
-                resultUnits.Add(new List<object>(o1));
-                object[] o2 = { 3, "Сабонин", "Подполковник", "36360", "ДПЧ" };
-                resultUnits.Add(new List<object>(o2));
-                object[] o3 = { 4, "Номоконов", "Майор", "36360", "ПДПЧ" };
-                resultUnits.Add(new List<object>(o3));
-                object[] o4 = { 5, "Фролов", "Майор", "51428", "ДПЧ" };
-                resultUnits.Add(new List<object>(o4));
+                s = "select * from dbo.Units";
             }
             else
             {
-                resultUnits = SQLConnector.Select("select query");
+                s = "SELECT * FROM dbo.Units WHERE Rank LIKE '%" + data_ + "%' Or Name LIKE '%" + data_ + "%' Or Part LIKE '%" + data_ + "%' Or Type LIKE '%" + data_ + "%'";
             }
-            
-            UnitsStore.Update(resultUnits);
-        }
 
-        public static void PerformSearch(string data_)
-        {
-            throw new System.NotImplementedException();
+            UnitsStore.Update(SQLConnector.Select(s));
         }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
     }
 }

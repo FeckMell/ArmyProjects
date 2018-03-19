@@ -18,6 +18,12 @@ namespace Deji
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+
+
+    /*
+     Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DejiDB.mdf;Integrated Security=True
+         */
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -28,31 +34,23 @@ namespace Deji
             UnitsStore.Init(GridUnits);
             RecordsStore.Init(GridRecords);
 
-            SQLConnector.Init("InitString");
+            SQLConnector.Init();
             SearchController.Init();
         }
-
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
         private void FocusRowUnits(object sender, SelectionChangedEventArgs e)
         {
             //Получение элемента строки: ((e.Source as DataGrid).CurrentCell.Item as UnitElement)
             RecordsStore.Display((e.Source as DataGrid).CurrentCell.Item as UnitElement);
-
-           // MessageBox.Show("call\nType:"+ (e.Source as DataGrid).CurrentCell.Item.GetType()+"\nData:"+ ((e.Source as DataGrid).CurrentCell.Item as UnitElement).ThatName);
         }
-
-        private void qqq(object sender, RoutedEventArgs e)
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        private void SearchStringChange(object sender, TextChangedEventArgs e)
         {
-            //MessageBox.Show("qqq");
+            SearchController.PerformSearch((e.Source as TextBox).Text);
         }
-
-        private void eee(object sender, TextChangedEventArgs e)
-        {
-           // MessageBox.Show("eee");
-        }
-
-        private void ttt(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("ttt");
-        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
     }
 }

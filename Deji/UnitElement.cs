@@ -12,7 +12,15 @@ namespace Deji
         private string thatRank;
         private string thatPart;
         private string thatType;
-
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        public int ThatID { get => thatID; set => thatID = value; }
+        public string ThatName { get => thatName; set => thatName = value; }
+        public string ThatRank { get => thatRank; set => thatRank = value; }
+        public string ThatPart { get => thatPart; set => thatPart = value; }
+        public string ThatType { get => thatType; set => thatType = value; }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
         public UnitElement(int id_, string name_, string rank_, string part_, string type_)
         {
             thatID = id_;
@@ -21,11 +29,7 @@ namespace Deji
             thatPart = part_;
             thatType = type_;
         }
-
-        public int ThatID { get => thatID; set => thatID = value; }
-        public string ThatName { get => thatName; set => thatName = value; }
-        public string ThatRank { get => thatRank; set => thatRank = value; }
-        public string ThatPart { get => thatPart; set => thatPart = value; }
-        public string ThatType { get => thatType; set => thatType = value; }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
     }
 }
