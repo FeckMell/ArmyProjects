@@ -39,5 +39,20 @@ namespace Deji
 
            // MessageBox.Show("call\nType:"+ (e.Source as DataGrid).CurrentCell.Item.GetType()+"\nData:"+ ((e.Source as DataGrid).CurrentCell.Item as UnitElement).ThatName);
         }
+
+        private void qqq(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show("qqq");
+        }
+
+        private void eee(object sender, TextChangedEventArgs e)
+        {
+           // MessageBox.Show("eee");
+        }
+
+        private void ttt(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("ttt");
+        }
     }
 }
