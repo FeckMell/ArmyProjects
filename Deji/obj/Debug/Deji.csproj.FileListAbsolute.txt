@@ -31,3 +31,6 @@ D:\WORK\ArmyProjects\Deji\obj\Debug\Deji.pdb
 D:\WORK\ArmyProjects\Deji\obj\Debug\Deji_Content.g.cs
 D:\WORK\ArmyProjects\Deji\bin\Debug\DejiDB.mdf
 D:\WORK\ArmyProjects\Deji\bin\Debug\DejiDB_log.ldf
+C:\WORK\ArmyProjects\Deji\bin\Debug\DejiDB.mdf
+C:\WORK\ArmyProjects\Deji\bin\Debug\DejiDB_log.ldf
+C:\WORK\ArmyProjects\Deji\obj\Debug\Deji_Content.g.cs

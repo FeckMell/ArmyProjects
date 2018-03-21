@@ -77,7 +77,6 @@
     <Compile Include="RecordElement.cs" />
     <Compile Include="RecordsController.cs" />
     <Compile Include="RecordsStore.cs" />
-    <Compile Include="SearchController.cs" />
     <Compile Include="SQLConnector.cs" />
     <Compile Include="UnitElement.cs" />
     <Compile Include="UnitsController.cs" />

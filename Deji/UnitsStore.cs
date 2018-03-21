@@ -13,10 +13,22 @@ namespace Deji
         private static ObservableCollection<UnitElement> thatUnits = new ObservableCollection<UnitElement>();
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        public static void Update(List<List<object>> data_)
+        public static void Update(string data_)
         {
             thatUnits.Clear();
-            foreach(List<object> e in data_)
+
+            string s;
+            if (data_ == "" || data_ == null)
+            {
+                s = "SELECT * FROM dbo.Units";
+            }
+            else
+            {
+                s = "SELECT * FROM dbo.Units WHERE Rank LIKE '%" + data_ + "%' Or Name LIKE '%" + data_ + "%' Or Part LIKE '%" + data_ + "%' Or Type LIKE '%" + data_ + "%'";
+            }
+
+            List<List<object>> result = SQLConnector.Select(s);
+            foreach(List<object> e in result)
             {
                 thatUnits.Add(new UnitElement(Int32.Parse(e[0].ToString()), (string)e[1], (string)e[2], (string)e[3], (string)e[4]));
             }
@@ -26,6 +38,7 @@ namespace Deji
         public static void Init(DataGrid grid_)
         {
             grid_.ItemsSource = thatUnits;
+            UnitsStore.Update(null);
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------

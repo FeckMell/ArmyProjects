@@ -31,11 +31,10 @@ namespace Deji
             InitializeComponent();
 
             //Display
-            UnitsStore.Init(GridUnits);
-            RecordsStore.Init(GridRecords);
+            //UnitsStore.Init(GridUnits);
+            //RecordsStore.Init(GridRecords);
 
             SQLConnector.Init();
-            SearchController.Init();
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
@@ -48,7 +47,7 @@ namespace Deji
         //*///------------------------------------------------------------------------------------------
         private void SearchStringChange(object sender, TextChangedEventArgs e)
         {
-            SearchController.PerformSearch((e.Source as TextBox).Text);
+            UnitsStore.Update((e.Source as TextBox).Text);
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
