@@ -8,9 +8,9 @@
         Title="MainWindow" Width="800" Height="450" Background="#FF857979">
 
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-        <TabControl VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FF857979" Grid.RowSpan="2">
+        <TabControl VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FF857979" Grid.RowSpan="2" BorderBrush="Black">
             <TabItem Header="Поиск по записям">
-                <Grid Margin="10,10,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinWidth="550" d:IsHidden="True">
+                <Grid Margin="10,10,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinWidth="550">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60" MaxHeight="60" MinHeight="60"/>
                         <RowDefinition Height="*" MinHeight="100"/>
@@ -22,7 +22,7 @@
 
                     <StackPanel Orientation="Vertical" Grid.Column="0" HorizontalAlignment="Left" Width="240" Height="60" VerticalAlignment="Top" ClipToBounds="True">
                         <Label Content="Поиск" HorizontalAlignment="Left" VerticalAlignment="Top" Width="240" Height="26" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="White"/>
-                        <TextBox HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" VerticalAlignment="Top" ToolTip="Введите часть ФИО" VerticalContentAlignment="Center" FontStyle="Italic" Width="240" TextChanged="SearchStringChange"/>
+                        <TextBox HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" VerticalAlignment="Top" ToolTip="Введите часть ФИО" VerticalContentAlignment="Center" FontStyle="Italic" Width="240" TextChanged="SearchStringChange" Background="White"/>
                     </StackPanel>
 
 
@@ -60,37 +60,83 @@
             <TabItem Header="Добавление данных">
                 <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="30"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                        <Label Content="Добавление военнослужащего" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="30" HorizontalContentAlignment="Center" FontSize="16" FontWeight="Bold"/>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
-                                <Label Content="Звание"/>
-                                <TextBox/>
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
-                                <Label Content="ФИО"/>
-                                <TextBox/>
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
-                                <Label Content="Часть"/>
-                                <TextBox/>
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
-                                <Label Content="Должность"/>
-                                <TextBox/>
-                            </StackPanel>
-                            <Button Content="Добавить"/>
+                    
+                    <!--Zero Row: Title -->
+                    <Label Grid.Row="0" Background="White" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="30" Content="Добавление военнослужащего" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    
+                    <!--First Row: Form for adding unit -->
+                    <StackPanel Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="0,1,0,0">
+                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
+                            <Label Content="Звание" HorizontalAlignment="Stretch" Background="White" Height="30"/>
+                            <ComboBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Loaded="LoadedRank" Width="100"/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
+                            <Label Content="ФИО" HorizontalAlignment="Stretch" Background="White" Height="30"/>
+                            <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="22" Width="150"/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
+                            <Label Content="Воинская часть" HorizontalAlignment="Stretch" Background="White" Height="30"/>
+                            <ComboBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Loaded="LoadedPart" Width="100"/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
+                            <Label Content="Должность" HorizontalAlignment="Stretch" Background="White" Height="30"/>
+                            <ComboBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Loaded="LoadedType" Width="100"/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
+                            <Label HorizontalAlignment="Stretch" Height="30"/>
+                            <Button Content="Добавить" MinWidth="60" Height="22" Click="ClickAddUnit"/>
                         </StackPanel>
                     </StackPanel>
 
+                    <!--Second Row: delimeter-->
+                    <Canvas Grid.Row="2" Background="DarkGray" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                   
+                    <!-- Third Row: Title-->
+                    <Label Grid.Row="3" Background="White" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="30" Content="Добавление записи о приходе инспектирующего лица" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+
+                    <!-- Forth Row: Form for adding records-->
+                    <StackPanel Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="0,1,0,0">
+                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
+                            <Label Content="Кто" HorizontalAlignment="Stretch" Background="White" Height="30"/>
+                            <ComboBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Loaded="LoadedWho" Width="150"/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
+                            <Label Content="Дата" HorizontalAlignment="Stretch" Background="White" Height="30"/>
+                            <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="22" Width="125"/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
+                            <Label Content="Время" HorizontalAlignment="Stretch" Background="White" Height="30"/>
+                            <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="22" Width="125"/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
+                            <Label Content="Пришёл" HorizontalAlignment="Stretch" Background="White" Height="30"/>
+                            <CheckBox HorizontalAlignment="Center" Padding="0" Margin="0,4,0,0" />
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
+                            <Label Content="Дрочит" HorizontalAlignment="Stretch" Background="White" Height="30"/>
+                            <ComboBox HorizontalAlignment="Stretch" VerticalAlignment="Center" Loaded="LoadedDrochit" Width="100"/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical" Margin="-550,60,0,0">
+                            <Label Content="Комментарий" HorizontalAlignment="Stretch" Background="White" Height="30"/>
+                            <RichTextBox VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="550" />
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
+                            <Label HorizontalAlignment="Stretch" Height="30"/>
+                            <Button Content="Добавить" MinWidth="60" Height="22" Click="ClickAddRecord"/>
+                        </StackPanel>
+                        
+                    </StackPanel>
 
                 </Grid>
             </TabItem>
             <TabItem Header="Добавление записи"/>
-            
+
 
         </TabControl>
     </Grid>

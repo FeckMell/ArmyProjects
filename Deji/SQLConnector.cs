@@ -8,7 +8,6 @@ namespace Deji
 {
     public static class SQLConnector
     {
-        private static bool DEBUG = true;
         private static SqlConnection thatConnector = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\DejiDB.mdf;Integrated Security=True");
         private static string thatInitString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\DejiDB.mdf;Integrated Security=True";
         //*///------------------------------------------------------------------------------------------
@@ -32,9 +31,17 @@ namespace Deji
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        public static bool Insert(string query_)
+        public static void Insert(string query_)
         {
-            throw new System.NotImplementedException();
+            OpenConnection();
+            //create command and assign the query and connection from the constructor
+            SqlCommand cmd = new SqlCommand(query_, thatConnector);
+
+                //Execute command
+            cmd.ExecuteNonQuery();//Column name or number of supplied values does not match table definition
+
+            //close connection
+            CloseConnection();
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------

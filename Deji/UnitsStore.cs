@@ -9,7 +9,6 @@ namespace Deji
 {
     public static class UnitsStore
     {
-        private static bool DEBUG = false;
         private static ObservableCollection<UnitElement> thatUnits = new ObservableCollection<UnitElement>();
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------

@@ -9,7 +9,6 @@ namespace Deji
 {
     public static class RecordsStore
     {
-        private static bool DEBUG = true;
         private static ObservableCollection<RecordElement> thatRecords = new ObservableCollection<RecordElement>();
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
