@@ -22,19 +22,19 @@ namespace Deji
         {
             if (!thatInited) Init(but_);
 
-            List<string> result = new List<string>
+            Dictionary<string,string> result = new Dictionary<string, string>
             {
-                GetRank(),
-                GetName(),
-                GetPart(),
-                GetTypee()
+                {"Rank", GetRank() },
+                {"Name", GetName() },
+                {"Part", GetPart() },
+                {"Type", GetTypee() }
             };
 
             //Check for data validation
-            foreach (string e in result) if (e == "") return false;
+            if (!CheckValid(result)) return false;
 
             //Add to DB
-            SQLConnector.Insert("INSERT INTO dbo.Units VALUES ( '" + result[1] + "','" + result[0] + "','" + result[2] + "','" + result[3] + "' )");
+            SQLConnector.Insert("INSERT INTO dbo.Units VALUES ( '" + result["Name"] + "','" + result["Rank"] + "','" + result["Part"] + "','" + result["Type"] + "' )");
             
             //Clear form
             ClearFields();
@@ -90,6 +90,15 @@ namespace Deji
             if (thatType.SelectedValue == null) return "";
 
             return thatType.SelectedValue.ToString();
+        }
+        private static bool CheckValid(Dictionary<string,string> data_)
+        {
+            if (string.IsNullOrEmpty(data_["Name"])) return false;
+            if (string.IsNullOrEmpty(data_["Rank"])) return false;
+            if (string.IsNullOrEmpty(data_["Type"])) return false;
+            if (string.IsNullOrEmpty(data_["Part"])) return false;
+
+            return true;
         }
         private static void ClearFields()
         {

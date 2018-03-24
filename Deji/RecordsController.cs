@@ -23,24 +23,21 @@ namespace Deji
         public static bool AddRecord(Button but_)
         {
             if (!thatInited) Init(but_);
-
-            List<string> result = new List<string>
+            Dictionary<string, string> result = new Dictionary<string, string>
             {
-                GetIdMan(),
-                GetDate(),
-                GetTime(),
-                GetArrival(),
-                GetDrochit()
+                {"IdMan", GetIdMan() },
+                {"Time", GetTime() },
+                {"Date", GetDate() },
+                {"Arrival", GetArrival() },
+                {"Drochit", GetDrochit() },
+                {"Comment", GetComment() }
             };
-
-            //Check for data validation
-            foreach (string e in result) if (e == "") return false;
-
-            //Add comment
-            result.Add(GetComment());
+            
+            //Check for all data entered
+            if (!CheckValid(result)) return false;
 
             //Add to DB
-            SQLConnector.Insert("INSERT INTO dbo.Records VALUES ( '" + result[0] + "','" + result[1] + "','" + result[2] + "','" + result[3] + "','" + result[4] + "','" + result[5] + "' )");
+            SQLConnector.Insert("INSERT INTO dbo.Records VALUES ( '" + result["IdMan"] + "','" + result["Date"] + "','" + result["Time"] + "','" + result["Arrival"] + "','" + result["Drochit"] + "','" + result["Comment"] + "' )");
 
             //Clear form
             ClearFields();
@@ -108,6 +105,22 @@ namespace Deji
         {
             string comment_text = new TextRange(thatComment.Document.ContentStart, thatComment.Document.ContentEnd).Text;
             return comment_text.Substring(0, comment_text.Length - 2);
+        }
+        private static bool CheckValid(Dictionary<string,string> data_)
+        {
+            if (string.IsNullOrEmpty(data_["IdMan"])) return false;
+            if (string.IsNullOrEmpty(data_["Date"])) return false;
+            if (string.IsNullOrEmpty(data_["Drochit"])) return false;
+            if (data_["Arrival"] == "Не пришёл")
+            {
+                if (!string.IsNullOrEmpty(data_["Time"])) return false;
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(data_["Time"])) return false;
+            }
+            
+            return true;
         }
         private static void ClearFields()
         {

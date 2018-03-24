@@ -22,7 +22,7 @@
 
                     <StackPanel Orientation="Vertical" Grid.Column="0" HorizontalAlignment="Left" Width="240" Height="60" VerticalAlignment="Top" ClipToBounds="True">
                         <Label Content="Поиск" HorizontalAlignment="Left" VerticalAlignment="Top" Width="240" Height="26" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="White"/>
-                        <TextBox HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" VerticalAlignment="Top" ToolTip="Введите часть ФИО" VerticalContentAlignment="Center" FontStyle="Italic" Width="240" TextChanged="SearchStringChange" Background="White"/>
+                        <TextBox Name="SearchtextBox" HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" VerticalAlignment="Top" ToolTip="Введите часть ФИО" VerticalContentAlignment="Center" FontStyle="Italic" Width="240" TextChanged="SearchStringChange" Background="White"/>
                     </StackPanel>
 
 
