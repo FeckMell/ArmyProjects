@@ -20,8 +20,10 @@ namespace Deji
         //*///------------------------------------------------------------------------------------------
         public static bool AddUnit(Button but_)
         {
+            //Init form for easier access to form fields
             if (!thatInited) Init(but_);
 
+            //Get data from form
             Dictionary<string,string> result = new Dictionary<string, string>
             {
                 {"Rank", GetRank() },
@@ -33,8 +35,12 @@ namespace Deji
             //Check for data validation
             if (!CheckValid(result)) return false;
 
+            //Create query
+            string query = "INSERT INTO dbo.Units VALUES ( N'{0}', N'{1}', N'{2}', N'{3}' )";
+            string s = string.Format(query, result["Name"], result["Rank"], result["Part"], result["Type"]);
+
             //Add to DB
-            SQLConnector.Insert("INSERT INTO dbo.Units VALUES ( '" + result["Name"] + "','" + result["Rank"] + "','" + result["Part"] + "','" + result["Type"] + "' )");
+            SQLConnector.Insert(s);
             
             //Clear form
             ClearFields();
@@ -61,7 +67,7 @@ namespace Deji
             thatInited = true;
             thatButton = but_;
 
-            //Parrent for all elements in this form
+            //Parent for all elements in this form
             StackPanel panel = (but_.Parent as StackPanel).Parent as StackPanel;
 
             thatRank = (panel.Children[0] as StackPanel).Children[1] as ComboBox;

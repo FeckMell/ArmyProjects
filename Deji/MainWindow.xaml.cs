@@ -27,7 +27,7 @@ namespace Deji
             InitializeComponent();
 
             //Display
-            UnitsStore.Init(GridUnits);
+            UnitsStore.Init(GridUnits, SearchTextBox);
             RecordsStore.Init(GridRecords);
         }
         //*///------------------------------------------------------------------------------------------
@@ -59,7 +59,7 @@ namespace Deji
         //*///------------------------------------------------------------------------------------------
         private void SearchStringChange(object sender, TextChangedEventArgs e)
         {
-            UnitsStore.Update((e.Source as TextBox).Text);
+            UnitsStore.Update();
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
@@ -92,7 +92,13 @@ namespace Deji
             FormDataLoading.LoadDrochit(e.Source as ComboBox);
         }
 
-        
+        private void qqq(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("qqq");
+        }
+
+
+
         //RichTextBox f = new RichTextBox();
         //string c = new TextRange(f.Document.ContentStart, f.Document.ContentEnd).Text;
         //

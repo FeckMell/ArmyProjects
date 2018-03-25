@@ -22,7 +22,10 @@ namespace Deji
         //*///------------------------------------------------------------------------------------------
         public static bool AddRecord(Button but_)
         {
+            //Init form for easier access to form fields
             if (!thatInited) Init(but_);
+
+            //Get data from form
             Dictionary<string, string> result = new Dictionary<string, string>
             {
                 {"IdMan", GetIdMan() },
@@ -36,8 +39,12 @@ namespace Deji
             //Check for all data entered
             if (!CheckValid(result)) return false;
 
-            //Add to DB
-            SQLConnector.Insert("INSERT INTO dbo.Records VALUES ( '" + result["IdMan"] + "','" + result["Date"] + "','" + result["Time"] + "','" + result["Arrival"] + "','" + result["Drochit"] + "','" + result["Comment"] + "' )");
+            //Make query
+            string query = "INSERT INTO dbo.Records VALUES ( N'{0}', N'{1}', N'{2}', N'{3}', N'{4}', N'{5}' )";
+            string s = string.Format(query, result["IdMan"], result["Date"], result["Time"], result["Arrival"], result["Drochit"], result["Comment"]);
+
+            //Add data to DB
+            SQLConnector.Insert(s);
 
             //Clear form
             ClearFields();
