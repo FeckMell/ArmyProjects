@@ -22,11 +22,13 @@ namespace Deji
 
     public partial class MainWindow : Window
     {
+        int initedTabs = 0;
         public MainWindow()
         {
             InitializeComponent();
 
             //Display
+            InitFormElements();
             UnitsStore.Init(GridUnits, SearchTextBox);
             RecordsStore.Init(GridRecords);
         }
@@ -40,7 +42,11 @@ namespace Deji
         //*///------------------------------------------------------------------------------------------
         private void ClickAddUnit(object sender, RoutedEventArgs e)
         {
-           if( UnitsController.AddUnit(e.Source as Button)) MessageBox.Show("Новый военнослужащий добавлен!");
+            if (UnitsController.AddUnit(e.Source as Button))
+            {
+                UpdateLists();
+                MessageBox.Show("Новый военнослужащий добавлен!");
+            }
             else MessageBox.Show("Заполните все поля!");
         }
         //*///------------------------------------------------------------------------------------------
@@ -52,56 +58,59 @@ namespace Deji
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        /*Sub info event handlers*/
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
         private void SearchStringChange(object sender, TextChangedEventArgs e)
         {
             UnitsStore.Update();
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        private void LoadedRank(object sender, RoutedEventArgs e)
+        private void TabClick(object sender, SelectionChangedEventArgs e)
         {
-            FormDataLoading.LoadRank(e.Source as ComboBox);
-        }
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        private void LoadedPart(object sender, RoutedEventArgs e)
-        {
-            FormDataLoading.LoadPart(e.Source as ComboBox);
-        }
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        private void LoadedType(object sender, RoutedEventArgs e)
-        {
-            FormDataLoading.LoadType(e.Source as ComboBox);
-        }
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        private void LoadedWho(object sender, RoutedEventArgs e)
-        {
-            FormDataLoading.LoadWho(e.Source as ComboBox);
-        }
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        private void LoadedDrochit(object sender, RoutedEventArgs e)
-        {
-            FormDataLoading.LoadDrochit(e.Source as ComboBox);
-        }
+            //if window is not inited - exception. This avoids it
+            if (initedTabs == 0)
+            {
+                initedTabs++;
+                return;
+            }
+            //Strange exception avoid. Happens(method called) when click on grid.
+            if ((e.Source as TabControl) == null) return;
 
-        private void qqq(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show("qqq");
+            if (((e.Source as TabControl).Items[0] as TabItem).IsSelected)//Tab with DB grids
+            {
+                UpdateGrids();
+            }
+            if (((e.Source as TabControl).Items[1] as TabItem).IsSelected)//Tab with adding units and records forms
+            {
+                UpdateLists();
+            }
         }
-
-
-
-        //RichTextBox f = new RichTextBox();
-        //string c = new TextRange(f.Document.ContentStart, f.Document.ContentEnd).Text;
-        //
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        /*Sub info event handlers*/
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        private void UpdateGrids()
+        {
+            UnitsStore.Update();
+            RecordsStore.Display(GridUnits.CurrentCell.Item as UnitElement);
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        private void UpdateLists()
+        {
+            FormDataLoading.LoadWho(ElWho);
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        private void InitFormElements()
+        {
+            FormDataLoading.LoadRank(ElRank);
+            FormDataLoading.LoadPart(ElPart);
+            FormDataLoading.LoadType(ElType);
+            FormDataLoading.LoadDrochit(ElDrochit);
+        }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
     }

@@ -9,7 +9,7 @@ namespace Deji
     public static class SQLConnector
     {
         private static SqlConnection thatConnector = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\DejiDB.mdf;Integrated Security=True");
-        private static string thatInitString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\DejiDB.mdf;Integrated Security=True";
+
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         public static void Init()
