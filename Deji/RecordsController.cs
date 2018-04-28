@@ -136,7 +136,10 @@ namespace Deji
             thatTime.Text = "";
             thatDrochit.SelectedItem = null;
             thatIdMan.SelectedItem = null;
-            thatComment.Document = new FlowDocument();
+
+            //var panel = thatComment.Parent as StackPanel;
+            //thatComment.Document = new FlowDocument();
+            //thatComment = (panel.Children[5] as StackPanel).Children[1] as RichTextBox;
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
