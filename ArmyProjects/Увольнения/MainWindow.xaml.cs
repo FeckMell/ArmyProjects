@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Увольнения.Source;
 
 namespace Увольнения
 {
@@ -32,7 +33,10 @@ namespace Увольнения
             /*ContentControl table = new ContentControl();
             table.Template = Resources["UvalTable"] as ControlTemplate;
             UvalStack.Children.Add(table);*/
-            UvalStack.Children.Add(GenStack(GenLabel(), GenDG()));
+            // UvalStack.Children.Add(GenStack(GenLabel(), GenDG()));
+            UvalTableElement v = new UvalTableElement();
+            v.SetHeaders(new List<string> { "Декабрь", "1-2", "7-8", "11-13", "20-21", "27-28" });
+            UvalStack.Children.Add(v.ThatStackPanel);
         }
 
         private Label GenLabel()
