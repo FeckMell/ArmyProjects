@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Увольнения.Source
 {
-    public class UvalTable
+    public class UvalTableGUI
     {
-        private List<UvalTableElement> thatTables;
+        private List<UvalTableElementGUI> thatTables;
 
-        private UvalTable() { }
+        private UvalTableGUI() { }
         public void Init()
         {
-            thatTables = new List<UvalTableElement>();
+            thatTables = new List<UvalTableElementGUI>();
         }
     }
 }

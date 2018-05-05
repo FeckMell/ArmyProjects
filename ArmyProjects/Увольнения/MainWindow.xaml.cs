@@ -34,7 +34,7 @@ namespace Увольнения
             table.Template = Resources["UvalTable"] as ControlTemplate;
             UvalStack.Children.Add(table);*/
             // UvalStack.Children.Add(GenStack(GenLabel(), GenDG()));
-            UvalTableElement v = new UvalTableElement();
+            UvalTableElementGUI v = new UvalTableElementGUI();
             v.SetHeaders(new List<string> { "Декабрь", "1-2", "7-8", "11-13", "20-21", "27-28" });
             UvalStack.Children.Add(v.ThatStackPanel);
         }
