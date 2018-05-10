@@ -71,7 +71,9 @@ namespace Увольнения.Source
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 VerticalAlignment = VerticalAlignment.Top,
                 HorizontalContentAlignment = HorizontalAlignment.Center,
-                VerticalContentAlignment = VerticalAlignment.Center
+                VerticalContentAlignment = VerticalAlignment.Center,
+                BorderThickness = new Thickness(1, 1, 1, 1),
+                BorderBrush = SystemColors.ActiveCaptionTextBrush
             };
         }
         //*///------------------------------------------------------------------------------------------
@@ -83,7 +85,8 @@ namespace Увольнения.Source
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 VerticalAlignment = VerticalAlignment.Stretch,
                 HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden,
-                VerticalScrollBarVisibility = ScrollBarVisibility.Hidden
+                VerticalScrollBarVisibility = ScrollBarVisibility.Hidden,
+                Height = 475
             };
         }
         //*///------------------------------------------------------------------------------------------

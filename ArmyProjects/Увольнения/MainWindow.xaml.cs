@@ -26,55 +26,43 @@ namespace Увольнения
         public MainWindow()
         {
             InitializeComponent();
+            Initers();
+            Binders();
+            DataUvalManager.GetMan();            
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Initers()
         {
-            /*ContentControl table = new ContentControl();
-            table.Template = Resources["UvalTable"] as ControlTemplate;
-            UvalStack.Children.Add(table);*/
-            // UvalStack.Children.Add(GenStack(GenLabel(), GenDG()));
+            SQLConnector.Init();
+            DataMan.Init();
+            DataUvalManager.Init();
+        }
+        private void Binders()
+        {
+            GridNames.ItemsSource = DataMan.ThatData;
+        }
+        private void InitData()
+        {
             UvalTableElementGUI v = new UvalTableElementGUI();
-            v.SetHeaders(new List<string> { "Декабрь", "1-2", "7-8", "11-13", "20-21", "27-28" });
+            v.SetHeaders(new List<string> { "Декабрь 2017", "1-2", "7-8", "11-13", "20-21", "27-28" });
             UvalStack.Children.Add(v.ThatStackPanel);
-        }
-
-        private Label GenLabel()
-        {
-            Label result = new Label
-            {
-                Height = 30,
-                Content = "Label",
-                HorizontalAlignment = HorizontalAlignment.Stretch,
-                VerticalAlignment = VerticalAlignment.Top,
-                HorizontalContentAlignment = HorizontalAlignment.Center,
-                VerticalContentAlignment = VerticalAlignment.Center
-            };
-            return result;
-        }
-        private DataGrid GenDG()
-        {
-            DataGrid result = new DataGrid
-            {
-                Height = 490,
-                HorizontalAlignment = HorizontalAlignment.Stretch,
-                VerticalAlignment = VerticalAlignment.Stretch,
-                HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden,
-                VerticalScrollBarVisibility = ScrollBarVisibility.Hidden
-            };
-            return result;
-        }
-        private StackPanel GenStack(Label l_, DataGrid dg_)
-        {
-            StackPanel result = new StackPanel
-            {
-                Width = 200,
-                VerticalAlignment = VerticalAlignment.Stretch,
-                Orientation = Orientation.Vertical
-            };
-            result.Children.Add(l_);
-            result.Children.Add(dg_);
-            return result;
+            v = new UvalTableElementGUI();
+            v.SetHeaders(new List<string> { "Январь 2018", "1-2", "7-8", "11-13", "20-21", "27-28" });
+            UvalStack.Children.Add(v.ThatStackPanel);
+            v = new UvalTableElementGUI();
+            v.SetHeaders(new List<string> { "Февраль 2018", "1-2", "7-8", "11-13", "20-21", "27-28" });
+            UvalStack.Children.Add(v.ThatStackPanel);
+            v = new UvalTableElementGUI();
+            v.SetHeaders(new List<string> { "Март 2018", "1-2", "7-8", "11-13", "20-21", "27-28" });
+            UvalStack.Children.Add(v.ThatStackPanel);
+            v = new UvalTableElementGUI();
+            v.SetHeaders(new List<string> { "Апрель 2018", "1-2", "7-8", "11-13", "20-21", "27-28" });
+            UvalStack.Children.Add(v.ThatStackPanel);
+            v = new UvalTableElementGUI();
+            v.SetHeaders(new List<string> { "Май 2018", "1-2", "7-8", "11-13", "20-21", "27-28" });
+            UvalStack.Children.Add(v.ThatStackPanel);
+            v = new UvalTableElementGUI();
+            v.SetHeaders(new List<string> { "Июнь 2018", "1-2", "7-8", "11-13", "20-21", "27-28" });
+            UvalStack.Children.Add(v.ThatStackPanel);
         }
     }
 }

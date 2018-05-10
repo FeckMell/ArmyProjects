@@ -8,26 +8,26 @@ namespace Увольнения.Source
 {
     public class UvalTableElementRow
     {
-        private string thatMonth;
-        private string thatYear;
+        private uint thatID;
+        private string thatPeriodName;
         private List<uint> thatData;
         private uint thatManID;
         private uint thatPeriodID;
         private string thatColor;
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        public string ThatMonth { get => thatMonth; set => thatMonth = value; }
-        public string ThatYear { get => thatYear; set => thatYear = value; }
+        public string ThatPeriodName { get => thatPeriodName; set => thatPeriodName = value; }
         public List<uint> ThatData { get => thatData; set => thatData = value; }
         public uint ThatManID { get => thatManID; set => thatManID = value; }
         public uint ThatPeriodID { get => thatPeriodID; set => thatPeriodID = value; }
         public string ThatColor { get => thatColor; set => thatColor = value; }
+        public uint ThatID { get => thatID; set => thatID = value; }
+
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        public UvalTableElementRow(string month_, string year_, List<uint> data_, uint manid_, uint periodid_)
+        public UvalTableElementRow(uint id_, string periodname_, List<uint> data_, uint manid_, uint periodid_)
         {
-            ThatMonth = month_;
-            ThatYear = year_;
+            ThatPeriodName = periodname_;
             ThatData = new List<uint>(data_.ToArray<uint>());
             ThatManID = manid_;
             ThatPeriodID = periodid_;
