@@ -9,11 +9,12 @@ using System.Windows.Data;
 
 namespace Увольнения.Source
 {
-    public class UvalTableElementGUI
+    public class GUIUvalSubTable
     {
         private int thatPeriodID;
         private string thatSuperHeader;
         private List<string> thatHeaders;
+        private UvalSubTable thatData;
 
         private Label thatLabel;
         private DataGrid thatDataGrid;
@@ -22,19 +23,20 @@ namespace Увольнения.Source
         public int ThatPeriodID { get => thatPeriodID; set => thatPeriodID = value; }
         public string ThatSuperHeader { get => thatSuperHeader; set => thatSuperHeader = value; }
         public List<string> ThatHeaders { get => thatHeaders; set => thatHeaders = value; }
-        public Label ThatLabel { get => thatLabel; private set => thatLabel = value; }
-        public DataGrid ThatDataGrid { get => thatDataGrid; private set => thatDataGrid = value; }
-        public StackPanel ThatStackPanel { get => thatStackPanel; private set => thatStackPanel = value; }
-
+        public Label ThatLabel { get => thatLabel; set => thatLabel = value; }
+        public DataGrid ThatDataGrid { get => thatDataGrid; set => thatDataGrid = value; }
+        public StackPanel ThatStackPanel { get => thatStackPanel; set => thatStackPanel = value; }
+        internal UvalSubTable ThatData { get => thatData; set => thatData = value; }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        public UvalTableElementGUI()
+        public GUIUvalSubTable(List<List<object>> records_)
         {
             GenLabel();
             GenDG();
             GenStack();
+            ParseAndBindData(records_);
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
@@ -48,6 +50,16 @@ namespace Увольнения.Source
 
             //Set final header with sum of other columns
             GenColumn("Итого", ThatHeaders.Count + 1, true);
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        private void ParseAndBindData(List<List<object>> records_)
+        {
+            ThatData = new UvalSubTable(records_)
+            {
+                ThatPeriodID = ThatPeriodID
+            };
+            ThatDataGrid.ItemsSource = ThatData.ThatData;
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
@@ -104,9 +116,5 @@ namespace Увольнения.Source
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        public void SetBinding(UvalTableElement source_)
-        {
-            ThatDataGrid.ItemsSource = source_.ThatData;
-        }
     }
 }

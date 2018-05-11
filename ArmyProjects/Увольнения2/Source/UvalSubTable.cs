@@ -7,37 +7,33 @@ using System.Threading.Tasks;
 
 namespace Увольнения.Source
 {
-    static class DataMan
+    public class UvalSubTable
     {
-        static private ObservableCollection<DataManSub> thatData;
+        private ObservableCollection<UvalSubTableRow> thatData = new ObservableCollection<UvalSubTableRow>();
+        private int thatPeriodID;
 
-        internal static ObservableCollection<DataManSub> ThatData { get => thatData; set => thatData = value; }
-
+        public ObservableCollection<UvalSubTableRow> ThatData { get => thatData; set => thatData = value; }
+        public int ThatPeriodID { get => thatPeriodID; set => thatPeriodID = value; }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        static public void Init()
+        public UvalSubTable(List<List<object>> records_)
         {
-            ThatData = new ObservableCollection<DataManSub>();
-        }
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        static public void SetData(List<List<object>> data_)
-        {
-            foreach(var i in data_)
+            foreach(var e in records_)
             {
-                //DataManSub man = new DataManSub(Int32.Parse(i[0].ToString()), i[1].ToString(), Int32.Parse(i[2].ToString()), Int32.Parse(i[2].ToString()));
-                DataManSub man = new DataManSub
+                UvalSubTableRow row = new UvalSubTableRow
                 {
-                    ThatID = Int32.Parse(i[0].ToString()),
-                    ThatManNum = Int32.Parse(i[2].ToString()),
-                    ThatName = i[1].ToString(),
-                    ThatPlatoon = Int32.Parse(i[3].ToString())
+                    ThatID = Int32.Parse(e[0].ToString()),
+                    ThatManID = Int32.Parse(e[1].ToString()),
+                    ThatPeriodID = Int32.Parse(e[2].ToString()),
+                    ThatData = (List<int>)e[3]
                 };
-                ThatData.Add(man);
+                ThatData.Add(row);
             }
         }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
     }
     //*///------------------------------------------------------------------------------------------
     //*///------------------------------------------------------------------------------------------
@@ -47,22 +43,31 @@ namespace Увольнения.Source
     //*///------------------------------------------------------------------------------------------
     //*///------------------------------------------------------------------------------------------
     //*///------------------------------------------------------------------------------------------
-    class DataManSub
+    //*///------------------------------------------------------------------------------------------
+    //*///------------------------------------------------------------------------------------------
+    public class UvalSubTableRow
     {
         private int thatID;
-        private int thatManNum;
-        private int thatPlatoon;
-        private string thatName;
-        
+        private int thatManID;
+        private int thatPeriodID;
+        private List<int> thatData;
+        private string thatColor;
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
         public int ThatID { get => thatID; set => thatID = value; }
-        public int ThatManNum { get => thatManNum; set => thatManNum = value; }
-        public int ThatPlatoon { get => thatPlatoon; set => thatPlatoon = value; }
-        public string ThatName { get => thatName; set => thatName = value; }
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
+        public int ThatManID { get => thatManID; set => thatManID = value; }
+        public int ThatPeriodID { get => thatPeriodID; set => thatPeriodID = value; }
+        public List<int> ThatData { get => thatData; set { thatData = value; thatData.Add(Sum()); } }
+        public string ThatColor { get => thatColor; set => thatColor = value; }
 
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        private int Sum()
+        {
+            int result = 0;
+            foreach (var e in ThatData) result += e;
+            return result;
+        }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
     }

@@ -26,17 +26,16 @@ namespace Увольнения
         public MainWindow()
         {
             InitializeComponent();
+
             Initers();
             Binders();
-            DataUvalManager.GetMan();
-            DataUvalManager.GetUvalInfo();
+
+            UvalDataManager.GetMan();
+            UvalDataManager.GetUvalInfo();
         }
         private void Initers()
         {
-            SQLConnector.Init();
-            DataMan.Init();
-            DataUvalManager.Init();
-            UvalTableGUI.Init(UvalStack);
+            GUIUvalTable.Init(UvalStack);
         }
         private void Binders()
         {

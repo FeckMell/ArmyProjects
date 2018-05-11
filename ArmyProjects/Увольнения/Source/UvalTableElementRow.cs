@@ -8,45 +8,27 @@ namespace Увольнения.Source
 {
     public class UvalTableElementRow
     {
-        private uint thatID;
+        private int thatID;
         private string thatPeriodName;
-        private List<uint> thatData;
-        private uint thatManID;
-        private uint thatPeriodID;
+        private List<int> thatData;
+        private int thatManID;
+        private int thatPeriodID;
         private string thatColor;
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         public string ThatPeriodName { get => thatPeriodName; set => thatPeriodName = value; }
-        public List<uint> ThatData { get => thatData; set => thatData = value; }
-        public uint ThatManID { get => thatManID; set => thatManID = value; }
-        public uint ThatPeriodID { get => thatPeriodID; set => thatPeriodID = value; }
+        public List<int> ThatData { get => thatData; set { thatData = value; thatData.Add(Sum()); } }
+        public int ThatManID { get => thatManID; set => thatManID = value; }
+        public int ThatPeriodID { get => thatPeriodID; set => thatPeriodID = value; }
         public string ThatColor { get => thatColor; set => thatColor = value; }
-        public uint ThatID { get => thatID; set => thatID = value; }
-
+        public int ThatID { get => thatID; set => thatID = value; }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        public UvalTableElementRow(uint id_, string periodname_, List<uint> data_, uint manid_, uint periodid_)
+        private int Sum()
         {
-            ThatPeriodName = periodname_;
-            ThatData = new List<uint>(data_.ToArray<uint>());
-            ThatManID = manid_;
-            ThatPeriodID = periodid_;
-        }
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        public void EditValue(uint val_, int i_)
-        {
-            ThatData[i_] = val_;
-            uint sum = 0;
-            for (int i = 0; i < ThatData.Count - 1; ++i)
-                sum += ThatData[i];
-            ThatData[ThatData.Count - 1] = sum;
-        }
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        public void SetColor(string color_)
-        {
-            ThatColor = color_;
+            int result = 0;
+            foreach (var e in thatData) result += e;
+            return result;
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------

@@ -7,28 +7,21 @@ using System.Threading.Tasks;
 
 namespace Увольнения.Source
 {
-    static class DataMan
+    class DataMan
     {
-        static private ObservableCollection<DataManSub> thatData;
+        static private ObservableCollection<DataManEntry> thatData = new ObservableCollection<DataManEntry>();
 
-        internal static ObservableCollection<DataManSub> ThatData { get => thatData; set => thatData = value; }
+        internal static ObservableCollection<DataManEntry> ThatData { get => thatData; set => thatData = value; }
 
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        static public void Init()
-        {
-            ThatData = new ObservableCollection<DataManSub>();
-        }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         static public void SetData(List<List<object>> data_)
         {
-            foreach(var i in data_)
+            foreach (var i in data_)
             {
-                //DataManSub man = new DataManSub(Int32.Parse(i[0].ToString()), i[1].ToString(), Int32.Parse(i[2].ToString()), Int32.Parse(i[2].ToString()));
-                DataManSub man = new DataManSub
+                DataManEntry man = new DataManEntry
                 {
                     ThatID = Int32.Parse(i[0].ToString()),
                     ThatManNum = Int32.Parse(i[2].ToString()),
@@ -47,13 +40,13 @@ namespace Увольнения.Source
     //*///------------------------------------------------------------------------------------------
     //*///------------------------------------------------------------------------------------------
     //*///------------------------------------------------------------------------------------------
-    class DataManSub
+    class DataManEntry
     {
         private int thatID;
         private int thatManNum;
         private int thatPlatoon;
         private string thatName;
-        
+
         public int ThatID { get => thatID; set => thatID = value; }
         public int ThatManNum { get => thatManNum; set => thatManNum = value; }
         public int ThatPlatoon { get => thatPlatoon; set => thatPlatoon = value; }

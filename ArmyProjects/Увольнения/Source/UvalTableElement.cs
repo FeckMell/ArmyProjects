@@ -7,17 +7,31 @@ using System.Threading.Tasks;
 
 namespace Увольнения.Source
 {
-    class UvalTableElement
+    public class UvalTableElement
     {
-        private ObservableCollection<UvalTableElementRow> thatData;
+        private ObservableCollection<UvalTableElementRow> thatData = new ObservableCollection<UvalTableElementRow>();
+        private int thatPeriodID;
+
+        public ObservableCollection<UvalTableElementRow> ThatData { get => thatData; set => thatData = value; }
+        public int ThatPeriodID { get => thatPeriodID; set => thatPeriodID = value; }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        private UvalTableElement() { }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        public void Init()
+        public UvalTableElement(List<List<object>> records_)
         {
-            thatData = new ObservableCollection<UvalTableElementRow>();
+            if (records_ != null && records_.Count!=0) ThatPeriodID = Int32.Parse(records_[0][2].ToString());
+            foreach(var e in records_)
+            {
+                UvalTableElementRow row = new UvalTableElementRow()
+                {
+                    ThatID = Int32.Parse(e[0].ToString()),
+                    ThatManID = Int32.Parse(e[1].ToString()),
+                    ThatPeriodID = Int32.Parse(e[2].ToString()),
+                    ThatData = (List<int>)e[3]
+                };
+                ThatData.Add(row);
+            }
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------

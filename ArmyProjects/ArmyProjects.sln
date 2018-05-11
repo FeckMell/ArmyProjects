@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Увольнения", "У�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deji", "Deji\Deji.csproj", "{1FEAA9D9-6F8B-4BAC-AC6E-4F45C42F295A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Увольнения2", "Увольнения2\Увольнения2.csproj", "{FC15DCFB-622F-4C5F-8740-E61636B3C0EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1FEAA9D9-6F8B-4BAC-AC6E-4F45C42F295A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FEAA9D9-6F8B-4BAC-AC6E-4F45C42F295A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FEAA9D9-6F8B-4BAC-AC6E-4F45C42F295A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC15DCFB-622F-4C5F-8740-E61636B3C0EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC15DCFB-622F-4C5F-8740-E61636B3C0EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC15DCFB-622F-4C5F-8740-E61636B3C0EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC15DCFB-622F-4C5F-8740-E61636B3C0EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

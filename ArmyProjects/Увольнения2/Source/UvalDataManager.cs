@@ -6,19 +6,8 @@ using System.Threading.Tasks;
 
 namespace Увольнения.Source
 {
-    static class DataUvalManager
+    public static class UvalDataManager
     {
-
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        static public void Init()
-        {
-
-        }
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
         static public void GetMan()
         {
             var data = SQLConnector.Select("SELECT * FROM Man");
@@ -33,8 +22,10 @@ namespace Увольнения.Source
             periods = ParseData(periods, 2);
             records = ParseData(records, 3);
 
-            UvalTable.FormTableData(periods, records);
-            UvalTableGUI.FormTableGUI(periods);
+            GUIUvalTable.Update(periods, records);
+
+            //UvalTable.FormTableData(periods, records);
+            //UvalTableGUI.FormTableGUI(periods);
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
