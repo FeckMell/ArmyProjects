@@ -8,6 +8,20 @@ namespace Увольнения.Source
 {
     public static class UvalDataManager
     {
+        static public void GetFizo()
+        {
+            var data = SQLConnector.Select("SELECT * FROM Fizo");
+            Fizo.SetData(data);
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        static public void GetBadBoy()
+        {
+            var data = SQLConnector.Select("SELECT * FROM BadBoy");
+            BadBoy.SetData(data);
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
         static public void GetMan()
         {
             var data = SQLConnector.Select("SELECT * FROM Man");

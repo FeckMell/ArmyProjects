@@ -94,11 +94,12 @@ namespace Увольнения.Source
         {
             ThatDataGrid = new DataGrid
             {
+                CanUserAddRows = false,
+                AutoGenerateColumns = false,
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 VerticalAlignment = VerticalAlignment.Stretch,
                 HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden,
-                VerticalScrollBarVisibility = ScrollBarVisibility.Hidden,
-                Height = 475
+                VerticalScrollBarVisibility = ScrollBarVisibility.Hidden
             };
         }
         //*///------------------------------------------------------------------------------------------

@@ -22,12 +22,18 @@ namespace Увольнения.Source
         {
             foreach(var e in records_)
             {
+                List<string> e_3 = (List<string>)e[3];
+                List<int> e_3int = new List<int>();
+                foreach(var e1 in e_3)
+                {
+                    e_3int.Add(Int32.Parse(e1.ToString()));
+                }
                 UvalSubTableRow row = new UvalSubTableRow
                 {
                     ThatID = Int32.Parse(e[0].ToString()),
                     ThatManID = Int32.Parse(e[1].ToString()),
                     ThatPeriodID = Int32.Parse(e[2].ToString()),
-                    ThatData = (List<int>)e[3]
+                    ThatData = e_3int
                 };
                 ThatData.Add(row);
             }
@@ -50,7 +56,7 @@ namespace Увольнения.Source
         private int thatID;
         private int thatManID;
         private int thatPeriodID;
-        private List<int> thatData;
+        private List<int> thatData = new List<int>();
         private string thatColor;
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------

@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace Увольнения.Source
 {
-    static public class DataMan
+    static public class BadBoy
     {
-        static private ObservableCollection<DataManEntry> thatData = new ObservableCollection<DataManEntry>();
+        static private ObservableCollection<BadBoyEntry> thatData = new ObservableCollection<BadBoyEntry>();
 
-        static public ObservableCollection<DataManEntry> ThatData { get => thatData; set => thatData = value; }
-
+        public static ObservableCollection<BadBoyEntry> ThatData { get => thatData; set => thatData = value; }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
@@ -21,26 +20,17 @@ namespace Увольнения.Source
         {
             foreach (var i in data_)
             {
-                DataManEntry man = new DataManEntry
+                BadBoyEntry man = new BadBoyEntry
                 {
                     ThatID = Int32.Parse(i[0].ToString()),
-                    ThatManNum = Int32.Parse(i[2].ToString()),
-                    ThatName = i[1].ToString(),
-                    ThatPlatoon = Int32.Parse(i[3].ToString())
+                    ThatManID = Int32.Parse(i[1].ToString()),
+                    ThatName = DataMan.GetNameByID(Int32.Parse(i[1].ToString())),
+                    ThatBads = i[3].ToString(),
+                    ThatGoods = i[2].ToString()
+                   
                 };
                 ThatData.Add(man);
             }
-        }
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        static public string GetNameByID(int id_)
-        {
-            string result = "";
-            foreach (var e in ThatData)
-            {
-                if (e.ThatID == id_) result = e.ThatName;
-            }
-            return result;
         }
     }
     //*///------------------------------------------------------------------------------------------
@@ -49,16 +39,20 @@ namespace Увольнения.Source
     //*///------------------------------------------------------------------------------------------
     //*///------------------------------------------------------------------------------------------
     //*///------------------------------------------------------------------------------------------
-    public class DataManEntry
+    //*///------------------------------------------------------------------------------------------
+    //*///------------------------------------------------------------------------------------------
+    public class BadBoyEntry
     {
         private int thatID;
-        private int thatManNum;
-        private int thatPlatoon;
+        private int thatManID;
         private string thatName;
+        private string thatGoods;
+        private string thatBads;
 
         public int ThatID { get => thatID; set => thatID = value; }
-        public int ThatManNum { get => thatManNum; set => thatManNum = value; }
-        public int ThatPlatoon { get => thatPlatoon; set => thatPlatoon = value; }
+        public int ThatManID { get => thatManID; set => thatManID = value; }
         public string ThatName { get => thatName; set => thatName = value; }
+        public string ThatGoods { get => thatGoods; set => thatGoods = value; }
+        public string ThatBads { get => thatBads; set => thatBads = value; }
     }
 }

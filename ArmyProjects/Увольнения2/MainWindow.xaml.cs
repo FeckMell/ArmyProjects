@@ -32,6 +32,8 @@ namespace Увольнения
 
             UvalDataManager.GetMan();
             UvalDataManager.GetUvalInfo();
+            UvalDataManager.GetBadBoy();
+            UvalDataManager.GetFizo();
         }
         private void Initers()
         {
@@ -40,6 +42,8 @@ namespace Увольнения
         private void Binders()
         {
             GridNames.ItemsSource = DataMan.ThatData;
+            GridBadBoy.ItemsSource = BadBoy.ThatData;
+            GridFizo.ItemsSource = Fizo.ThatData;
         }
     }
 }

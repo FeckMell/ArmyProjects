@@ -72,7 +72,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Source\BadBoy.cs" />
     <Compile Include="Source\DataMan.cs" />
+    <Compile Include="Source\Fizo.cs" />
     <Compile Include="Source\GUIUvalSubTable.cs" />
     <Compile Include="Source\GUIUvalTable.cs" />
     <Compile Include="Source\SQLConnector.cs" />

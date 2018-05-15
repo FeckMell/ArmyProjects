@@ -20,7 +20,7 @@
         <TabControl Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="#FF040303">
 
 
-
+            <!--x:Name="namedScroll" Height="{Binding ElementName=namedScroll, Path=ActualHeight}"-->
             <TabItem Header="Увольнения">
                 <Grid Background="#FFE5E5E5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
@@ -33,7 +33,7 @@
                             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical" Grid.Column="0">
                                 <Label Content=" " HorizontalAlignment="Stretch" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="30" BorderThickness="1" BorderBrush="Black"/>
                                 <DataGrid Name="GridNames" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                          GridLinesVisibility="All" ClipToBounds="True" AutoGenerateColumns="False" CanUserAddRows="False" Height="490">
+                                          GridLinesVisibility="All" ClipToBounds="True" AutoGenerateColumns="False" CanUserAddRows="False">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="№" Width="Auto" Binding="{Binding Path=ThatManNum}"/>
                                         <DataGridTextColumn Header="ФИО" Width="Auto" Binding="{Binding Path=ThatName}"/>
@@ -62,7 +62,7 @@
                             <DataGridTextColumn Header="ФИО" Width="Auto" Binding="{Binding Path=ThatName}"/>
                             <DataGridTextColumn Header="Скорость" Width="Auto" Binding="{Binding Path=ThatSpeed}"/>
                             <DataGridTextColumn Header="Сила" Width="Auto" Binding="{Binding Path=ThatForce}"/>
-                            <DataGridTextColumn Header="Выпосливость" Width="Auto" Binding="{Binding Path=ThatVital}"/>
+                            <DataGridTextColumn Header="Выпосливость" Width="Auto" Binding="{Binding Path=ThatStamina}"/>
                             <DataGridTextColumn Header="Общая оценка" Width="Auto" Binding="{Binding Path=ThatMark}"/>
                             <DataGridTextColumn Header="Освобождение до" Width="Auto" Binding="{Binding Path=ThatFree}"/>
                         </DataGrid.Columns>
@@ -73,7 +73,7 @@
 
             <TabItem Header="Взыскания и поощрения">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid Name="GridBadBadNotGood" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                    <DataGrid Name="GridBadBoy" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
                         GridLinesVisibility="All" ClipToBounds="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible"  ScrollViewer.HorizontalScrollBarVisibility="Visible"
                         CanUserAddRows="False"  AutoGenerateColumns="False">
                         <DataGrid.Columns>
