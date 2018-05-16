@@ -87,7 +87,42 @@
             </TabItem>
 
             <TabItem Header="Редактирование списка роты и периодов">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical" >
+                        <Label Content="Добавление нового периода" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF858383"/>
+                        <Canvas Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFC7BFBF" />
+                        <Label Content="Год" Background="#FF858383"/>
+                        <TextBox Name="PeriodYear" Height="23" TextWrapping="Wrap" Text="TextBox"/>
+                        <Label Content="Месяц" Background="#FF858383"/>
+                        <TextBox Name="PeriodMonth" Height="23" TextWrapping="Wrap" Text="TextBox"/>
+                        <Label Content="Даты увольнений" Background="#FF858383"/>
+                        
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="100">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150">
+                                <TextBox Name="PeriodDate" Height="23" TextWrapping="Wrap" Text=""/>
+                                <Button Content="Добавить"/>
+                            </StackPanel>
+                            <Canvas Height="100" Width="5" Background="#FFC7BFBF"/>
+                            <ListBox HorizontalAlignment="Right" Height="100" VerticalAlignment="Top" Width="150"/>
+                        </StackPanel>
+                        <Label Content="Расположение периода" Background="#FF858383"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch"  Height="150">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <Label Content="До/после"/>
+                                <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="290"/>
+                        </StackPanel>
+                    </StackPanel>
+                    
+
+
+
+                </Grid>
             </TabItem>
         </TabControl>
         
