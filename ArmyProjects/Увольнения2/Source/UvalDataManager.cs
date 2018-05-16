@@ -37,13 +37,14 @@ namespace Увольнения.Source
             records = ParseData(records, 3);
 
             GUIUvalTable.Update(periods, records);
-
-            //UvalTable.FormTableData(periods, records);
-            //UvalTableGUI.FormTableGUI(periods);
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        private static List<List<object>> ParseData(List<List<object>> data_, int i_)
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        static private List<List<object>> ParseData(List<List<object>> data_, int i_)
         {
             foreach (var i in data_)
             {
@@ -55,7 +56,7 @@ namespace Увольнения.Source
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        private static List<string> ParseLine(string tmp_)
+        static private List<string> ParseLine(string tmp_)
         {
             return new List<string>(tmp_.Split(','));
         }

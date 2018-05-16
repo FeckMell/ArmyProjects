@@ -101,6 +101,7 @@ namespace Увольнения.Source
                 HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden,
                 VerticalScrollBarVisibility = ScrollBarVisibility.Hidden
             };
+            ThatDataGrid.CellEditEnding += GUIEventHandler.GUIUvalSubTable_CellEditEnding;
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------

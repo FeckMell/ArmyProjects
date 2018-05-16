@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,7 +44,7 @@ namespace Увольнения.Source
     //*///------------------------------------------------------------------------------------------
     //*///------------------------------------------------------------------------------------------
     //*///------------------------------------------------------------------------------------------
-    public class FizoEntry
+    public class FizoEntry : INotifyPropertyChanged
     {
         private int thatID;
         private int thatManID;
@@ -62,5 +63,9 @@ namespace Увольнения.Source
         public string ThatStamina { get => thatStamina; set => thatStamina = value; }
         public string ThatMark { get => thatMark; set => thatMark = value; }
         public string ThatFree { get => thatFree; set => thatFree = value; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

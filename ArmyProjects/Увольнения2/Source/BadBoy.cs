@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace Увольнения.Source
 {
@@ -41,7 +42,7 @@ namespace Увольнения.Source
     //*///------------------------------------------------------------------------------------------
     //*///------------------------------------------------------------------------------------------
     //*///------------------------------------------------------------------------------------------
-    public class BadBoyEntry
+    public class BadBoyEntry : INotifyPropertyChanged
     {
         private int thatID;
         private int thatManID;
@@ -54,5 +55,9 @@ namespace Увольнения.Source
         public string ThatName { get => thatName; set => thatName = value; }
         public string ThatGoods { get => thatGoods; set => thatGoods = value; }
         public string ThatBads { get => thatBads; set => thatBads = value; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

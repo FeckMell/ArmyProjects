@@ -38,12 +38,25 @@ namespace Увольнения
         private void Initers()
         {
             GUIUvalTable.Init(UvalStack);
+
+            GridFizo.CellEditEnding += GUIEventHandler.Fizo_CellEditEnding;
+            GridBadBoy.CellEditEnding += GUIEventHandler.BadBoy_CellEditEnding;
         }
         private void Binders()
         {
             GridNames.ItemsSource = DataMan.ThatData;
             GridBadBoy.ItemsSource = BadBoy.ThatData;
             GridFizo.ItemsSource = Fizo.ThatData;
+        }
+
+        private void ButSave_Click(object sender, RoutedEventArgs e)
+        {
+            ;
+        }
+
+        private void GridNames_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+
         }
     }
 }
