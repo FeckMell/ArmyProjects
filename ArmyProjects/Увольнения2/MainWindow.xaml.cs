@@ -39,6 +39,7 @@ namespace Увольнения
         {
             GUIUvalTable.Init(UvalStack);
 
+            ButSave.Click += UvalDataManager.SaveChangedData;
             GridFizo.CellEditEnding += GUIEventHandler.Fizo_CellEditEnding;
             GridBadBoy.CellEditEnding += GUIEventHandler.BadBoy_CellEditEnding;
         }

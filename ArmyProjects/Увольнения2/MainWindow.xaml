@@ -14,7 +14,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <Button Name="ButSave" Content="Сохранить изменения" HorizontalAlignment="Right" VerticalAlignment="Center" Width="auto" Height="28" Click="ButSave_Click" Margin="0,10,10,12"/>
+        <Button Name="ButSave" Content="Сохранить изменения" HorizontalAlignment="Right" VerticalAlignment="Center" Width="auto" Height="28" Margin="0,10,10,12"/>
         <Label Content="Поиск" Height="50" Width="65" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="8,0,0,0" Padding="0" Grid.IsSharedSizeScope="True" FontSize="18"/>
         <TextBox Height="30" TextWrapping="Wrap" VerticalAlignment="Center" Width="190" HorizontalAlignment="Left"  VerticalContentAlignment="Center" Margin="78,10,0,5" ToolTip="Введите фамилию или часть" FontSize="18"/>
         <Canvas Margin="0,0,0,0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFD8D8D8" />
@@ -34,7 +34,7 @@
                             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical" Grid.Column="0">
                                 <Label Content=" " HorizontalAlignment="Stretch" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="30" BorderThickness="1" BorderBrush="Black"/>
                                 <DataGrid Name="GridNames" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                          GridLinesVisibility="All" ClipToBounds="True" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+                                          GridLinesVisibility="All" ClipToBounds="True" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"  CanUserDeleteRows="False" CanUserSortColumns="False">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="№" Width="Auto" Binding="{Binding Path=ThatManNum}"/>
                                         <DataGridTextColumn Header="ФИО" Width="Auto" Binding="{Binding Path=ThatName}"/>
@@ -58,9 +58,9 @@
                 <Grid Background="#FFE5E5E5">
                     <DataGrid Name="GridFizo" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
                         GridLinesVisibility="All" ClipToBounds="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible"  ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                        CanUserAddRows="False"  AutoGenerateColumns="False">
+                        CanUserAddRows="False"  AutoGenerateColumns="False" CanUserDeleteRows="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ФИО" Width="Auto" Binding="{Binding Path=ThatName}"/>
+                            <DataGridTextColumn Header="ФИО" Width="Auto" Binding="{Binding Path=ThatName}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Скорость" Width="Auto" Binding="{Binding Path=ThatSpeed}"/>
                             <DataGridTextColumn Header="Сила" Width="Auto" Binding="{Binding Path=ThatForce}"/>
                             <DataGridTextColumn Header="Выпосливость" Width="Auto" Binding="{Binding Path=ThatStamina}"/>
@@ -76,9 +76,9 @@
                 <Grid Background="#FFE5E5E5">
                     <DataGrid Name="GridBadBoy" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
                         GridLinesVisibility="All" ClipToBounds="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible"  ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                        CanUserAddRows="False"  AutoGenerateColumns="False">
+                        CanUserAddRows="False"  AutoGenerateColumns="False"  CanUserDeleteRows="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ФИО" Width="Auto" Binding="{Binding Path=ThatName}"/>
+                            <DataGridTextColumn Header="ФИО" Width="Auto" Binding="{Binding Path=ThatName}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Поощрения" Width="Auto" Binding="{Binding Path=ThatGoods}"/>
                             <DataGridTextColumn Header="Взыскания" Width="Auto" Binding="{Binding Path=ThatBads}"/>
                         </DataGrid.Columns>

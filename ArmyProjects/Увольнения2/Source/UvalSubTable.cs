@@ -58,7 +58,15 @@ namespace Увольнения.Source
         public int ThatID { get => thatID; set => thatID = value; }
         public int ThatManID { get => thatManID; set => thatManID = value; }
         public int ThatPeriodID { get => thatPeriodID; set => thatPeriodID = value; }
-        public List<string> ThatData { get => thatData; set { thatData = value; thatData.Add(Sum()); } }
+        public List<string> ThatData
+        {
+            get => thatData;
+            set
+            {
+                thatData = value;
+                thatData.Add(Sum());
+            }
+        }
         public string ThatColor { get => thatColor; set => thatColor = value; }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -67,13 +75,29 @@ namespace Увольнения.Source
 
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
+        public void SumNew(string data_, int i_)
+        {
+            ThatData[ThatData.Count - 1] = (GetValue(ThatData.Count - 1) - GetValue(i_) + GetValue(data_)).ToString();
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
         private string Sum()
         {
             int result = 0;
-            foreach (var e in ThatData) result += Int32.Parse(e);
+            foreach (var e in ThatData) result += GetValue(e);
             return result.ToString();
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
+        private int GetValue(int i_)
+        {
+            if (string.IsNullOrEmpty(ThatData[i_])) return 0;
+            else return Int32.Parse(ThatData[i_]);
+        }
+        private int GetValue(string data_)
+        {
+            if (string.IsNullOrEmpty(data_)) return 0;
+            else return Int32.Parse(data_);
+        }
     }
 }

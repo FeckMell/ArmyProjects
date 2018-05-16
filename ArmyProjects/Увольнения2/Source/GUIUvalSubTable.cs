@@ -26,7 +26,7 @@ namespace Увольнения.Source
         public Label ThatLabel { get => thatLabel; set => thatLabel = value; }
         public DataGrid ThatDataGrid { get => thatDataGrid; set => thatDataGrid = value; }
         public StackPanel ThatStackPanel { get => thatStackPanel; set => thatStackPanel = value; }
-        internal UvalSubTable ThatData { get => thatData; set => thatData = value; }
+        public UvalSubTable ThatData { get => thatData; set => thatData = value; }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ namespace Увольнения.Source
             for (int i = 0; i < ThatHeaders.Count; ++i) GenColumn(ThatHeaders[i], i, false);
 
             //Set final header with sum of other columns
-            GenColumn("Итого", ThatHeaders.Count + 1, true);
+            GenColumn("Итого", ThatHeaders.Count, true);
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
@@ -96,6 +96,9 @@ namespace Увольнения.Source
             {
                 CanUserAddRows = false,
                 AutoGenerateColumns = false,
+                CanUserDeleteRows=false,
+                CanUserReorderColumns=false,
+                CanUserSortColumns = false,
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 VerticalAlignment = VerticalAlignment.Stretch,
                 HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden,

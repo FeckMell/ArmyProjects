@@ -36,14 +36,14 @@ namespace Увольнения.Source
         //*///------------------------------------------------------------------------------------------
         static private void CalculateSum_GUIUvalSubTable(DataGridCellEditEndingEventArgs e_)
         {
-            var row = (e_.Row.Item as UvalSubTableRow).ThatData;
-            int columnIndex = e_.Column.DisplayIndex;
-            row[row.Count - 1] = (Int32.Parse(row[row.Count - 1]) - Int32.Parse(row[columnIndex]) + Int32.Parse(((TextBox)e_.EditingElement).Text)).ToString();
-            row[columnIndex] = ((TextBox)e_.EditingElement).Text;
+            var e = (e_.Row.Item as UvalSubTableRow);
+            e.SumNew(((TextBox)e_.EditingElement).Text, e_.Column.DisplayIndex);
+            e.ThatData[e_.Column.DisplayIndex] = ((TextBox)e_.EditingElement).Text;
         }
         //*///------------------------------------------------------------------------------------------
         static private bool CheckValid_GUIUvalSubTable(DataGridCellEditEndingEventArgs e_)
         {
+            if (string.IsNullOrEmpty(((TextBox)e_.EditingElement).Text)) return true;
             bool result = Int32.TryParse(((TextBox)e_.EditingElement).Text, out int i);
             if (result) return result;
             else
@@ -97,6 +97,7 @@ namespace Увольнения.Source
         //*///------------------------------------------------------------------------------------------
         private static bool CheckValid_Fizo(DataGridCellEditEndingEventArgs e_, int columnIndex_)
         {
+            if (string.IsNullOrEmpty(((TextBox)e_.EditingElement).Text)) return true;
             bool result = true;
             string error_mess = "";
 
@@ -160,6 +161,7 @@ namespace Увольнения.Source
         //*///------------------------------------------------------------------------------------------
         private static bool CheckValid_BadBoy(DataGridCellEditEndingEventArgs e_, int columnIndex_)
         {
+            if (string.IsNullOrEmpty(((TextBox)e_.EditingElement).Text)) return true;
             bool result = true;
             string error_mess = "";
 

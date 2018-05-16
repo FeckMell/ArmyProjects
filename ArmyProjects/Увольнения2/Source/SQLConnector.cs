@@ -38,6 +38,18 @@ namespace Увольнения.Source
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
+        static public void NoReturnQuery(string query)
+        {
+            //UPDATE tovar SET price=500 WHERE id=5
+            //UPDATE tbl SET name='value', name2='value2' WHERE id=5
+            OpenConnection();
+            dbCmd = new SQLiteCommand(dbConnection) { CommandText = query };
+            try { dbCmd.ExecuteNonQuery();  }
+            catch { }
+            finally { CloseConnection(); }
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
         public static List<List<object>> Select(string query)
         {
             OpenConnection();

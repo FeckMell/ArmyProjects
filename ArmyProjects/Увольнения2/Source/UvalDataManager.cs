@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Увольнения.Source
 {
@@ -40,6 +41,38 @@ namespace Увольнения.Source
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
+        static public void SaveChangedData(object sender, RoutedEventArgs e_)
+        {
+            foreach(var e in GUIEventHandler.ThatChangedData)
+            {
+                if(e is UvalSubTableRow)
+                {
+                    var el = e as UvalSubTableRow;
+                    string ch_data = "";
+                    for (var i = 0; i < el.ThatData.Count - 1; ++i)
+                    {
+                        if (string.IsNullOrEmpty(el.ThatData[i])) ch_data += ",";
+                        else ch_data += el.ThatData[i] + ",";
+                    }
+                    ch_data = ch_data.Remove(ch_data.Length - 1);
+                    SQLConnector.NoReturnQuery(string.Format("UPDATE Records SET Data='{0}' WHERE id={1}", ch_data, el.ThatID));
+                }
+                else if (e is FizoEntry)
+                {
+                    var el = e as FizoEntry;
+                    SQLConnector.NoReturnQuery(string.Format("UPDATE Fizo SET Speed='{0}', Force='{1}', Stamina='{2}', Mark='{3}', Freedom='{4}' WHERE id={5}",
+                        el.ThatSpeed, el.ThatForce, el.ThatStamina, el.ThatMark, el.ThatFree, el.ThatID));
+                }
+                else if (e is BadBoyEntry)
+                {
+                    var el = e as BadBoyEntry;
+                    SQLConnector.NoReturnQuery(string.Format("UPDATE BadBoy SET Goods='{0}', Bads='{1}' WHERE id={2}",
+                        el.ThatGoods, el.ThatBads, el.ThatID));
+                }
+            }
+
+            MessageBox.Show("Изменения сохранены!");
+        }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
