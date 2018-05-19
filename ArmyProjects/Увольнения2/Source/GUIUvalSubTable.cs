@@ -85,8 +85,9 @@ namespace Увольнения.Source
                 HorizontalContentAlignment = HorizontalAlignment.Center,
                 VerticalContentAlignment = VerticalAlignment.Center,
                 BorderThickness = new Thickness(1, 1, 1, 1),
-                BorderBrush = SystemColors.ActiveCaptionTextBrush
+                BorderBrush = SystemColors.ActiveCaptionTextBrush,
             };
+            Grid.SetRow(ThatLabel, 0);
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
@@ -102,14 +103,32 @@ namespace Увольнения.Source
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 VerticalAlignment = VerticalAlignment.Stretch,
                 HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden,
-                VerticalScrollBarVisibility = ScrollBarVisibility.Hidden
+                VerticalScrollBarVisibility = ScrollBarVisibility.Hidden,
             };
             ThatDataGrid.CellEditEnding += GUIEventHandler.GUIUvalSubTable_CellEditEnding;
+            Grid.SetRow(ThatDataGrid, 1);
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         private void GenStack()
         {
+            //ThatStackPanel = new Grid
+            //{
+            //    HorizontalAlignment = HorizontalAlignment.Stretch,
+            //    VerticalAlignment = VerticalAlignment.Stretch,
+            //    MinWidth=200
+            //};
+
+            //var rowdef1 = new RowDefinition
+            //{
+            //    Height = new GridLength(30),
+            //};
+            //var rowdef2 = new RowDefinition
+            //{
+            //    Height = new GridLength(300)
+            //};
+            //ThatStackPanel.RowDefinitions.Add(rowdef1);
+            //ThatStackPanel.RowDefinitions.Add(rowdef2);
             ThatStackPanel = new StackPanel
             {
                 Width = 250,

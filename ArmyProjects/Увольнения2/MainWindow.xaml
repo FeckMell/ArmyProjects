@@ -18,7 +18,8 @@
         <Label Content="Поиск" Height="50" Width="65" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="8,0,0,0" Padding="0" Grid.IsSharedSizeScope="True" FontSize="18"/>
         <TextBox Height="30" TextWrapping="Wrap" VerticalAlignment="Center" Width="190" HorizontalAlignment="Left"  VerticalContentAlignment="Center" Margin="78,10,0,5" ToolTip="Введите фамилию или часть" FontSize="18"/>
         <Canvas Margin="0,0,0,0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFD8D8D8" />
-        <TabControl Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="#FF040303">
+        
+        <TabControl Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="#FF040303" Name="GridUval">
 
 
             <!--x:Name="namedScroll" Height="{Binding ElementName=namedScroll, Path=ActualHeight}"-->
@@ -100,76 +101,78 @@
                         <ColumnDefinition Width="350*"/>
                     </Grid.ColumnDefinitions>
                     
-                    <StackPanel Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical" >
-                        <Label Content="Добавление нового периода" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF858383"/>
-                        <Canvas Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
-                        <Label Content="Год" Background="#FF858383"/>
-                        <TextBox Name="PeriodYear" Height="23" TextWrapping="Wrap" Text="TextBox"/>
-                        <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
-                        <Label Content="Месяц" Background="#FF858383"/>
-                        <TextBox Name="PeriodMonth" Height="23" TextWrapping="Wrap" Text="TextBox"/>
-                        <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
-                        <Label Content="Даты увольнений" Background="#FF858383"/>
+                    <Border BorderThickness="2" BorderBrush="Black">
+                        <StackPanel Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical" >
+                            <Label Content="Добавление нового периода" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF858383"/>
+                            <Canvas Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+                            <Label Content="Год" Background="#FF858383"/>
+                            <TextBox Name="PeriodYear" Height="23" TextWrapping="Wrap" Text="TextBox"/>
+                            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+                            <Label Content="Месяц" Background="#FF858383"/>
+                            <TextBox Name="PeriodMonth" Height="23" TextWrapping="Wrap" Text="TextBox"/>
+                            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+                            <Label Content="Даты увольнений" Background="#FF858383"/>
 
-                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="100">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="70*"/>
-                                <ColumnDefinition Width="5"/>
-                                <ColumnDefinition Width="70*"/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                <TextBox Name="PeriodDate" Height="23" TextWrapping="Wrap" Text=""/>
-                                <Button Content="Добавить"/>
-                            </StackPanel>
-                            <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Column="1"/><!--Background="#FFC7BFBF"-->
-                            <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2"/>
-                        </Grid>
-                        <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="100">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="70*"/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition Width="70*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                    <TextBox Name="PeriodDate" Height="23" TextWrapping="Wrap" Text=""/>
+                                    <Button Content="Добавить"/>
+                                </StackPanel>
+                                <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Column="1"/>
+                                
+                                <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2"/>
+                            </Grid>
+                            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
 
-                        <Label Content="Расположение периода" Background="#FF858383"/>
-                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="100">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="60"/>
-                                <ColumnDefinition Width="1*"/>
-                            </Grid.ColumnDefinitions>
+                            <Label Content="Расположение периода" Background="#FF858383"/>
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="100">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
 
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0">
-                                <RadioButton Content="Перед" HorizontalAlignment="Center"/>
-                                <RadioButton Content="После" HorizontalAlignment="Center" IsChecked="True" />
-                            </StackPanel>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0">
+                                    <RadioButton Content="Перед" HorizontalAlignment="Center"/>
+                                    <RadioButton Content="После" HorizontalAlignment="Center" IsChecked="True" />
+                                </StackPanel>
 
-                            <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"/>
-                        </Grid>
-                        <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+                                <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"/>
+                            </Grid>
+                            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
 
-                        <Button Content="Добавить период" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
-                    </StackPanel>
+                            <Button Content="Добавить период" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        </StackPanel>
+                    </Border>
 
-                    <StackPanel Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical">
-                        <Label Content="Добавление нового военнослужащего" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF858383"/>
-                        <Canvas Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
-                        
-                        <Label Content="ФИО" Background="#FF858383"/>
-                        <TextBox Name="ManNameTextBox" Height="23" TextWrapping="Wrap" Text="TextBox"/>
-                        <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
-                        
-                        <Label Content="Взвод" Background="#FF858383"/>
-                        <TextBox Name="PlatoonTextBox" Height="23" TextWrapping="Wrap" Text="TextBox"/>
-                        <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
-                        
-                        <Label Content="Номер военнослужащего" Background="#FF858383"/>
-                        <TextBox Name="ManNumTextBox" Height="23" TextWrapping="Wrap" Text="TextBox"/>
-                        <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+                    <Border BorderThickness="2" BorderBrush="Black" Grid.Column="2">
+                        <StackPanel Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical">
+                            <Label Content="Добавление нового военнослужащего" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF858383"/>
+                            <Canvas Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
 
-                        <Button Content="Добавить военнослужащего" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
-                    </StackPanel>
+                            <Label Content="ФИО" Background="#FF858383"/>
+                            <TextBox Name="ManNameTextBox" Height="23" TextWrapping="Wrap" Text="TextBox"/>
+                            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
 
+                            <Label Content="Взвод" Background="#FF858383"/>
+                            <TextBox Name="PlatoonTextBox" Height="23" TextWrapping="Wrap" Text="TextBox"/>
+                            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
 
+                            <Label Content="Номер военнослужащего" Background="#FF858383"/>
+                            <TextBox Name="ManNumTextBox" Height="23" TextWrapping="Wrap" Text="TextBox"/>
+                            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
 
-
+                            <Button Content="Добавить военнослужащего" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        </StackPanel>
+                    </Border>
 
                 </Grid>
             </TabItem>
+            
         </TabControl>
 
 
