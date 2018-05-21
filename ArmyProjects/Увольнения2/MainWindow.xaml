@@ -70,7 +70,7 @@
                             <DataGridTextColumn Header="ФИО" Width="Auto" Binding="{Binding Path=ThatName}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Скорость" Width="Auto" Binding="{Binding Path=ThatSpeed}"/>
                             <DataGridTextColumn Header="Сила" Width="Auto" Binding="{Binding Path=ThatForce}"/>
-                            <DataGridTextColumn Header="Выпосливость" Width="Auto" Binding="{Binding Path=ThatStamina}"/>
+                            <DataGridTextColumn Header="Выносливость" Width="Auto" Binding="{Binding Path=ThatStamina}"/>
                             <DataGridTextColumn Header="Общая оценка" Width="Auto" Binding="{Binding Path=ThatMark}"/>
                             <DataGridTextColumn Header="Освобождение до" Width="Auto" Binding="{Binding Path=ThatFree}"/>
                         </DataGrid.Columns>
@@ -106,10 +106,10 @@
                             <Label Content="Добавление нового периода" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF858383"/>
                             <Canvas Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
                             <Label Content="Год" Background="#FF858383"/>
-                            <TextBox Name="PeriodYear" Height="23" TextWrapping="Wrap" Text="TextBox"/>
+                            <TextBox Name="PeriodYear" Height="23" TextWrapping="Wrap" ToolTip="Введите год" />
                             <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
                             <Label Content="Месяц" Background="#FF858383"/>
-                            <TextBox Name="PeriodMonth" Height="23" TextWrapping="Wrap" Text="TextBox"/>
+                            <TextBox Name="PeriodMonth" Height="23" TextWrapping="Wrap" ToolTip="Введите месяц"/>
                             <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
                             <Label Content="Даты увольнений" Background="#FF858383"/>
 
@@ -120,12 +120,12 @@
                                     <ColumnDefinition Width="70*"/>
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                    <TextBox Name="PeriodDate" Height="23" TextWrapping="Wrap" Text=""/>
+                                    <TextBox Name="PeriodDate" Height="23" TextWrapping="Wrap" ToolTip="Введите даты увольнений по одному"/>
                                     <Button Content="Добавить"/>
                                 </StackPanel>
                                 <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Column="1"/>
                                 
-                                <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2"/>
+                                <ListBox Name="PeriodDatesList" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2"/>
                             </Grid>
                             <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
 
@@ -145,7 +145,7 @@
                             </Grid>
                             <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
 
-                            <Button Content="Добавить период" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                            <Button Name="ButAddPeriod" Content="Добавить период" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                         </StackPanel>
                     </Border>
 
@@ -155,15 +155,15 @@
                             <Canvas Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
 
                             <Label Content="ФИО" Background="#FF858383"/>
-                            <TextBox Name="ManNameTextBox" Height="23" TextWrapping="Wrap" Text="TextBox"/>
+                            <TextBox Name="ManNameTextBox" Height="23" TextWrapping="Wrap" ToolTip="Введите ФИО военнослужащего"/>
                             <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
 
                             <Label Content="Взвод" Background="#FF858383"/>
-                            <TextBox Name="PlatoonTextBox" Height="23" TextWrapping="Wrap" Text="TextBox"/>
+                            <TextBox Name="PlatoonTextBox" Height="23" TextWrapping="Wrap" ToolTip="Введите номер взвода"/>
                             <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
 
                             <Label Content="Номер военнослужащего" Background="#FF858383"/>
-                            <TextBox Name="ManNumTextBox" Height="23" TextWrapping="Wrap" Text="TextBox"/>
+                            <TextBox Name="ManNumTextBox" Height="23" TextWrapping="Wrap" ToolTip="Введите ШДК военнослужащего"/>
                             <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
 
                             <Button Content="Добавить военнослужащего" HorizontalAlignment="Center" VerticalAlignment="Top"/>
