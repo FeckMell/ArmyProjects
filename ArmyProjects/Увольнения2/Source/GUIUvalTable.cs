@@ -36,9 +36,10 @@ namespace Увольнения.Source
         {
             foreach (var e in periods_)
             {
-                List<List<object>> tmp_records = FindPeriodRecords(e[3], records_);
+                List<List<object>> tmp_records = FindPeriodRecords(e[0], records_);
                 GUIUvalSubTable subtable = new GUIUvalSubTable(tmp_records)
                 {
+                    ThatID = Int32.Parse(e[0].ToString()),
                     ThatPeriodID = Int32.Parse(e[3].ToString()),
                     ThatSuperHeader = e[1].ToString(),
                     ThatHeaders = (List<string>)e[2]

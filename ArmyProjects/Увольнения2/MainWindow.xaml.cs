@@ -51,5 +51,16 @@ namespace Увольнения
             GridBadBoy.ItemsSource = BadBoy.ThatData;
             GridFizo.ItemsSource = Fizo.ThatData;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            PeriodDatesList.Items.Add(PeriodDate.Text);
+            PeriodDate.Text = "";
+        }
+
+        private void PeriodDatesList_Delete(object sender, RoutedEventArgs e)
+        {
+            PeriodDatesList.Items.Clear();
+        }
     }
 }

@@ -27,8 +27,30 @@ namespace Увольнения.Source
         {
             if (CheckPeriodFields())
             {
-                //получить id периода
-                //
+                //получить id периода в соответствии с выбранной позицией
+                //изменить id всех остальных
+                //добавить в базу новый период
+                SQLConnector.NoReturnQuery(string.Format("INSERT INTO Periods (Name, Data, idPeriod) VALUES ('{0}', '{1}', '{2}')", 
+                    (ThatWindow.FindName("PeriodMonth") as TextBox).Text + " " + (ThatWindow.FindName("PeriodYear") as TextBox).Text,
+                    CalcPeriodData(),
+                    CalcPeriodID()
+                    ));
+                //добавить записи соответствующие всем людям и этому периоду
+                foreach (var e in DataMan.ThatData)
+                {
+                    SQLConnector.NoReturnQuery(string.Format("INSERT INTO Records (idMan, idPeriod, Data) VALUES ('{0}', '{1}', '{2}')",
+                        e.ThatID,
+                        SQLConnector.Select("SELECT id FROM Periods WHERE idPeriod='"+ CalcPeriodID() + "'")[0][0],
+                        CalcPeriodDataForMan()
+                        ));
+                }
+                //очистить поля
+                (ThatWindow.FindName("PeriodMonth") as TextBox).Text = "";
+                (ThatWindow.FindName("PeriodYear") as TextBox).Text = "";
+                (ThatWindow.FindName("PeriodDate") as TextBox).Text = "";
+                (ThatWindow.FindName("PeriodDatesList") as ListBox).Items.Clear();
+                //сообщение об успехе
+                MessageBox.Show("Успешно добавлен новый период.");
             }
             else return;
         }
@@ -64,10 +86,32 @@ namespace Увольнения.Source
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
+        static private string CalcPeriodData()
+        {
+            string result = "";
+            foreach (var e in (ThatWindow.FindName("PeriodDatesList") as ListBox).Items)
+                result += e.ToString() + ",";
+            result = result.Remove(result.Length - 1);
+            return result;
+        }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
+        static private int CalcPeriodID()
+        {
+            int result = GUIUvalTable.ThatTables[GUIUvalTable.ThatTables.Count - 1].ThatPeriodID + 1;
+            return result;
+        }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
+        static private string CalcPeriodDataForMan()
+        {
+            string result = "";
+            for (var i = 0; i < (ThatWindow.FindName("PeriodDatesList") as ListBox).Items.Count - 1; ++i)
+            {
+                result += ",";
+            }
+            return result;
+        }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------

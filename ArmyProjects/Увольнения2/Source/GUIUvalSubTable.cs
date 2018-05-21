@@ -11,6 +11,7 @@ namespace Увольнения.Source
 {
     public class GUIUvalSubTable
     {
+        private int thatID;
         private int thatPeriodID;
         private string thatSuperHeader;
         private List<string> thatHeaders;
@@ -20,6 +21,7 @@ namespace Увольнения.Source
         private DataGrid thatDataGrid;
         private StackPanel thatStackPanel;
 
+        public int ThatID { get => thatID; set => thatID = value; }
         public int ThatPeriodID { get => thatPeriodID; set => thatPeriodID = value; }
         public string ThatSuperHeader { get => thatSuperHeader; set => thatSuperHeader = value; }
         public List<string> ThatHeaders { get => thatHeaders; set => thatHeaders = value; }
@@ -27,6 +29,7 @@ namespace Увольнения.Source
         public DataGrid ThatDataGrid { get => thatDataGrid; set => thatDataGrid = value; }
         public StackPanel ThatStackPanel { get => thatStackPanel; set => thatStackPanel = value; }
         public UvalSubTable ThatData { get => thatData; set => thatData = value; }
+
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------

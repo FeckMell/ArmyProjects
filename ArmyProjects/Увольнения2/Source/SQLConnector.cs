@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.IO;
 using System.Data;
+using System.Windows;
 
 namespace Увольнения.Source
 {
@@ -44,7 +45,9 @@ namespace Увольнения.Source
             OpenConnection();
             dbCmd = new SQLiteCommand(dbConnection) { CommandText = query };
             try { dbCmd.ExecuteNonQuery();  }
-            catch { }
+            catch(Exception e_) {
+                MessageBox.Show(e_.ToString());
+            }
             finally { CloseConnection(); }
         }
         //*///------------------------------------------------------------------------------------------

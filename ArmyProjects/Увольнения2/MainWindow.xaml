@@ -121,29 +121,35 @@
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                                     <TextBox Name="PeriodDate" Height="23" TextWrapping="Wrap" ToolTip="Введите даты увольнений по одному"/>
-                                    <Button Content="Добавить"/>
+                                    <Button Content="Добавить" Click="Button_Click"/>
                                 </StackPanel>
                                 <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Column="1"/>
-                                
-                                <ListBox Name="PeriodDatesList" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2"/>
+
+                                <ListBox Name="PeriodDatesList" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2">
+                                    <ListBox.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Очистить список" Click="PeriodDatesList_Delete"></MenuItem>
+                                        </ContextMenu>
+                                    </ListBox.ContextMenu>
+                                </ListBox>
                             </Grid>
                             <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
 
-                            <Label Content="Расположение периода" Background="#FF858383"/>
+                            <!--<Label Content="Расположение периода" Background="#FF858383"/>
                             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="100">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="60"/>
                                     <ColumnDefinition Width="1*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0">
+                                <StackPanel HorizontalAlignmenЗt="Center" VerticalAlignment="Center" Grid.Column="0">
                                     <RadioButton Content="Перед" HorizontalAlignment="Center"/>
                                     <RadioButton Content="После" HorizontalAlignment="Center" IsChecked="True" />
                                 </StackPanel>
 
                                 <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"/>
                             </Grid>
-                            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+                            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />-->
 
                             <Button Name="ButAddPeriod" Content="Добавить период" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                         </StackPanel>
