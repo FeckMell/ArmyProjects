@@ -55,10 +55,12 @@ namespace Увольнения.Source
         private int thatManNum;
         private int thatPlatoon;
         private string thatName;
+        private string thatColor;
 
         public int ThatID { get => thatID; set => thatID = value; }
         public int ThatManNum { get => thatManNum; set => thatManNum = value; }
         public int ThatPlatoon { get => thatPlatoon; set => thatPlatoon = value; }
         public string ThatName { get => thatName; set => thatName = value; }
+        public string ThatColor { get => thatColor; set => thatColor = value; }
     }
 }
