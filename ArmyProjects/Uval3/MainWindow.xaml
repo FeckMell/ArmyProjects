@@ -4,10 +4,251 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Uval3"
+        xmlns:source="clr-namespace:Uval3.Source"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <Label Name="lname" Content="Label" HorizontalAlignment="Left" Margin="115,60,0,0" VerticalAlignment="Top" Height="196" Width="326"/>
+        Title="Статистика увольнений" MinHeight="550" Width="625" Background="#FF9B9595">
+    <Window.Resources>
+        <ResourceDictionary>
+            <source:IntColorConverter x:Key="IntColorConverter"></source:IntColorConverter>
+            <Style x:Name="DataGridCellColoringName" x:Key="DataGridCellColoringKey" TargetType="DataGridRow">
+                <Setter Property="Background" Value="{Binding Path=ThatColor, Converter={StaticResource IntColorConverter}}" />
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <Grid Name="MainGrid" Background="#FF878787">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
 
+        <Button Name="ButSave" Content="Сохранить изменения" HorizontalAlignment="Right" VerticalAlignment="Center" Width="auto" Height="28" Margin="0,10,10,12"/>
+        <Label Content="Поиск" Height="50" Width="65" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="8,0,0,0" Padding="0" Grid.IsSharedSizeScope="True" FontSize="18"/>
+        <TextBox Name="FilterTextBox" Height="30" TextWrapping="Wrap" VerticalAlignment="Center" Width="190" HorizontalAlignment="Left"  VerticalContentAlignment="Center" Margin="78,10,0,5" ToolTip="Введите фамилию или часть" FontSize="18" TextChanged="SearchStringChange"/>
+        <Canvas Margin="0,0,0,0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFD8D8D8" />
+
+        <TabControl Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="#FF040303" Name="GridUval">
+
+
+            <!--x:Name="namedScroll" Height="{Binding ElementName=namedScroll, Path=ActualHeight}"-->
+            <TabItem Header="Увольнения">
+                <Grid Background="#FFE5E5E5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <!--<ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">-->
+                        <DockPanel  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility ="Visible" ScrollViewer.CanContentScroll="True">
+                            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="auto" Orientation="Vertical" Width="180">
+                                <Label Content=" " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="30" BorderThickness="1" BorderBrush="Black" Grid.Row="0"/>
+                                <DataGrid Name="GridNames" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                          GridLinesVisibility="All" ClipToBounds="True" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"  CanUserDeleteRows="False" CanUserSortColumns="False">
+                                    <DataGrid.RowStyle>
+                                        <Style  TargetType="DataGridRow">
+                                            <Setter Property="Background" Value="{Binding Path=ThatColor, Converter={StaticResource IntColorConverter}}"/>
+                                        </Style>
+                                    </DataGrid.RowStyle>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="№" Width="Auto" Binding="{Binding Path=ThatManNum}"/>
+                                        <DataGridTextColumn Header="ФИО" Width="Auto" Binding="{Binding Path=ThatName}"/>
+                                        <DataGridTextColumn Header="Взвод" Width="Auto" Binding="{Binding Path=ThatPlatoon}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+
+                            <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Visible">
+                                <DockPanel Name="UvalStack" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    
+                                </DockPanel>
+                            </ScrollViewer>
+                        </DockPanel>
+                        
+                        <!--<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+
+                                <Label Content=" " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="30" BorderThickness="1" BorderBrush="Black" Grid.Row="0"/>
+                                <DataGrid Name="GridNames" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1"
+                                          GridLinesVisibility="All" ClipToBounds="True" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"  CanUserDeleteRows="False" CanUserSortColumns="False">
+                                    <DataGrid.RowStyle>
+                                        <Style  TargetType="DataGridRow">
+                                            <Setter Property="Background" Value="{Binding Path=ThatColor, Converter={StaticResource IntColorConverter}}"/>
+                                        </Style>
+                                    </DataGrid.RowStyle>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="№" Width="Auto" Binding="{Binding Path=ThatManNum}"/>
+                                        <DataGridTextColumn Header="ФИО" Width="Auto" Binding="{Binding Path=ThatName}"/>
+                                        <DataGridTextColumn Header="Взвод" Width="Auto" Binding="{Binding Path=ThatPlatoon}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>-->
+                        <!--</Grid>-->
+
+                        <!--<DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical" Width="180">
+                                <Label Content=" " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="30" BorderThickness="1" BorderBrush="Black" Grid.Row="0"/>
+                                <DataGrid Name="GridNames" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1"
+                                          GridLinesVisibility="All" ClipToBounds="True" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"  CanUserDeleteRows="False" CanUserSortColumns="False">
+                                    <DataGrid.RowStyle>
+                                        <Style  TargetType="DataGridRow">
+                                            <Setter Property="Background" Value="{Binding Path=ThatColor, Converter={StaticResource IntColorConverter}}"/>
+                                        </Style>
+                                    </DataGrid.RowStyle>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="№" Width="Auto" Binding="{Binding Path=ThatManNum}"/>
+                                        <DataGridTextColumn Header="ФИО" Width="Auto" Binding="{Binding Path=ThatName}"/>
+                                        <DataGridTextColumn Header="Взвод" Width="Auto" Binding="{Binding Path=ThatPlatoon}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+                            <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Visible">
+                                <DockPanel  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <StackPanel Name="UvalStack" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Horizontal">
+                                        
+                                    </StackPanel>
+                                </DockPanel>
+                            </ScrollViewer>
+                        </DockPanel>-->
+
+                            
+                        
+                    <!--</ScrollViewer>-->
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="ФиЗо">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid Name="GridFizo" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                        GridLinesVisibility="All" ClipToBounds="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible"  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                        CanUserAddRows="False"  AutoGenerateColumns="False" CanUserDeleteRows="False">
+                        <DataGrid.RowStyle>
+                            <Style  TargetType="DataGridRow">
+                                <Setter Property="Background" Value="{Binding Path=ThatColor, Converter={StaticResource IntColorConverter}}"/>
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ФИО" Width="Auto" Binding="{Binding Path=ThatName}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Скорость" Width="Auto" Binding="{Binding Path=ThatSpeed}"/>
+                            <DataGridTextColumn Header="Сила" Width="Auto" Binding="{Binding Path=ThatForce}"/>
+                            <DataGridTextColumn Header="Выносливость" Width="Auto" Binding="{Binding Path=ThatStamina}"/>
+                            <DataGridTextColumn Header="Общая оценка" Width="Auto" Binding="{Binding Path=ThatMark}"/>
+                            <DataGridTextColumn Header="Освобождение до" Width="Auto" Binding="{Binding Path=ThatFree}"/>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Взыскания и поощрения">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid Name="GridBadBoy" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                        GridLinesVisibility="All" ClipToBounds="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible"  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                        CanUserAddRows="False"  AutoGenerateColumns="False"  CanUserDeleteRows="False">
+                        <DataGrid.RowStyle>
+                            <Style  TargetType="DataGridRow">
+                                <Setter Property="Background" Value="{Binding Path=ThatColor, Converter={StaticResource IntColorConverter}}"/>
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ФИО" Width="Auto" Binding="{Binding Path=ThatName}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Поощрения" Width="Auto" Binding="{Binding Path=ThatGoods}"/>
+                            <DataGridTextColumn Header="Взыскания" Width="Auto" Binding="{Binding Path=ThatBads}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Редактирование списка роты и периодов">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="350*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border BorderThickness="2" BorderBrush="Black">
+                        <StackPanel Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical" >
+                            <Label Content="Добавление нового периода" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF858383"/>
+                            <Canvas Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+                            <Label Content="Год" Background="#FF858383"/>
+                            <TextBox Name="PeriodYear" Height="23" TextWrapping="Wrap" ToolTip="Введите год" />
+                            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+                            <Label Content="Месяц" Background="#FF858383"/>
+                            <TextBox Name="PeriodMonth" Height="23" TextWrapping="Wrap" ToolTip="Введите месяц"/>
+                            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+                            <Label Content="Даты увольнений" Background="#FF858383"/>
+
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="100">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="70*"/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition Width="70*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                    <TextBox Name="PeriodDate" Height="23" TextWrapping="Wrap" ToolTip="Введите даты увольнений по одному"/>
+                                    <Button Content="Добавить" Click="ButAddDate_Click"/>
+                                </StackPanel>
+                                <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Column="1"/>
+
+                                <ListBox Name="PeriodDatesList" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2">
+                                    <ListBox.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Очистить список" Click="PeriodDatesList_Delete"></MenuItem>
+                                        </ContextMenu>
+                                    </ListBox.ContextMenu>
+                                </ListBox>
+                            </Grid>
+                            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+
+                            <!--<Label Content="Расположение периода" Background="#FF858383"/>
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="100">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel HorizontalAlignmenЗt="Center" VerticalAlignment="Center" Grid.Column="0">
+                                    <RadioButton Content="Перед" HorizontalAlignment="Center"/>
+                                    <RadioButton Content="После" HorizontalAlignment="Center" IsChecked="True" />
+                                </StackPanel>
+
+                                <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"/>
+                            </Grid>
+                            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />-->
+
+                            <Button Name="ButAddPeriod" Content="Добавить период" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border BorderThickness="2" BorderBrush="Black" Grid.Column="2">
+                        <StackPanel Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical">
+                            <Label Content="Добавление нового военнослужащего" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF858383"/>
+                            <Canvas Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+
+                            <Label Content="ФИО" Background="#FF858383"/>
+                            <TextBox Name="ManNameTextBox" Height="23" TextWrapping="Wrap" ToolTip="Введите ФИО военнослужащего"/>
+                            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+
+                            <Label Content="Взвод" Background="#FF858383"/>
+                            <TextBox Name="PlatoonTextBox" Height="23" TextWrapping="Wrap" ToolTip="Введите номер взвода"/>
+                            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+
+                            <Label Content="Номер военнослужащего" Background="#FF858383"/>
+                            <TextBox Name="ManNumTextBox" Height="23" TextWrapping="Wrap" ToolTip="Введите ШДК военнослужащего"/>
+                            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+
+                            <Button Name="ButAddMan" Content="Добавить военнослужащего" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        </StackPanel>
+                    </Border>
+
+                </Grid>
+            </TabItem>
+
+        </TabControl>
     </Grid>
 </Window>
