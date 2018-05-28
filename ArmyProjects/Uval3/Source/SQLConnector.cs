@@ -12,8 +12,9 @@ namespace Uval3.Source
 {
     public static class SQLConnector
     {
-        private static string connectionString = "Data Source=DBLite.sqlite;Version=3;";
-        private static string dbFileName = "DBLite.sqlite";
+        private static string connectionString = "Data Source=UvalDB.db;Version=3;";
+        private static string dbFileName = "UvalDB.db";
+
         private static SQLiteCommand dbCmd;
         private static SQLiteConnection dbConnection;
         //*///------------------------------------------------------------------------------------------

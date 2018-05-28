@@ -21,38 +21,24 @@ namespace Uval3
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static MainWindow thatWindow;
+        static private MainWindow thatWindow;
         static public MainWindow ThatWindow { get => thatWindow; set => thatWindow = value; }
 
         public MainWindow()
         {
             InitializeComponent();
             ThatWindow = this;
+            ColorControl.InitColors();
+            Binders();
+
             Periods.UpdateDataFromBD();
             DataMan.UpdateDataFromBD("");
-
-            ColorControl.InitColors();
-            ColorControl.SetColorsForDG();
-
-            GUIUvalTable.Init(UvalStack);
             GUIUvalTable.Update();
-
-            Binders();
-            //var e =this.Resources.FindName("DataGridCellColoringName");
-            //var e2 = Resources.Keys;
-            //var e3 = Resources.Values;
-            //var e4 = Resources["DataGridCellColoringKey"];
         }
 
         private void SearchStringChange(object sender, TextChangedEventArgs e)
         {
-            Clear();
-
-            Periods.UpdateDataFromBD();
-            DataMan.UpdateDataFromBD(FilterTextBox.Text);
-
-            ColorControl.SetColorsForDG();
-            GUIUvalTable.Update();
+            Update();
         }
         public void Update()
         {
@@ -60,8 +46,6 @@ namespace Uval3
 
             Periods.UpdateDataFromBD();
             DataMan.UpdateDataFromBD(FilterTextBox.Text);
-
-            ColorControl.SetColorsForDG();
             GUIUvalTable.Update();
         }
 
@@ -69,16 +53,14 @@ namespace Uval3
         {
             Periods.Clear();
             DataMan.Clear();
-            Fizo.Clear();
-            BadBoy.Clear();
             Records.Clear();
         }
 
         private void Binders()
         {
             GridNames.ItemsSource = DataMan.ThatData;
-            GridFizo.ItemsSource = Fizo.ThatData;
-            GridBadBoy.ItemsSource = BadBoy.ThatData;
+            GridFizo.ItemsSource = DataMan.ThatData;
+            GridBadBoy.ItemsSource = DataMan.ThatData;
 
             ButAddPeriod.Click += GUIEventHandler.ButAddPeriod_Click;
             ButSave.Click += GUIEventHandler.ButSaveChangedData_Click;
@@ -87,15 +69,8 @@ namespace Uval3
             GridFizo.CellEditEnding += GUIEventHandler.Fizo_CellEditEnding;
             GridBadBoy.CellEditEnding += GUIEventHandler.BadBoy_CellEditEnding;
         }
-        private void ButAddDate_Click(object sender, RoutedEventArgs e_)
-        {
-            PeriodDatesList.Items.Add(PeriodDate.Text);
-            PeriodDate.Text = "";
-        }
-        private void PeriodDatesList_Delete(object sender, RoutedEventArgs e)
-        {
-            PeriodDatesList.Items.Clear();
-        }
+        
+        
     }
     //*///------------------------------------------------------------------------------------------
     //*///------------------------------------------------------------------------------------------

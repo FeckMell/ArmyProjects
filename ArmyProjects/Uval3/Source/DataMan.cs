@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,24 +33,8 @@ namespace Uval3.Source
             {
                 DataManEntry man = new DataManEntry(e);
                 ThatData.Add(man);
-                man.UpdateFizo();
-                man.UpdateBadBoy();
-                man.UpdateRecords();
             }
         }
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        static public DataManEntry FindByID(int id_)
-        {
-            for(var i = 0; i<ThatData.Count;++i)
-            {
-                if (ThatData[i].ThatID == id_) return ThatData[i];
-            }
-            return null;
-        }
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         static public void Clear()
@@ -61,28 +46,40 @@ namespace Uval3.Source
     //*///------------------------------------------------------------------------------------------
     //*///------------------------------------------------------------------------------------------
     //*///------------------------------------------------------------------------------------------
-    public class DataManEntry
+    public class DataManEntry : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        
         private int thatID;
-        private int thatManNum;
-        private int thatPlatoon;
+        private int thatWDK;
+        private string thatPlatoon;
         private string thatName;
-        //private int thatColor;
+        private string thatGoods;
+        private string thatBads;
+        private string thatSpeed;
+        private string thatForce;
+        private string thatStamina;
+        private string thatMark;
+        private string thatFreedom;
         private ColorEntry thatColor;
 
-        private FizoEntry thatFizo;
-        private BadBoyEntry thatBadBoy;
-        private List<RecordsEntry> thatRecords = new List<RecordsEntry>();
+        private List<RecordsEntry> thatRecords;
 
 
         public int ThatID { get => thatID; set => thatID = value; }
-        public int ThatManNum { get => thatManNum; set => thatManNum = value; }
-        public int ThatPlatoon { get => thatPlatoon; set => thatPlatoon = value; }
+        public int ThatWDK { get => thatWDK; set => thatWDK = value; }
+        public string ThatPlatoon { get => thatPlatoon; set => thatPlatoon = value; }
         public string ThatName { get => thatName; set => thatName = value; }
+        public string ThatGoods { get => thatGoods; set => thatGoods = value; }
+        public string ThatBads { get => thatBads; set => thatBads = value; }
+        public string ThatSpeed { get => thatSpeed; set => thatSpeed = value; }
+        public string ThatForce { get => thatForce; set => thatForce = value; }
+        public string ThatStamina { get => thatStamina; set => thatStamina = value; }
+        public string ThatMark { get => thatMark; set => thatMark = value; }
+        public string ThatFreedom { get => thatFreedom; set => thatFreedom = value; }
         public ColorEntry ThatColor { get => thatColor; set => thatColor = value; }
-        public FizoEntry ThatFizo { get => thatFizo; set => thatFizo = value; }
-        public BadBoyEntry ThatBadBoy { get => thatBadBoy; set => thatBadBoy = value; }
         public List<RecordsEntry> ThatRecords { get => thatRecords; set => thatRecords = value; }
+
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
@@ -90,41 +87,60 @@ namespace Uval3.Source
         public DataManEntry(List<object> e_)
         {
             ThatID = Int32.Parse(e_[0].ToString());
-            ThatManNum = Int32.Parse(e_[2].ToString());
-            ThatName = e_[1].ToString();
-            ThatPlatoon = Int32.Parse(e_[3].ToString());
+            ThatWDK = Int32.Parse(e_[1].ToString());
+            ThatPlatoon = e_[2].ToString();
+            ThatName = e_[3].ToString();
+            ThatGoods = e_[4].ToString();
+            thatBads = e_[5].ToString();
+            ThatSpeed = e_[6].ToString();
+            ThatForce = e_[7].ToString();
+            ThatStamina = e_[8].ToString();
+            ThatMark = e_[9].ToString();
+            ThatFreedom = e_[10].ToString();
+
+            ThatColor = ColorControl.Analyse(this);
+
+            //ThatRecords = Records.ParseForMan(e_[11], ThatID, ThatColor);
+            ThatRecords = Records.ParseForMan(e_[11], this);
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        public void UpdateFizo()
+        public void OnPropertyChanged()
         {
-            ThatFizo = Fizo.Update(ThatID, ThatName);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ThatWDK"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ThatPlatoon"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ThatName"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ThatGoods"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ThatBads"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ThatSpeed"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ThatForce"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ThatStamina"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ThatMark"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ThatFreedom"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ThatColor"));
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        public void UpdateBadBoy()
+        public void SaveDataToDB()
         {
-            ThatBadBoy = BadBoy.Update(ThatID, ThatName);
+            SQLConnector.NoReturnQuery(string.Format(
+                "UPDATE Man SET WDK='{1}', Name='{2}', Platoon='{3}', Goods='{4}', Bads='{5}', Speed='{6}', Force='{7}', Stamina='{8}', Mark='{9}', Freedom='{10}', Records='{11}' WHERE id={0}",
+                ThatID, ThatWDK, ThatName, ThatPlatoon, ThatGoods, ThatBads, ThatSpeed, ThatForce, ThatStamina, ThatMark, ThatFreedom,
+                RecordsToString()
+                ));
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        public void UpdateRecords()
+        public string RecordsToString()
         {
-            ThatRecords = Records.Update(ThatID);
+            string result = "";
+            foreach(var e in ThatRecords)
+            {
+                result += e.ToStringForDB() + "|";
+            }
+            
+            result = result.Remove(result.Length - 1);
+            return result;
         }
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        public bool CheckFizoIsGood()
-        {
-            return ThatFizo.CheckIsGood();
-        }
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        public bool CheckBadBoyIsGood()
-        {
-            return ThatBadBoy.CheckIsGood();
-        }
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
     }
 }

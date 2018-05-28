@@ -10,53 +10,79 @@ namespace Uval3.Source
 {
     static public class ColorControl
     {
+        static private int thatGoodCounter = 0;
+        static private int thatBadCounter = 0;
+
         static private List<ColorEntry> thatColorsGood = new List<ColorEntry>();
         static private List<ColorEntry> thatColorsBad = new List<ColorEntry>();
 
+        public static int ThatGoodCounter { get => thatGoodCounter; set => thatGoodCounter = value; }
+        public static int ThatBadCounter { get => thatBadCounter; set => thatBadCounter = value; }
+
         static public List<ColorEntry> ThatColorsGood { get => thatColorsGood; set => thatColorsGood = value; }
         static public List<ColorEntry> ThatColorsBad { get => thatColorsBad; set => thatColorsBad = value; }
+
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         static public void InitColors()
         {
-            ThatColorsGood.Add(new ColorEntry { ThatID = 0, ThatColor = Brushes.Chocolate });
-            ThatColorsGood.Add(new ColorEntry { ThatID = 1, ThatColor = Brushes.PaleVioletRed });
-            ThatColorsGood.Add(new ColorEntry { ThatID = 2, ThatColor = Brushes.Coral });
-            ThatColorsGood.Add(new ColorEntry { ThatID = 3, ThatColor = Brushes.CornflowerBlue });
-            ThatColorsGood.Add(new ColorEntry { ThatID = 4, ThatColor = Brushes.LightGreen });
-            ThatColorsGood.Add(new ColorEntry { ThatID = 5, ThatColor = Brushes.Honeydew });
+            ThatColorsGood.Add(new ColorEntry { ThatColor = Brushes.Chocolate });
+            ThatColorsGood.Add(new ColorEntry { ThatColor = Brushes.PaleVioletRed });
+            ThatColorsGood.Add(new ColorEntry { ThatColor = Brushes.Coral });
+            ThatColorsGood.Add(new ColorEntry { ThatColor = Brushes.CornflowerBlue });
+            ThatColorsGood.Add(new ColorEntry { ThatColor = Brushes.LightGreen });
+            ThatColorsGood.Add(new ColorEntry { ThatColor = Brushes.Honeydew });
 
-            ThatColorsBad.Add(new ColorEntry { ThatID = 100, ThatColor = Brushes.DimGray });
-            ThatColorsBad.Add(new ColorEntry { ThatID = 101, ThatColor = Brushes.Gray });
-            ThatColorsBad.Add(new ColorEntry { ThatID = 102, ThatColor = Brushes.LightGray });
-            ThatColorsBad.Add(new ColorEntry { ThatID = 103, ThatColor = Brushes.DarkGray });
+            ThatColorsBad.Add(new ColorEntry {  ThatColor = Brushes.DimGray });
+            ThatColorsBad.Add(new ColorEntry {  ThatColor = Brushes.Gray });
+            ThatColorsBad.Add(new ColorEntry {  ThatColor = Brushes.LightGray });
+            ThatColorsBad.Add(new ColorEntry {  ThatColor = Brushes.DarkGray });
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        static public void SetColorsForDG()
+        static public ColorEntry Analyse(DataManEntry man_)
         {
-            int good = 0;
-            int bad = 0;
-            foreach(var e in DataMan.ThatData)
+            if (CheckFizoIsGood(man_) && CheckBadBoyIsGood(man_))
             {
-                if(e.CheckFizoIsGood() && e.CheckBadBoyIsGood())
-                {
-                    e.ThatColor = ThatColorsGood[good % ThatColorsGood.Count];
-                    foreach (var record in e.ThatRecords) record.ThatColor = e.ThatColor;
-                    ++good;
-                }
-                else
-                {
-                    e.ThatColor = ThatColorsBad[bad % ThatColorsBad.Count];
-                    foreach (var record in e.ThatRecords) record.ThatColor = e.ThatColor;
-                    ++bad;
-                }
-
-                e.ThatFizo.ThatColor = e.ThatColor;
-                e.ThatBadBoy.ThatColor = e.ThatColor;
+                ThatGoodCounter = (ThatGoodCounter + 1) % ThatColorsGood.Count;
+                return ThatColorsGood[ThatGoodCounter];
             }
+            else
+            {
+                ThatBadCounter = (ThatBadCounter + 1) % ThatColorsBad.Count;
+                return ThatColorsBad[ThatBadCounter];
+            }
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        static public SolidColorBrush SetColorForElement(bool value_)
+        {
+            if(value_)
+            {
+                ThatGoodCounter = (ThatGoodCounter + 1) % ThatColorsGood.Count;
+                return ThatColorsGood[ThatGoodCounter].ThatColor;
+            }
+            else
+            {
+                ThatBadCounter = (ThatBadCounter + 1) % ThatColorsBad.Count;
+                return ThatColorsBad[ThatBadCounter].ThatColor;
+            }
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        static private bool CheckFizoIsGood(DataManEntry man_)
+        {
+            if (man_.ThatMark == "" || man_.ThatMark == null || man_.ThatMark == "2") return false;
+            else return true;
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        static private bool CheckBadBoyIsGood(DataManEntry man_)
+        {
+            if (man_.ThatBads == "" || man_.ThatBads == null || man_.ThatBads == "0") return true;
+            else return false;
         }
     }
     //*///------------------------------------------------------------------------------------------
@@ -65,10 +91,7 @@ namespace Uval3.Source
     //*///------------------------------------------------------------------------------------------
     public class ColorEntry
     {
-        private int thatID;
         private SolidColorBrush thatColor;
-
-        public int ThatID { get => thatID; set => thatID = value; }
         public SolidColorBrush ThatColor { get => thatColor; set => thatColor = value; }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
@@ -79,7 +102,8 @@ namespace Uval3.Source
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return (value as ColorEntry).ThatColor;
+            //return ColorControl.SetColorForElement((bool)value);
+            return ((ColorEntry)value).ThatColor;
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------

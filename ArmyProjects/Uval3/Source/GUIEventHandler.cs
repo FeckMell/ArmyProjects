@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -17,7 +14,7 @@ namespace Uval3.Source
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        static private void SaveChangedData(object data_)
+        static private void RememberChangedData(object data_)
         {
             if (!ThatChangedData.Contains(data_)) ThatChangedData.Add(data_);
         }
@@ -30,9 +27,8 @@ namespace Uval3.Source
             if (GUIUvalSubTable_CheckValid(e_))
             {
                 CalculateSum_GUIUvalSubTable(e_);
-                SaveChangedData(e_.Row.Item);
+                RememberChangedData(e_.Row.Item);
             }
-
             (e_.Row.Item as RecordsEntry).OnPropertyChanged();
         }
         //*///------------------------------------------------------------------------------------------
@@ -40,7 +36,10 @@ namespace Uval3.Source
         {
             if (string.IsNullOrEmpty(((TextBox)e_.EditingElement).Text)) return true;
             bool result = Int32.TryParse(((TextBox)e_.EditingElement).Text, out int i);
-            if (result) return result;
+            if (result)
+            {
+                return result;
+            }
             else
             {
                 e_.Cancel = true;
@@ -54,7 +53,7 @@ namespace Uval3.Source
             var row = e_.Row.Item as RecordsEntry;
             var col = e_.Column.DisplayIndex;
             var text = (e_.EditingElement as TextBox).Text;
-            row.ThatData[col] = text;
+            row.ThatRecords[col] = text;
             row.ThatResult = row.SumData();
         }
         //*///------------------------------------------------------------------------------------------
@@ -68,10 +67,10 @@ namespace Uval3.Source
             if (Fizo_CheckValid(e_, columnIndex))
             {
                 Fizo_Save(e_, columnIndex);
-                SaveChangedData(e_.Row.Item);
+                RememberChangedData(e_.Row.Item as DataManEntry);
             }
 
-            (e_.Row.Item as FizoEntry).OnPropertyChanged();
+            (e_.Row.Item as DataManEntry).OnPropertyChanged();
         }
         //*///------------------------------------------------------------------------------------------
         private static bool Fizo_CheckValid(DataGridCellEditEndingEventArgs e_, int columnIndex_)
@@ -111,19 +110,19 @@ namespace Uval3.Source
             switch (columnIndex_)
             {
                 case 1:
-                    (e_.Row.Item as FizoEntry).ThatSpeed = ((TextBox)e_.EditingElement).Text;
+                    (e_.Row.Item as DataManEntry).ThatSpeed = ((TextBox)e_.EditingElement).Text;
                     break;
                 case 2:
-                    (e_.Row.Item as FizoEntry).ThatForce = ((TextBox)e_.EditingElement).Text;
+                    (e_.Row.Item as DataManEntry).ThatForce = ((TextBox)e_.EditingElement).Text;
                     break;
                 case 3:
-                    (e_.Row.Item as FizoEntry).ThatStamina = ((TextBox)e_.EditingElement).Text;
+                    (e_.Row.Item as DataManEntry).ThatStamina = ((TextBox)e_.EditingElement).Text;
                     break;
                 case 4:
-                    (e_.Row.Item as FizoEntry).ThatMark = ((TextBox)e_.EditingElement).Text;
+                    (e_.Row.Item as DataManEntry).ThatMark = ((TextBox)e_.EditingElement).Text;
                     break;
                 case 5:
-                    (e_.Row.Item as FizoEntry).ThatFree = ((TextBox)e_.EditingElement).Text;
+                    (e_.Row.Item as DataManEntry).ThatFreedom = ((TextBox)e_.EditingElement).Text;
                     break;
                 default:
                     break;
@@ -140,10 +139,10 @@ namespace Uval3.Source
             if (BadBoy_CheckValid(e_, columnIndex))
             {
                 BadBoy_Save(e_, columnIndex);
-                SaveChangedData(e_.Row.Item);
+                RememberChangedData(e_.Row.Item as DataManEntry);
             }
 
-           (e_.Row.Item as BadBoyEntry).OnPropertyChanged();
+           (e_.Row.Item as DataManEntry).OnPropertyChanged();
         }
         //*///------------------------------------------------------------------------------------------
         private static void BadBoy_Save(DataGridCellEditEndingEventArgs e_, int columnIndex_)
@@ -151,10 +150,10 @@ namespace Uval3.Source
             switch (columnIndex_)
             {
                 case 1:
-                    (e_.Row.Item as BadBoyEntry).ThatGoods = ((TextBox)e_.EditingElement).Text;
+                    (e_.Row.Item as DataManEntry).ThatGoods = ((TextBox)e_.EditingElement).Text;
                     break;
                 case 2:
-                    (e_.Row.Item as BadBoyEntry).ThatBads = ((TextBox)e_.EditingElement).Text;
+                    (e_.Row.Item as DataManEntry).ThatBads = ((TextBox)e_.EditingElement).Text;
                     break;
                 default:
                     break;
@@ -192,9 +191,8 @@ namespace Uval3.Source
         {
             foreach (var e in ThatChangedData)
             {
-                if (e is RecordsEntry) (e as RecordsEntry).SaveDataToDB();
-                else if (e is FizoEntry) (e as FizoEntry).SaveDataToDB();
-                else if (e is BadBoyEntry) (e as BadBoyEntry).SaveDataToDB();
+                if (e is DataManEntry) (e as DataManEntry).SaveDataToDB();
+                if (e is RecordsEntry) (e as RecordsEntry).ThatMan.SaveDataToDB();
             }
 
             ThatChangedData.Clear();
@@ -207,35 +205,37 @@ namespace Uval3.Source
         //*///------------------------------------------------------------------------------------------
         static public void ButAddPeriod_Click(object sender, RoutedEventArgs e_)
         {
+            string year = GUIItemConteiner.ThatPeriodYear.Text;
+            string month = GUIItemConteiner.ThatPeriodMonth.Text;
+            int weeks = GUIItemConteiner.ThatPeriodWeeks.SelectedIndex + 1;
+
             if (CheckPeriodFields())
             {
-                var periodname = (MainWindow.ThatWindow.FindName("PeriodMonth") as TextBox).Text + " " + (MainWindow.ThatWindow.FindName("PeriodYear") as TextBox).Text;
-                var dates = CalcPeriodData();
-                var records = CalcRecordsTemplate();
-                //получить id периода в соответствии с выбранной позицией {TODO}
-                var periodid = CalcPeriodID();
-                //изменить id всех остальных {TODO}
-                //добавить в базу новый период
-                SQLConnector.NoReturnQuery(string.Format("INSERT INTO Periods (Name, Data, idPeriod) VALUES ('{0}', '{1}', '{2}')",
-                    periodname,
-                    dates,
-                    periodid
+                //get period position {TODO}
+                var position = CalcPeriodPosition();
+                
+                //change positions for other periods in DB{TODO}
+                //Add new period to DB
+                SQLConnector.NoReturnQuery(string.Format("INSERT INTO Periods (Name, Weeks, PeriodPosition) VALUES ('{0}', '{1}', '{2}')",
+                    year + " " + month,
+                    weeks,
+                    position
                     ));
-                //добавить записи соответствующие всем людям и этому периоду
-                var id = SQLConnector.Select(string.Format("SELECT id FROM Periods WHERE idPeriod='{0}'", periodid))[0][0];
+                //Add records for all people for this period
+                var qqq = string.Format("SELECT id FROM Periods WHERE PeriodPosition='{0}'", position);
+                int id = Int32.Parse(SQLConnector.Select(string.Format("SELECT id FROM Periods WHERE PeriodPosition='{0}'", position))[0][0].ToString());
+                //Make record template
+                RecordsEntry record = new RecordsEntry(weeks, id);
+
                 foreach (var e in DataMan.ThatData)
                 {
-                    SQLConnector.NoReturnQuery(string.Format("INSERT INTO Records (idMan, idPeriod, Data) VALUES ('{0}', '{1}', '{2}')",
-                        e.ThatID,
-                        id,
-                        records
-                        ));
+                    e.ThatRecords.Add(record);
+                    e.SaveDataToDB();
                 }
                 //очистить поля
-                (MainWindow.ThatWindow.FindName("PeriodMonth") as TextBox).Text = "";
-                (MainWindow.ThatWindow.FindName("PeriodYear") as TextBox).Text = "";
-                (MainWindow.ThatWindow.FindName("PeriodDate") as TextBox).Text = "";
-                (MainWindow.ThatWindow.FindName("PeriodDatesList") as ListBox).Items.Clear();
+                GUIItemConteiner.ThatPeriodYear.SelectedIndex = -1;
+                GUIItemConteiner.ThatPeriodMonth.SelectedIndex = -1;
+                GUIItemConteiner.ThatPeriodWeeks.SelectedIndex = -1;
                 //сообщение об успехе
                 MainWindow.ThatWindow.Update();
                 MessageBox.Show("Успешно добавлен новый период.");
@@ -247,22 +247,21 @@ namespace Uval3.Source
         {
             bool result = true;
             string error = "";
-            List<string> names_ = new List<string> { "PeriodYear", "PeriodMonth" };
-            List<string> errors = new List<string> { "Введите год.", "Введите месяц." };
 
-            for (int i = 0; i < names_.Count; ++i)
-            {
-                if (string.IsNullOrEmpty((MainWindow.ThatWindow.FindName(names_[i]) as TextBox).Text))
-                {
-                    result = false;
-                    error += errors[i];
-                }
-            }
-
-            if ((MainWindow.ThatWindow.FindName("PeriodDatesList") as ListBox).Items.Count == 0)
+            if (GUIItemConteiner.ThatPeriodYear.SelectedIndex == -1)
             {
                 result = false;
-                error += "Введите даты увольнений.";
+                error += "Введите год для периода.";
+            }
+            if (GUIItemConteiner.ThatPeriodMonth.SelectedIndex == -1)
+            {
+                result = false;
+                error += "Введите месяц для периода.";
+            }
+            if (GUIItemConteiner.ThatPeriodWeeks.SelectedIndex == -1)
+            {
+                result = false;
+                error += "Введите количество дней увольнений для периода.";
             }
 
             if (!result) MessageBox.Show(error);
@@ -270,25 +269,16 @@ namespace Uval3.Source
             return result;
         }
         //*///------------------------------------------------------------------------------------------
-        static private string CalcPeriodData()
+        static private int CalcPeriodPosition()
         {
-            string result = "";
-            foreach (var e in (MainWindow.ThatWindow.FindName("PeriodDatesList") as ListBox).Items)
-                result += e.ToString() + ",";
-            result = result.Remove(result.Length - 1);
-            return result;
-        }
-        //*///------------------------------------------------------------------------------------------
-        static private int CalcPeriodID()
-        {
-            int result = Periods.ThatData[Periods.ThatData.Count - 1].ThatPeriodID + 1;
-            return result;
+            if (Periods.ThatData.Count == 0) return 0;
+            return Periods.ThatData[Periods.ThatData.Count - 1].ThatPeriodPosition + 1;
         }
         //*///------------------------------------------------------------------------------------------
         static private string CalcRecordsTemplate()
         {
             string result = "";
-            for (var i = 0; i < (MainWindow.ThatWindow.FindName("PeriodDatesList") as ListBox).Items.Count - 1; ++i)
+            for (var i = 0; i < GUIItemConteiner.ThatPeriodWeeks.SelectedIndex; ++i)//last week without ','
             {
                 result += ",";
             }
@@ -302,33 +292,22 @@ namespace Uval3.Source
         {
             if (CheckManFields())
             {
-                var name = (MainWindow.ThatWindow.FindName("ManNameTextBox") as TextBox).Text;
-                var platoon = (MainWindow.ThatWindow.FindName("PlatoonTextBox") as TextBox).Text;
-                var mannum = (MainWindow.ThatWindow.FindName("ManNumTextBox") as TextBox).Text;
+                var name = GUIItemConteiner.ThatManName.Text;
+                var platoon = GUIItemConteiner.ThatManPlatoon.Text;
+                var wdk = GUIItemConteiner.ThatManWDK.Text;
+                var records = AddMan_CalcRecordsTemplate();
                 //добавить военнослужащего
-                SQLConnector.NoReturnQuery(string.Format("INSERT INTO Man (Name, ManNum, Platoon) VALUES ('{0}', '{1}', '{2}')",
+                SQLConnector.NoReturnQuery(string.Format("INSERT INTO Man (Name, WDK, Platoon, Records) VALUES ('{0}', '{1}', '{2}', '{3}')",
                    name,
-                   mannum,
-                   platoon
+                   wdk,
+                   platoon,
+                   records
                    ));
-                var id = SQLConnector.Select(string.Format("SELECT id FROM Man WHERE Name='{0}'", name))[0][0];
-                //добавить физо
-                SQLConnector.NoReturnQuery(string.Format("INSERT INTO Fizo (manid) VALUES ('{0}')", id));
-                //добавить взыскания
-                SQLConnector.NoReturnQuery(string.Format("INSERT INTO BadBoy (manid) VALUES ('{0}')", id));
-                //добавить записи для каждого периода
-                foreach(var e in Periods.ThatData)
-                {
-                    SQLConnector.NoReturnQuery(string.Format("INSERT INTO Records (idMan, idPeriod, Data) VALUES ('{0}', '{1}', '{2}')",
-                        id,
-                        e.ThatPeriodID,
-                        AddMan_CalcRecordsTemplate(e)
-                        ));
-                }
                 //очистить поля
-                (MainWindow.ThatWindow.FindName("ManNameTextBox") as TextBox).Text = "";
-                (MainWindow.ThatWindow.FindName("ManNumTextBox") as TextBox).Text = "";
-                (MainWindow.ThatWindow.FindName("PlatoonTextBox") as TextBox).Text = "";
+                GUIItemConteiner.ThatManName.Text = "";
+                GUIItemConteiner.ThatManPlatoon.Text = "";
+                GUIItemConteiner.ThatManWDK.Text = "";
+
                 //сообщение об успехе
                 MainWindow.ThatWindow.Update();
                 MessageBox.Show("Успешно добавлен новый военнослужащий.");
@@ -341,9 +320,9 @@ namespace Uval3.Source
             bool result = true;
             string error = "";
 
-            var name = (MainWindow.ThatWindow.FindName("ManNameTextBox") as TextBox).Text;
-            var platoon = (MainWindow.ThatWindow.FindName("PlatoonTextBox") as TextBox).Text;
-            var mannum = (MainWindow.ThatWindow.FindName("ManNumTextBox") as TextBox).Text;
+            var name = GUIItemConteiner.ThatManName.Text;
+            var platoon = GUIItemConteiner.ThatManPlatoon.Text;
+            var wdk = GUIItemConteiner.ThatManWDK.Text;
 
             if (string.IsNullOrEmpty(name))
             {
@@ -355,7 +334,7 @@ namespace Uval3.Source
                 result = false;
                 error += "Введите номер взвода в виде целого числа.";
             }
-            if (!(string.IsNullOrEmpty(mannum) || Int32.TryParse(mannum, out int i2)))
+            if (!(string.IsNullOrEmpty(wdk) || Int32.TryParse(wdk, out int i2)))
             {
                 result = false;
                 error += "Введите ШДК в виде целого числа.";
@@ -366,14 +345,44 @@ namespace Uval3.Source
             return result;
         }
         //*///------------------------------------------------------------------------------------------
-        static private string AddMan_CalcRecordsTemplate(PeriodsEntry period_)
+        static private string AddMan_CalcRecordsTemplate()
         {
             string result = "";
-            for (var i = 0; i < period_.ThatDates.Count - 1; ++i)
+            foreach(var e in Periods.ThatData)
             {
-                result += ",";
+                result += e.ThatID.ToString() + ":";
+                for (var i = 0; i < e.ThatWeeks-1; ++i) result += ",";
+                result += "|";
             }
-            return result;
+            if (string.IsNullOrEmpty(result)) return "";
+            else return result.Remove(result.Length - 1);
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        static private class GUIItemConteiner
+        {
+            //Add Man
+            static private TextBox thatManName = MainWindow.ThatWindow.FindName("ManName") as TextBox;
+            static private TextBox thatManWDK = MainWindow.ThatWindow.FindName("ManWDK") as TextBox;
+            static private TextBox thatManPlatoon = MainWindow.ThatWindow.FindName("ManPlatoon") as TextBox;
+
+            //Add Period
+            static private ComboBox thatPeriodWeeks = MainWindow.ThatWindow.FindName("PeriodWeeks") as ComboBox;
+            static private ComboBox thatPeriodMonth = MainWindow.ThatWindow.FindName("PeriodMonth") as ComboBox;
+            static private ComboBox thatPeriodYear = MainWindow.ThatWindow.FindName("PeriodYear") as ComboBox;
+
+            public static TextBox ThatManName { get => thatManName; set => thatManName = value; }
+            public static TextBox ThatManWDK { get => thatManWDK; set => thatManWDK = value; }
+            public static TextBox ThatManPlatoon { get => thatManPlatoon; set => thatManPlatoon = value; }
+            public static ComboBox ThatPeriodWeeks { get => thatPeriodWeeks; set => thatPeriodWeeks = value; }
+            public static ComboBox ThatPeriodMonth { get => thatPeriodMonth; set => thatPeriodMonth = value; }
+            public static ComboBox ThatPeriodYear { get => thatPeriodYear; set => thatPeriodYear = value; }
         }
     }
 }

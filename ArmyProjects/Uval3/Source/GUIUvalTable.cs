@@ -12,7 +12,7 @@ namespace Uval3.Source
     static public class GUIUvalTable
     {
         static private List<GUIUvalTableEntry> thatTables = new List<GUIUvalTableEntry>();
-        static private DockPanel thatForm;
+        static private DockPanel thatForm = MainWindow.ThatWindow.FindName("UvalStack") as DockPanel;
 
         public static List<GUIUvalTableEntry> ThatTables { get => thatTables; set => thatTables = value; }
         public static DockPanel ThatForm { get => thatForm; set => thatForm = value; }
@@ -20,9 +20,9 @@ namespace Uval3.Source
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        static public void Init(DockPanel panel_)
+        static public void Init()
         {
-            ThatForm = panel_;
+            ThatForm = MainWindow.ThatWindow.FindName("UvalStack") as DockPanel;
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
@@ -82,24 +82,26 @@ namespace Uval3.Source
 
         private void BindData()
         {
-            for(int i= 0; i < ThatPeriodData.ThatDates.Count;++i )
+            for(int i=0;i<ThatPeriodData.ThatWeeks;++i)
             {
-                DataGridTextColumn column1 = new DataGridTextColumn
+                DataGridTextColumn col_data = new DataGridTextColumn
                 {
-                    Binding = new Binding(string.Format("ThatData[{0}]", i)),
-                    Header = ThatPeriodData.ThatDates[i],
-                    IsReadOnly = false
+                    Binding = new Binding(string.Format("ThatRecords[{0}]", i)),
+                    Header = string.Format("№{0}", i + 1),
+                    IsReadOnly = false,
+                    Width = DataGridLength.Auto
                 };
-                ThatDataGrid.Columns.Add(column1);
+                ThatDataGrid.Columns.Add(col_data);
             }
 
-            DataGridTextColumn column2 = new DataGridTextColumn
+            DataGridTextColumn col_result = new DataGridTextColumn
             {
                 Binding = new Binding("ThatResult"),
                 Header = "Итого",
-                IsReadOnly = true
+                IsReadOnly = true,
+                Width = new DataGridLength(1, DataGridLengthUnitType.Star)
             };
-            ThatDataGrid.Columns.Add(column2);
+            ThatDataGrid.Columns.Add(col_result);
 
             ThatDataGrid.ItemsSource = ThatPeriodData.ThatRecords;
         }

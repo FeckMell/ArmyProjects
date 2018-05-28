@@ -27,13 +27,13 @@ namespace Uval3.Source
                 PeriodsEntry period = new PeriodsEntry(e);
                 ThatData.Add(period);
             }
-            ThatData.Sort((x, y) => x.ThatPeriodID.CompareTo(y.ThatPeriodID));
+            ThatData.Sort((x, y) => x.ThatPeriodPosition.CompareTo(y.ThatPeriodPosition));
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        static public PeriodsEntry GetPeriodByPeriodID(int periodid_)
+        static public PeriodsEntry GetPeriodByID(int periodid_)
         {
-            foreach (var e in ThatData) if (e.ThatPeriodID == periodid_) return e;
+            foreach (var e in ThatData) if (e.ThatID == periodid_) return e;
             return null;
         }
         //*///------------------------------------------------------------------------------------------
@@ -50,16 +50,16 @@ namespace Uval3.Source
     public class PeriodsEntry
     {
         private int thatID;
-        private int thatPeriodID;
+        private int thatPeriodPosition;
         private string thatName;
-        private List<string> thatDates;
+        private int thatWeeks;
         private ObservableCollection<RecordsEntry> thatRecords = new ObservableCollection<RecordsEntry>();
 
 
         public int ThatID { get => thatID; set => thatID = value; }
-        public int ThatPeriodID { get => thatPeriodID; set => thatPeriodID = value; }
+        public int ThatPeriodPosition { get => thatPeriodPosition; set => thatPeriodPosition = value; }
         public string ThatName { get => thatName; set => thatName = value; }
-        public List<string> ThatDates { get => thatDates; set => thatDates = value; }
+        public int ThatWeeks { get => thatWeeks; set => thatWeeks = value; }
         public ObservableCollection<RecordsEntry> ThatRecords { get => thatRecords; set => thatRecords = value; }
 
         //*///------------------------------------------------------------------------------------------
@@ -69,15 +69,9 @@ namespace Uval3.Source
         public PeriodsEntry(List<object> e_)
         {
             ThatID = Int32.Parse(e_[0].ToString());
-            ThatName = e_[1].ToString();
-            ThatDates = ParseDates(e_[2].ToString());
-            ThatPeriodID = Int32.Parse(e_[3].ToString());
-        }
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        private List<string> ParseDates(string data_)
-        {
-            return new List<string>(data_.Split(','));
+            ThatPeriodPosition = Int32.Parse(e_[1].ToString());
+            ThatName = e_[2].ToString();
+            ThatWeeks = Int32.Parse(e_[3].ToString());
         }
     }
 }
