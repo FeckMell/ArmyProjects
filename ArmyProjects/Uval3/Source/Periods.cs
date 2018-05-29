@@ -73,5 +73,21 @@ namespace Uval3.Source
             ThatName = e_[2].ToString();
             ThatWeeks = Int32.Parse(e_[3].ToString());
         }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        public void ChangeWeeksAmount(int new_weeks_)
+        {
+            foreach(var record in ThatRecords)
+            {
+                record.ChangeWeeksAmount(new_weeks_);
+                ThatWeeks = new_weeks_;
+            }
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        public void SaveDataToDB()
+        {
+            SQLConnector.NoReturnQuery(string.Format("UPDATE Periods SET PeriodPosition='{1}', Name='{2}', Weeks='{3}' WHERE id={0}", ThatID, ThatPeriodPosition, ThatName, ThatWeeks ));
+        }
     }
 }

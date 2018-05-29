@@ -1,0 +1,35 @@
+﻿<Window x:Class="Uval3.Windows.WindowManEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Uval3.Windows"
+        mc:Ignorable="d"
+        Title="WindowEditMan" Height="300" Width="300">
+    <Grid>
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical">
+            <Label Name="EditMessage" Content="Изменение данных " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF858383"/>
+            <Canvas Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+
+            <Label Content="ФИО" Background="#FF858383"/>
+            <TextBox Name="ManName" Height="23" TextWrapping="Wrap" ToolTip="Введите ФИО военнослужащего"/>
+            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+
+            <Label Content="Взвод" Background="#FF858383"/>
+            <TextBox Name="ManPlatoon" Height="23" TextWrapping="Wrap" ToolTip="Введите номер взвода"/>
+            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+
+            <Label Content="Номер военнослужащего" Background="#FF858383"/>
+            <TextBox Name="ManWDK" Height="23" TextWrapping="Wrap" ToolTip="Введите ШДК военнослужащего"/>
+            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Name="ButSave" Content="Сохранить" HorizontalAlignment="Center" VerticalAlignment="Top" Width="70" Click="ButSave_Click"/>
+                <Canvas Width="50"/>
+                <Button Name="ButCancel" Content="Отмена" HorizontalAlignment="Center" VerticalAlignment="Top" Width="70" Click="ButCancel_Click"/>
+            </StackPanel>
+
+        </StackPanel>
+        
+    </Grid>
+</Window>

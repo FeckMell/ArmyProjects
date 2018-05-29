@@ -75,11 +75,13 @@ namespace Uval3.Source
             ThatPeriodData = e_;
 
             GenLabel();
+            GenContexMenu();
             GenDG();
             GenStack();
             BindData();
         }
-
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
         private void BindData()
         {
             for(int i=0;i<ThatPeriodData.ThatWeeks;++i)
@@ -105,7 +107,8 @@ namespace Uval3.Source
 
             ThatDataGrid.ItemsSource = ThatPeriodData.ThatRecords;
         }
-
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
         private void GenStack()
         {
             ThatStackPanel = new StackPanel
@@ -117,7 +120,8 @@ namespace Uval3.Source
             ThatStackPanel.Children.Add(ThatLabel);
             ThatStackPanel.Children.Add(ThatDataGrid);
         }
-
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
         private void GenDG()
         {
             ThatDataGrid = new DataGrid
@@ -134,9 +138,9 @@ namespace Uval3.Source
                 RowStyle = MainWindow.ThatWindow.Resources["DataGridCellColoringKey"] as Style,
             };
             ThatDataGrid.CellEditEnding += GUIEventHandler.GUIUvalSubTable_CellEditEnding;
-            //Grid.SetRow(ThatDataGrid, 1);
         }
-
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
         private void GenLabel()
         {
             ThatLabel = new Label
@@ -150,7 +154,25 @@ namespace Uval3.Source
                 BorderBrush = SystemColors.ActiveCaptionTextBrush,
                 Content = ThatPeriodData.ThatName
             };
-            //Grid.SetRow(ThatLabel, 0);
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        private void GenContexMenu()
+        {
+            MenuItem del = new MenuItem { Header = "Удалить период" };
+            MenuItem edt = new MenuItem { Header = "Изменить период" };
+
+            del.Click+=GUIEventHandler.PeriodListEdit;
+            edt.Click += GUIEventHandler.PeriodListEdit;
+
+            del.ItemStringFormat = ThatPeriodData.ThatID.ToString();
+            edt.ItemStringFormat = ThatPeriodData.ThatID.ToString();
+
+            ContextMenu menu = new ContextMenu();
+            menu.Items.Add(del);
+            menu.Items.Add(edt);
+
+            ThatLabel.ContextMenu = menu;
         }
     }
 }

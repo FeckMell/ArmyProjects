@@ -37,6 +37,21 @@ namespace Uval3.Source
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
+        static public void DeleteDataManEntry(DataManEntry man_)
+        {
+            ThatData.Remove(man_);
+            SQLConnector.NoReturnQuery(string.Format("DELETE FROM Man WHERE id={0}", man_.ThatID));
+            MainWindow.ThatWindow.Update();
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        static public void EditDataManEntry(DataManEntry man_)
+        {
+            SQLConnector.NoReturnQuery(string.Format("UPDATE Man SET WDK='{1}', Name='{2}', Platoon='{3}' WHERE id={0}", man_.ThatID, man_.ThatWDK, man_.ThatName, man_.ThatPlatoon));
+            MainWindow.ThatWindow.Update();
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
         static public void Clear()
         {
             ThatData.Clear();

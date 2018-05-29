@@ -6,13 +6,20 @@
         xmlns:local="clr-namespace:Uval3"
         xmlns:source="clr-namespace:Uval3.Source"
         mc:Ignorable="d"
-        Title="Статистика увольнений" MinHeight="550" Width="625" Background="#FF9B9595">
+        Title="Статистика увольнений" MinHeight="610" Height="610" Width="625" Background="#FF9B9595" >
     <Window.Resources>
         <ResourceDictionary>
             <source:IntColorConverter x:Key="IntColorConverter"></source:IntColorConverter>
-            <Style x:Name="DataGridCellColoringName" x:Key="DataGridCellColoringKey" TargetType="DataGridRow">
+            <Style x:Key="DataGridCellColoringKey" TargetType="DataGridRow">
                 <Setter Property="Background" Value="{Binding Path=ThatColor, Converter={StaticResource IntColorConverter}}" />
             </Style>
+
+            <DataTemplate x:Key="PeriodContexMenu">
+                <ContextMenu>
+                    <MenuItem Header="Удалить военнослужащего"/>
+                    <MenuItem Header="Изменить военнослужащего"/>
+                </ContextMenu>
+            </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
     
@@ -45,6 +52,12 @@
                                             <Setter Property="Background" Value="{Binding Path=ThatColor, Converter={StaticResource IntColorConverter}}"/>
                                         </Style>
                                     </DataGrid.RowStyle>
+                                    <DataGrid.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Удалить военнослужащего"/>
+                                            <MenuItem Header="Изменить военнослужащего"/>
+                                        </ContextMenu>
+                                    </DataGrid.ContextMenu>
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="№" Width="Auto" Binding="{Binding Path=ThatWDK}" />
                                         <DataGridTextColumn Header="Взвод" Width="Auto" Binding="{Binding Path=ThatPlatoon}"/>
@@ -119,7 +132,7 @@
                             <Label Content="Добавление нового периода" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF858383"/>
                             <Canvas Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
                             <Label Content="Год" Background="#FF858383"/>
-                            <ComboBox Name="PeriodYear" HorizontalAlignment="Stretch">
+                            <ComboBox Name="PeriodYear" HorizontalAlignment="Stretch" MaxDropDownHeight="100">
                                 <TextBlock>2017</TextBlock>
                                 <TextBlock>2018</TextBlock>
                                 <TextBlock>2019</TextBlock>
@@ -130,10 +143,10 @@
                                 <TextBlock>2024</TextBlock>
                                 <TextBlock>2025</TextBlock>
                             </ComboBox>
-                            <!--<TextBox Name="PeriodYear" Height="23" TextWrapping="Wrap" ToolTip="Введите год" />-->
+                            
                             <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
                             <Label Content="Месяц" Background="#FF858383"/>
-                            <ComboBox Name="PeriodMonth" HorizontalAlignment="Stretch">
+                            <ComboBox Name="PeriodMonth" HorizontalAlignment="Stretch" MaxDropDownHeight="100">
                                 <TextBlock>январь</TextBlock>
                                 <TextBlock>февраль</TextBlock>
                                 <TextBlock>март</TextBlock>
@@ -147,30 +160,26 @@
                                 <TextBlock>ноябрь</TextBlock>
                                 <TextBlock>декабрь</TextBlock>
                             </ComboBox>
-                            <!--<TextBox Name="PeriodMonth" Height="23" TextWrapping="Wrap" ToolTip="Введите месяц"/>-->
+                            
                             <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
                             <Label Content="Количество дат увольнений" Background="#FF858383"/>
-                            <ComboBox Name="PeriodWeeks" HorizontalAlignment="Stretch" >
+                            <ComboBox Name="PeriodWeeks" HorizontalAlignment="Stretch" MaxDropDownHeight="100">
                                 <TextBlock>1</TextBlock><TextBlock>2</TextBlock><TextBlock>3</TextBlock><TextBlock>4</TextBlock><TextBlock>5</TextBlock><TextBlock>6</TextBlock><TextBlock>7</TextBlock><TextBlock>8</TextBlock><TextBlock>9</TextBlock>
                             </ComboBox>
 
                             <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
 
-                            <!--<Label Content="Расположение периода" Background="#FF858383"/>
-                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="100">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="60"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <StackPanel HorizontalAlignmenЗt="Center" VerticalAlignment="Center" Grid.Column="0">
-                                    <RadioButton Content="Перед" HorizontalAlignment="Center"/>
-                                    <RadioButton Content="После" HorizontalAlignment="Center" IsChecked="True" />
+                            <Label Content="Расположение периода" Background="#FF858383"/>
+                            <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
+                                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                    <RadioButton Name="RadioButBefore" Content="Перед" HorizontalAlignment="Center"/>
+                                    <Canvas Width="50"/>
+                                    <RadioButton Name="RadioButAfter" Content="После" HorizontalAlignment="Center" IsChecked="True" />
                                 </StackPanel>
-
-                                <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"/>
-                            </Grid>
-                            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />-->
+                                <ComboBox Name="PeriodSelect" DisplayMemberPath="ThatName" HorizontalAlignment="Stretch" MaxDropDownHeight="100"/>
+                            </StackPanel>
+                           
+                            <Canvas Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
 
                             <Button Name="ButAddPeriod" Content="Добавить период" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                         </StackPanel>

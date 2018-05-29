@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Uval3.Source;
+using Uval3.Windows;
 
 namespace Uval3
 {
@@ -61,16 +62,17 @@ namespace Uval3
             GridNames.ItemsSource = DataMan.ThatData;
             GridFizo.ItemsSource = DataMan.ThatData;
             GridBadBoy.ItemsSource = DataMan.ThatData;
+            PeriodSelect.ItemsSource = Periods.ThatData;
 
             ButAddPeriod.Click += GUIEventHandler.ButAddPeriod_Click;
             ButSave.Click += GUIEventHandler.ButSaveChangedData_Click;
             ButAddMan.Click += GUIEventHandler.ButAddMan_Click;
 
+            (GridNames.ContextMenu.Items[0] as MenuItem).Click += GUIEventHandler.ManListEdit;
+            (GridNames.ContextMenu.Items[1] as MenuItem).Click += GUIEventHandler.ManListEdit;
             GridFizo.CellEditEnding += GUIEventHandler.Fizo_CellEditEnding;
             GridBadBoy.CellEditEnding += GUIEventHandler.BadBoy_CellEditEnding;
         }
-        
-        
     }
     //*///------------------------------------------------------------------------------------------
     //*///------------------------------------------------------------------------------------------

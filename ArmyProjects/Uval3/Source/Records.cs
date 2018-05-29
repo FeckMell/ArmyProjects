@@ -65,10 +65,13 @@ namespace Uval3.Source
 
         public int ThatManID { get => thatManID; set => thatManID = value; }
         public int ThatPeriodID { get => thatPeriodID; set => thatPeriodID = value; }
-        public List<string> ThatRecords { get => thatData; set => thatData = value; }
+        public List<string> ThatData { get => thatData; set => thatData = value; }
+        public List<string> ThatRecords { get => ThatData; set => ThatData = value; }
         public string ThatResult { get => thatResult; set => thatResult = value; }
         public ColorEntry ThatColor { get => thatColor; set => thatColor = value; }
         public DataManEntry ThatMan { get => thatMan; set => thatMan = value; }
+
+
 
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
@@ -121,6 +124,27 @@ namespace Uval3.Source
             result = result.Remove(result.Length - 1);
 
             return result;
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        public void ChangeWeeksAmount(int new_weeks_)
+        {
+            if(new_weeks_>ThatData.Count)
+            {
+                int dif = new_weeks_ - ThatData.Count;
+                for (int i = 0; i < dif; ++i)
+                {
+                    ThatData.Add("");
+                }
+            }
+            else if(new_weeks_<ThatData.Count)
+            {
+                int dif = ThatData.Count - new_weeks_;
+                for (int i = 0; i < dif; ++i)
+                {
+                    ThatData.RemoveAt(ThatData.Count - 1);
+                }
+            }
         }
     }
 }
