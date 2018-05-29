@@ -375,10 +375,9 @@ namespace Uval3.Source
 
                 if (CheckPeriodFields())
                 {
-                    //get period position {TODO}
+                    //get period position
                     var position = CalcPeriodPosition();
 
-                    //change positions for other periods in DB{TODO}
                     //Add new period to DB
                     SQLConnector.NoReturnQuery(string.Format("INSERT INTO Periods (Name, Weeks, PeriodPosition) VALUES ('{0}', '{1}', '{2}')",
                         year + " " + month,
@@ -400,6 +399,7 @@ namespace Uval3.Source
                     GUIItemConteiner.ThatPeriodYear.SelectedIndex = -1;
                     GUIItemConteiner.ThatPeriodMonth.SelectedIndex = -1;
                     GUIItemConteiner.ThatPeriodWeeks.SelectedIndex = -1;
+                    GUIItemConteiner.ThatPeriodSelect.SelectedIndex = -1;
                     //сообщение об успехе
                     MainWindow.ThatWindow.Update();
                     MessageBox.Show("Успешно добавлен новый период.");
@@ -427,10 +427,13 @@ namespace Uval3.Source
                     result = false;
                     error += "Введите количество дней увольнений для периода.";
                 }
-                if (GUIItemConteiner.ThatPeriodSelect.SelectedIndex == -1)
+                if (Periods.ThatData.Count != 0)
                 {
-                    result = false;
-                    error += "Введите позицию периода.";
+                    if (GUIItemConteiner.ThatPeriodSelect.SelectedIndex == -1)
+                    {
+                        result = false;
+                        error += "Введите позицию периода.";
+                    }
                 }
 
                 if (!result) MessageBox.Show(error);
