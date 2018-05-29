@@ -38,9 +38,30 @@ namespace Uval3.Source
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
+        static public void DeletePeriodsEntry(PeriodsEntry period_)
+        {
+            ThatData.Remove(period_);
+            SQLConnector.NoReturnQuery(string.Format("DELETE FROM Periods WHERE id={0}", period_.ThatID));
+            foreach(var record in period_.ThatRecords) record.ThatMan.ThatRecords.Remove(record);
+            foreach (var man in DataMan.ThatData) man.SaveDataToDB();
+        }
+
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
         static public void Clear()
         {
             ThatData.Clear();
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        static public void SaveDataToDB(PeriodsEntry period_)
+        {
+            period_.SaveDataToDB();
+            foreach(var record in period_.ThatRecords)
+            {
+                record.ChangeWeeksAmount(period_.ThatWeeks);
+                record.ThatMan.SaveDataToDB();
+            }
         }
     }
     //*///------------------------------------------------------------------------------------------

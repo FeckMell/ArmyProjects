@@ -51,7 +51,8 @@ namespace Uval3.Windows
                 ThatTarget.ThatPlatoon = ManPlatoon.Text;
                 ThatTarget.ThatWDK = Int32.Parse(ManWDK.Text);
 
-                DataMan.EditDataManEntry(ThatTarget);
+                DataMan.SaveDataToDB(ThatTarget);
+                MainWindow.ThatWindow.Update();
                 MessageBox.Show("Военнослужащий " + old_name + " успешно отредактирован.");
                 ThatTarget = null;
                 ThatWindow = null;

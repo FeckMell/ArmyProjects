@@ -40,6 +40,7 @@ namespace Uval3.Windows
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
             DataMan.DeleteDataManEntry(ThatTarget);
+            MainWindow.ThatWindow.Update();
             MessageBox.Show("Военнослужащий " + ThatTarget.ThatName + " успешно удален.");
             ThatTarget = null;
             ThatWindow = null;

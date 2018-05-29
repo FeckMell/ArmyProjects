@@ -61,7 +61,25 @@ namespace Uval3.Windows
         //*///------------------------------------------------------------------------------------------
         private void ButSave_Click(object sender, RoutedEventArgs e)
         {
+            string old_name = ThatTarget.ThatName;
 
+            if (CheckFields())
+            {
+                ThatTarget.ThatName = PeriodYear.Text + " " + PeriodMonth.Text;
+                ThatTarget.ThatWeeks = Int32.Parse(PeriodWeeks.Text);
+                ThatTarget.ThatPeriodPosition = CalcPeriodPosition();
+
+                Periods.SaveDataToDB(ThatTarget);
+                MainWindow.ThatWindow.Update();
+                MessageBox.Show("Период \"" + old_name + "\" успешно отредактирован.");
+                ThatTarget = null;
+                ThatWindow = null;
+                Close();
+            }
+            else
+            {
+                return;
+            }
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
@@ -70,6 +88,64 @@ namespace Uval3.Windows
             ThatTarget = null;
             ThatWindow = null;
             Close();
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        private bool CheckFields()
+        {
+            bool result = true;
+            string error = "";
+
+            if (PeriodYear.SelectedIndex == -1)
+            {
+                result = false;
+                error += "Введите год для периода.";
+            }
+            if (PeriodMonth.SelectedIndex == -1)
+            {
+                result = false;
+                error += "Введите месяц для периода.";
+            }
+            if (PeriodWeeks.SelectedIndex == -1)
+            {
+                result = false;
+                error += "Введите количество дней увольнений для периода.";
+            }
+            if (PeriodSelect.SelectedIndex == -1)
+            {
+                result = false;
+                error += "Введите позицию периода.";
+            }
+
+            if (!result) MessageBox.Show(error);
+
+            return result;
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        private int CalcPeriodPosition()
+        {
+            if (Periods.ThatData.Count == 0) return 0;
+            int index = PeriodSelect.SelectedIndex;
+
+            if (RadioButAfter.IsChecked.Value)
+            {
+                for (int i = index + 1; i < Periods.ThatData.Count; ++i)
+                {
+                    Periods.ThatData[i].ThatPeriodPosition += 1;
+                    Periods.ThatData[i].SaveDataToDB();
+                }
+                return Periods.ThatData[index].ThatPeriodPosition + 1;
+            }
+            else
+            {
+                for (int i = index; i < Periods.ThatData.Count; ++i)
+                {
+                    Periods.ThatData[i].ThatPeriodPosition += 1;
+                    Periods.ThatData[i].SaveDataToDB();
+                }
+                return Periods.ThatData[index].ThatPeriodPosition - 1;
+            }
         }
     }
 }

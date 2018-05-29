@@ -39,7 +39,12 @@ namespace Uval3.Windows
         //*///------------------------------------------------------------------------------------------
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            Periods.DeletePeriodsEntry(ThatTarget);
+            MainWindow.ThatWindow.Update();
+            MessageBox.Show("Период \"" + ThatTarget.ThatName + "\" успешно удален.");
+            ThatTarget = null;
+            ThatWindow = null;
+            Close();
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------

@@ -23,7 +23,7 @@ namespace Uval3.Source
         //*///------------------------------------------------------------------------------------------
         static public void GUIUvalSubTable_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e_)
         {
-            GGUIUvalTable.Work(e_);
+            GGUIUvalEdit.Work(e_);
         }
         //*///------------------------------------------------------------------------------------------
         static public void Fizo_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e_)
@@ -82,8 +82,8 @@ namespace Uval3.Source
 
             if (action == "Удалить период")
             {
-                //WindowDeleteMan win = new WindowDeletePeriod(Periods.GetPeriodByID(periodid));
-                //win.ShowDialog();
+                WindowPeriodDelete win = new WindowPeriodDelete(Periods.GetPeriodByID(periodid));
+                win.ShowDialog();
             }
             else if (action == "Изменить период")
             {
@@ -179,7 +179,7 @@ namespace Uval3.Source
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        static private class GGUIUvalTable
+        static private class GGUIUvalEdit
         {
             static public void Work(DataGridCellEditEndingEventArgs e_)
             {
