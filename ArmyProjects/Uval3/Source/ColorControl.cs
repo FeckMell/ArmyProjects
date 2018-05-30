@@ -33,7 +33,6 @@ namespace Uval3.Source
             ThatColorsGood.Add(new ColorEntry { ThatColor = Brushes.Coral });
             ThatColorsGood.Add(new ColorEntry { ThatColor = Brushes.CornflowerBlue });
             ThatColorsGood.Add(new ColorEntry { ThatColor = Brushes.LightGreen });
-            ThatColorsGood.Add(new ColorEntry { ThatColor = Brushes.Honeydew });
 
             ThatColorsBad.Add(new ColorEntry {  ThatColor = Brushes.DimGray });
             ThatColorsBad.Add(new ColorEntry {  ThatColor = Brushes.Gray });

@@ -35,6 +35,8 @@ namespace Uval3
             Periods.UpdateDataFromBD();
             DataMan.UpdateDataFromBD("");
             GUIUvalTable.Update();
+
+            MNGRBackup.Work();
         }
 
         private void SearchStringChange(object sender, TextChangedEventArgs e)
