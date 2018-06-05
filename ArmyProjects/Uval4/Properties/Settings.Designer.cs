@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Uval3.Properties {
+namespace Uval4.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

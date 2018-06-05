@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using Uval3.Windows;
+using Uval4.Windows;
 
-namespace Uval3.Source
+namespace Uval4.Source
 {
     static public class GUIEventHandler
     {
@@ -50,8 +50,8 @@ namespace Uval3.Source
         {
             foreach (var e in ThatChangedData)
             {
-                if (e is DataManEntry) (e as DataManEntry).SaveDataToDB();
-                if (e is RecordsEntry) (e as RecordsEntry).ThatMan.SaveDataToDB();
+                if (e is ManEntry) (e as ManEntry).SaveChangesToDB();
+                if (e is RecordEntry) (e as RecordEntry).ThatMan.SaveChangesToDB();
             }
 
             ThatChangedData.Clear();
@@ -62,7 +62,7 @@ namespace Uval3.Source
         static public void ManListEdit(object sender, RoutedEventArgs e)
         {
             string action = (e.Source as MenuItem).Header.ToString();
-            DataManEntry target = GUIItemConteiner.ThatGridNames.CurrentItem as DataManEntry;
+            ManEntry target = GUIItemConteiner.ThatGridNames.CurrentItem as ManEntry;
             if (action == "Удалить военнослужащего")
             {
                 WindowManDelete win = new WindowManDelete(target);
@@ -109,19 +109,19 @@ namespace Uval3.Source
                     var platoon = GUIItemConteiner.ThatManPlatoon.Text;
                     var wdk = GUIItemConteiner.ThatManWDK.Text;
                     var records = AddMan_CalcRecordsTemplate();
-                    //добавить военнослужащего
+                    //Add man
                     SQLConnector.NoReturnQuery(string.Format("INSERT INTO Man (Name, WDK, Platoon, Records) VALUES ('{0}', '{1}', '{2}', '{3}')",
                        name,
                        wdk,
                        platoon,
                        records
                        ));
-                    //очистить поля
+                    //Clear fields
                     GUIItemConteiner.ThatManName.Text = "";
                     GUIItemConteiner.ThatManPlatoon.Text = "";
                     GUIItemConteiner.ThatManWDK.Text = "";
 
-                    //сообщение об успехе
+                    //success message
                     MainWindow.ThatWindow.Update();
                     MessageBox.Show("Успешно добавлен новый военнослужащий.");
                 }
@@ -188,7 +188,7 @@ namespace Uval3.Source
                     CalculateSum_GUIUvalSubTable(e_);
                     RememberChangedData(e_.Row.Item);
                 }
-            (e_.Row.Item as RecordsEntry).OnPropertyChanged();
+            (e_.Row.Item as RecordEntry).OnPropertyChanged();
             }
             //*///------------------------------------------------------------------------------------------
             static private bool GUIUvalSubTable_CheckValid(DataGridCellEditEndingEventArgs e_)
@@ -209,7 +209,7 @@ namespace Uval3.Source
             //*///------------------------------------------------------------------------------------------
             static private void CalculateSum_GUIUvalSubTable(DataGridCellEditEndingEventArgs e_)
             {
-                var row = e_.Row.Item as RecordsEntry;
+                var row = e_.Row.Item as RecordEntry;
                 var col = e_.Column.DisplayIndex;
                 var text = (e_.EditingElement as TextBox).Text;
                 row.ThatRecords[col] = text;
@@ -233,10 +233,10 @@ namespace Uval3.Source
                 if (Fizo_CheckValid(e_, columnIndex))
                 {
                     Fizo_Save(e_, columnIndex);
-                    RememberChangedData(e_.Row.Item as DataManEntry);
+                    RememberChangedData(e_.Row.Item as ManEntry);
                 }
 
-            (e_.Row.Item as DataManEntry).OnPropertyChanged();
+            (e_.Row.Item as ManEntry).OnPropertyChanged();
             }
             //*///------------------------------------------------------------------------------------------
             private static bool Fizo_CheckValid(DataGridCellEditEndingEventArgs e_, int columnIndex_)
@@ -276,19 +276,19 @@ namespace Uval3.Source
                 switch (columnIndex_)
                 {
                     case 1:
-                        (e_.Row.Item as DataManEntry).ThatSpeed = ((TextBox)e_.EditingElement).Text;
+                        (e_.Row.Item as ManEntry).ThatSpeed = ((TextBox)e_.EditingElement).Text;
                         break;
                     case 2:
-                        (e_.Row.Item as DataManEntry).ThatForce = ((TextBox)e_.EditingElement).Text;
+                        (e_.Row.Item as ManEntry).ThatForce = ((TextBox)e_.EditingElement).Text;
                         break;
                     case 3:
-                        (e_.Row.Item as DataManEntry).ThatStamina = ((TextBox)e_.EditingElement).Text;
+                        (e_.Row.Item as ManEntry).ThatStamina = ((TextBox)e_.EditingElement).Text;
                         break;
                     case 4:
-                        (e_.Row.Item as DataManEntry).ThatMark = ((TextBox)e_.EditingElement).Text;
+                        (e_.Row.Item as ManEntry).ThatMark = ((TextBox)e_.EditingElement).Text;
                         break;
                     case 5:
-                        (e_.Row.Item as DataManEntry).ThatFreedom = ((TextBox)e_.EditingElement).Text;
+                        (e_.Row.Item as ManEntry).ThatFreedom = ((TextBox)e_.EditingElement).Text;
                         break;
                     default:
                         break;
@@ -312,10 +312,10 @@ namespace Uval3.Source
                 if (BadBoy_CheckValid(e_, columnIndex))
                 {
                     BadBoy_Save(e_, columnIndex);
-                    RememberChangedData(e_.Row.Item as DataManEntry);
+                    RememberChangedData(e_.Row.Item as ManEntry);
                 }
 
-           (e_.Row.Item as DataManEntry).OnPropertyChanged();
+           (e_.Row.Item as ManEntry).OnPropertyChanged();
             }
             //*///------------------------------------------------------------------------------------------
             private static void BadBoy_Save(DataGridCellEditEndingEventArgs e_, int columnIndex_)
@@ -323,10 +323,10 @@ namespace Uval3.Source
                 switch (columnIndex_)
                 {
                     case 1:
-                        (e_.Row.Item as DataManEntry).ThatGoods = ((TextBox)e_.EditingElement).Text;
+                        (e_.Row.Item as ManEntry).ThatGoods = ((TextBox)e_.EditingElement).Text;
                         break;
                     case 2:
-                        (e_.Row.Item as DataManEntry).ThatBads = ((TextBox)e_.EditingElement).Text;
+                        (e_.Row.Item as ManEntry).ThatBads = ((TextBox)e_.EditingElement).Text;
                         break;
                     default:
                         break;
@@ -384,23 +384,24 @@ namespace Uval3.Source
                         weeks,
                         position
                         ));
-                    //Add records for all people for this period
-                    var qqq = string.Format("SELECT id FROM Periods WHERE PeriodPosition='{0}'", position);
-                    int id = Int32.Parse(SQLConnector.Select(string.Format("SELECT id FROM Periods WHERE PeriodPosition='{0}'", position))[0][0].ToString());
-                    //Make record template
-                    RecordsEntry record = new RecordsEntry(weeks, id);
 
-                    foreach (var e in DataMan.ThatData)
+                    //get period id
+                    int period_id = Int32.Parse(SQLConnector.Select(string.Format("SELECT id FROM Periods WHERE PeriodPosition='{0}'", position))[0][0].ToString());
+                    //Make record template
+                    RecordEntry record = new RecordEntry(period_id, weeks);
+
+                    //Add records for all people for this period
+                    foreach (var man in Man.ThatData)
                     {
-                        e.ThatRecords.Add(record);
-                        e.SaveDataToDB();
+                        man.ThatRecords.Add(record);
+                        man.SaveChangesToDB();
                     }
-                    //очистить поля
+                    //Clear fields
                     GUIItemConteiner.ThatPeriodYear.SelectedIndex = -1;
                     GUIItemConteiner.ThatPeriodMonth.SelectedIndex = -1;
                     GUIItemConteiner.ThatPeriodWeeks.SelectedIndex = -1;
                     GUIItemConteiner.ThatPeriodSelect.SelectedIndex = -1;
-                    //сообщение об успехе
+                    //Success message
                     MainWindow.ThatWindow.Update();
                     MessageBox.Show("Успешно добавлен новый период.");
                 }
@@ -451,7 +452,7 @@ namespace Uval3.Source
                     for (int i = index + 1; i < Periods.ThatData.Count; ++i)
                     {
                         Periods.ThatData[i].ThatPeriodPosition += 1;
-                        Periods.ThatData[i].SaveDataToDB();
+                        Periods.ThatData[i].SaveChangesToDB();
                     }
                     return Periods.ThatData[index].ThatPeriodPosition + 1;
                 }
@@ -460,7 +461,7 @@ namespace Uval3.Source
                     for (int i = index; i < Periods.ThatData.Count; ++i)
                     {
                         Periods.ThatData[i].ThatPeriodPosition += 1;
-                        Periods.ThatData[i].SaveDataToDB();
+                        Periods.ThatData[i].SaveChangesToDB();
                     }
                     return Periods.ThatData[index].ThatPeriodPosition - 1;
                 }

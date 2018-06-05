@@ -10,9 +10,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Uval3.Source;
+using Uval4.Source;
 
-namespace Uval3.Windows
+namespace Uval4.Windows
 {
     /// <summary>
     /// Interaction logic for WindowEditPeriod.xaml
@@ -38,14 +38,14 @@ namespace Uval3.Windows
 
             string year = ThatTarget.ThatName.Split(' ')[0];
             for (int i = 0; i < PeriodYear.Items.Count; ++i) if ((PeriodYear.Items[i] as TextBlock).Text == year) PeriodYear.SelectedIndex = i;
-        
+
             string month = ThatTarget.ThatName.Split(' ')[1];
             for (int i = 0; i < PeriodMonth.Items.Count; ++i) if ((PeriodMonth.Items[i] as TextBlock).Text == month) PeriodMonth.SelectedIndex = i;
 
             string weeks = ThatTarget.ThatWeeks.ToString();
             for (int i = 0; i < PeriodWeeks.Items.Count; ++i) if ((PeriodWeeks.Items[i] as TextBlock).Text == weeks) PeriodWeeks.SelectedIndex = i;
 
-            if (Periods.ThatData.Count == 0) { ; }
+            if (Periods.ThatData.Count == 0) {; }
             if (Periods.ThatData[0] == ThatTarget)
             {
                 RadioButBefore.IsChecked = true;
@@ -69,7 +69,7 @@ namespace Uval3.Windows
                 ThatTarget.ThatWeeks = Int32.Parse(PeriodWeeks.Text);
                 ThatTarget.ThatPeriodPosition = CalcPeriodPosition();
 
-                Periods.SaveDataToDB(ThatTarget);
+                ThatTarget.SaveChangesToDB();
                 MainWindow.ThatWindow.Update();
                 MessageBox.Show("Период \"" + old_name + "\" успешно отредактирован.");
                 ThatTarget = null;
@@ -133,7 +133,7 @@ namespace Uval3.Windows
                 for (int i = index + 1; i < Periods.ThatData.Count; ++i)
                 {
                     Periods.ThatData[i].ThatPeriodPosition += 1;
-                    Periods.ThatData[i].SaveDataToDB();
+                    Periods.ThatData[i].SaveChangesToDB();
                 }
                 return Periods.ThatData[index].ThatPeriodPosition + 1;
             }
@@ -142,7 +142,7 @@ namespace Uval3.Windows
                 for (int i = index; i < Periods.ThatData.Count; ++i)
                 {
                     Periods.ThatData[i].ThatPeriodPosition += 1;
-                    Periods.ThatData[i].SaveDataToDB();
+                    Periods.ThatData[i].SaveChangesToDB();
                 }
                 return Periods.ThatData[index].ThatPeriodPosition - 1;
             }

@@ -10,24 +10,24 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Uval3.Source;
+using Uval4.Source;
 
-namespace Uval3.Windows
+namespace Uval4.Windows
 {
     /// <summary>
-    /// Interaction logic for WindowPeriodDelete.xaml
+    /// Interaction logic for DeleteWindow.xaml
     /// </summary>
-    public partial class WindowPeriodDelete : Window
+    public partial class WindowManDelete : Window
     {
-        static private WindowPeriodDelete thatWindow;
-        static private PeriodsEntry thatTarget;
-        public static PeriodsEntry ThatTarget { get => thatTarget; set => thatTarget = value; }
-        public static WindowPeriodDelete ThatWindow { get => thatWindow; set => thatWindow = value; }
+        static private WindowManDelete thatWindow;
+        static private ManEntry thatTarget;
+        public static ManEntry ThatTarget { get => thatTarget; set => thatTarget = value; }
+        public static WindowManDelete ThatWindow { get => thatWindow; set => thatWindow = value; }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        public WindowPeriodDelete(PeriodsEntry target_)
+        public WindowManDelete(ManEntry target_)
         {
             InitializeComponent();
             ThatWindow = this;
@@ -39,9 +39,9 @@ namespace Uval3.Windows
         //*///------------------------------------------------------------------------------------------
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-            Periods.DeletePeriodsEntry(ThatTarget);
+            ThatTarget.DeleteFromDB();
             MainWindow.ThatWindow.Update();
-            MessageBox.Show("Период \"" + ThatTarget.ThatName + "\" успешно удален.");
+            MessageBox.Show("Военнослужащий " + ThatTarget.ThatName + " успешно удален.");
             ThatTarget = null;
             ThatWindow = null;
             Close();

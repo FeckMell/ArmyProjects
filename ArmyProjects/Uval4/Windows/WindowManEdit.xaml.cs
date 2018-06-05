@@ -10,9 +10,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Uval3.Source;
+using Uval4.Source;
 
-namespace Uval3.Windows
+namespace Uval4.Windows
 {
     /// <summary>
     /// Interaction logic for WindowEditMan.xaml
@@ -20,14 +20,14 @@ namespace Uval3.Windows
     public partial class WindowManEdit : Window
     {
         static private WindowManEdit thatWindow;
-        static private DataManEntry thatTarget;
+        static private ManEntry thatTarget;
         public static WindowManEdit ThatWindow { get => thatWindow; set => thatWindow = value; }
-        public static DataManEntry ThatTarget { get => thatTarget; set => thatTarget = value; }
+        public static ManEntry ThatTarget { get => thatTarget; set => thatTarget = value; }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        public WindowManEdit(DataManEntry target_)
+        public WindowManEdit(ManEntry target_)
         {
             InitializeComponent();
             ThatWindow = this;
@@ -51,7 +51,7 @@ namespace Uval3.Windows
                 ThatTarget.ThatPlatoon = ManPlatoon.Text;
                 ThatTarget.ThatWDK = Int32.Parse(ManWDK.Text);
 
-                DataMan.SaveDataToDB(ThatTarget);
+                ThatTarget.SaveChangesToDB();
                 MainWindow.ThatWindow.Update();
                 MessageBox.Show("Военнослужащий " + old_name + " успешно отредактирован.");
                 ThatTarget = null;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace Uval3.Source
+namespace Uval4.Source
 {
     static public class ColorControl
     {
@@ -34,14 +34,14 @@ namespace Uval3.Source
             ThatColorsGood.Add(new ColorEntry { ThatColor = Brushes.CornflowerBlue });
             ThatColorsGood.Add(new ColorEntry { ThatColor = Brushes.LightGreen });
 
-            ThatColorsBad.Add(new ColorEntry {  ThatColor = Brushes.DimGray });
-            ThatColorsBad.Add(new ColorEntry {  ThatColor = Brushes.Gray });
-            ThatColorsBad.Add(new ColorEntry {  ThatColor = Brushes.LightGray });
-            ThatColorsBad.Add(new ColorEntry {  ThatColor = Brushes.DarkGray });
+            ThatColorsBad.Add(new ColorEntry { ThatColor = Brushes.DimGray });
+            ThatColorsBad.Add(new ColorEntry { ThatColor = Brushes.Gray });
+            ThatColorsBad.Add(new ColorEntry { ThatColor = Brushes.LightGray });
+            ThatColorsBad.Add(new ColorEntry { ThatColor = Brushes.DarkGray });
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        static public ColorEntry Analyse(DataManEntry man_)
+        static public ColorEntry Analyse(ManEntry man_)
         {
             if (CheckFizoIsGood(man_) && CheckBadBoyIsGood(man_))
             {
@@ -58,7 +58,7 @@ namespace Uval3.Source
         //*///------------------------------------------------------------------------------------------
         static public SolidColorBrush SetColorForElement(bool value_)
         {
-            if(value_)
+            if (value_)
             {
                 ThatGoodCounter = (ThatGoodCounter + 1) % ThatColorsGood.Count;
                 return ThatColorsGood[ThatGoodCounter].ThatColor;
@@ -71,14 +71,14 @@ namespace Uval3.Source
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        static private bool CheckFizoIsGood(DataManEntry man_)
+        static private bool CheckFizoIsGood(ManEntry man_)
         {
             if (man_.ThatMark == "" || man_.ThatMark == null || man_.ThatMark == "2") return false;
             else return true;
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        static private bool CheckBadBoyIsGood(DataManEntry man_)
+        static private bool CheckBadBoyIsGood(ManEntry man_)
         {
             if (man_.ThatBads == "" || man_.ThatBads == null || man_.ThatBads == "0") return true;
             else return false;
@@ -101,7 +101,6 @@ namespace Uval3.Source
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            //return ColorControl.SetColorForElement((bool)value);
             return ((ColorEntry)value).ThatColor;
         }
         //*///------------------------------------------------------------------------------------------

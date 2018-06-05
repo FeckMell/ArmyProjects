@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace Uval3.Source
+namespace Uval4.Source
 {
     static public class GUIUvalTable
     {
@@ -18,12 +18,6 @@ namespace Uval3.Source
         public static DockPanel ThatForm { get => thatForm; set => thatForm = value; }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        static public void Init()
-        {
-            ThatForm = MainWindow.ThatWindow.FindName("UvalStack") as DockPanel;
-        }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         static public void Update()

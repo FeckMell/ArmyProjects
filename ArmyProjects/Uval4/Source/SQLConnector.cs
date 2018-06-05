@@ -8,7 +8,7 @@ using System.IO;
 using System.Data;
 using System.Windows;
 
-namespace Uval3.Source
+namespace Uval4.Source
 {
     public static class SQLConnector
     {
@@ -42,7 +42,6 @@ namespace Uval3.Source
         //*///------------------------------------------------------------------------------------------
         static public void NoReturnQuery(string query)
         {
-            //UPDATE tbl SET name='value', name2='value2' WHERE id=5
             OpenConnection();
             dbCmd = new SQLiteCommand(dbConnection) { CommandText = query };
             try { dbCmd.ExecuteNonQuery(); }
@@ -77,36 +76,5 @@ namespace Uval3.Source
             }
             return result;
         }
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        public static void Insert(string query)
-        {
-            OpenConnection();
-            dbCmd = new SQLiteCommand(dbConnection);
-            dbCmd.CommandText = query;
-            try
-            {
-                dbCmd.ExecuteNonQuery();
-            }
-            catch { }
-            finally { CloseConnection(); }
-
-        }
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        public static void DropTableContent(string TableName)
-        {
-            OpenConnection();
-            dbCmd = new SQLiteCommand(dbConnection);
-            dbCmd.CommandText = "DELETE FROM " + TableName + ";";
-            try
-            {
-                dbCmd.ExecuteNonQuery();
-            }
-            catch { }
-            finally { CloseConnection(); }
-        }
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
     }
 }

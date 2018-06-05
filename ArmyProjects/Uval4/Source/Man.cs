@@ -6,64 +6,91 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using Uval4.Source;
 
-namespace Uval3.Source
+namespace Uval4.Source
 {
-    static public class DataMan
+    public class Man : INotifyPropertyChanged
     {
-        static private ObservableCollection<DataManEntry> thatData = new ObservableCollection<DataManEntry>();
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        static public ObservableCollection<DataManEntry> ThatData { get => thatData; set => thatData = value; }
+        public void OnPropertyChanged() { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ThatData")); }
+
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        static public void UpdateDataFromBD(string filter_)
+        static private Man thatInst = new Man();
+        static public ObservableCollection<ManEntry> ThatData { get => thatInst.ThatInstData; set => thatInst.ThatInstData = value; }
+        static public List<ManEntry> ThatStorage { get => thatInst.ThatInstStorage; set => thatInst.ThatInstStorage = value; }
+        static public void UpdateDataFromBD() => thatInst.InstUpdateDataFromBD();
+        static public void Filter(string filter_) => thatInst.InstFilter(filter_);
+        static public void Clear() => thatInst.InstClear();
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        private ObservableCollection<ManEntry> thatInstData = new ObservableCollection<ManEntry>();/*For filtered data*/
+        private List<ManEntry> thatInstStorage = new List<ManEntry>();/*For all data*/
+
+        private ObservableCollection<ManEntry> ThatInstData { get => thatInstData; set => thatInstData = value; }
+        public List<ManEntry> ThatInstStorage { get => thatInstStorage; set => thatInstStorage = value; }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        private void InstUpdateDataFromBD()
         {
-            List<List<object>> rawdata;
-            if(string.IsNullOrEmpty(filter_))
-            {
-                rawdata = SQLConnector.Select("SELECT * FROM Man");
-            }
-            else
-            {
-                rawdata = SQLConnector.Select(string.Format("SELECT * FROM Man WHERE Name LIKE '%{0}%' COLLATE NOCASE", filter_));
-            }
+            List<List<object>> rawdata = SQLConnector.Select("SELECT * FROM Man");
+
             foreach (var e in rawdata)
             {
-                DataManEntry man = new DataManEntry(e);
+                ManEntry man = new ManEntry(e);
                 ThatData.Add(man);
+                ThatStorage.Add(man);
             }
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        static public void DeleteDataManEntry(DataManEntry man_)
+        private void InstFilter(string filter_)
         {
-            ThatData.Remove(man_);
-            SQLConnector.NoReturnQuery(string.Format("DELETE FROM Man WHERE id={0}", man_.ThatID));
-            MainWindow.ThatWindow.Update();
+            //Clear visible elements of man
+            ThatData.Clear();
+            //Clead periods entries
+            foreach (var period in Periods.ThatData) period.ThatRecords.Clear();
+
+            //Filter man
+            foreach(var man in ThatStorage)
+            {
+                if (man.ThatName.ToLowerInvariant().Contains(filter_.ToLowerInvariant()))
+                {
+                    //Add new visible element
+                    ThatData.Add(man);
+                    //Add its records to periods
+                    foreach (var record in man.ThatRecords) record.ThatPeriod.ThatRecords.Add(record);
+                }
+            }
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        static public void SaveDataToDB(DataManEntry man_)
-        {
-            SQLConnector.NoReturnQuery(string.Format("UPDATE Man SET WDK='{1}', Name='{2}', Platoon='{3}' WHERE id={0}", man_.ThatID, man_.ThatWDK, man_.ThatName, man_.ThatPlatoon));
-        }
-        //*///------------------------------------------------------------------------------------------
-        //*///------------------------------------------------------------------------------------------
-        static public void Clear()
+        private void InstClear()
         {
             ThatData.Clear();
+            ThatStorage.Clear();
         }
     }
     //*///------------------------------------------------------------------------------------------
     //*///------------------------------------------------------------------------------------------
     //*///------------------------------------------------------------------------------------------
     //*///------------------------------------------------------------------------------------------
-    public class DataManEntry : INotifyPropertyChanged
+    //*///------------------------------------------------------------------------------------------
+    //*///------------------------------------------------------------------------------------------
+    //*///------------------------------------------------------------------------------------------
+    //*///------------------------------------------------------------------------------------------
+    public class ManEntry : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
         private int thatID;
         private int thatWDK;
         private string thatPlatoon;
@@ -77,7 +104,7 @@ namespace Uval3.Source
         private string thatFreedom;
         private ColorEntry thatColor;
 
-        private List<RecordsEntry> thatRecords;
+        private List<RecordEntry> thatRecords = new List<RecordEntry>();
 
 
         public int ThatID { get => thatID; set => thatID = value; }
@@ -92,14 +119,15 @@ namespace Uval3.Source
         public string ThatMark { get => thatMark; set => thatMark = value; }
         public string ThatFreedom { get => thatFreedom; set => thatFreedom = value; }
         public ColorEntry ThatColor { get => thatColor; set => thatColor = value; }
-        public List<RecordsEntry> ThatRecords { get => thatRecords; set => thatRecords = value; }
+        public List<RecordEntry> ThatRecords { get => thatRecords; set => thatRecords = value; }
 
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        public DataManEntry(List<object> e_)
+        public ManEntry(List<object> e_)
         {
+            //set properties
             ThatID = Int32.Parse(e_[0].ToString());
             ThatWDK = Int32.Parse(e_[1].ToString());
             ThatPlatoon = e_[2].ToString();
@@ -112,10 +140,16 @@ namespace Uval3.Source
             ThatMark = e_[9].ToString();
             ThatFreedom = e_[10].ToString();
 
+            //set validance color
             ThatColor = ColorControl.Analyse(this);
 
-            //ThatRecords = Records.ParseForMan(e_[11], ThatID, ThatColor);
-            ThatRecords = Records.ParseForMan(e_[11], this);
+            //parse records
+            List<string> records_by_periods = new List<string>(e_[11].ToString().Split('|'));
+            foreach(var e in records_by_periods)
+            {
+                RecordEntry rec = new RecordEntry(e, this);
+                ThatRecords.Add(rec);
+            }
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
@@ -135,24 +169,31 @@ namespace Uval3.Source
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
-        public void SaveDataToDB()
+        public void SaveChangesToDB() //SaveDataToDB
         {
             SQLConnector.NoReturnQuery(string.Format(
                 "UPDATE Man SET WDK='{1}', Name='{2}', Platoon='{3}', Goods='{4}', Bads='{5}', Speed='{6}', Force='{7}', Stamina='{8}', Mark='{9}', Freedom='{10}', Records='{11}' WHERE id={0}",
-                ThatID, ThatWDK, ThatName, ThatPlatoon, ThatGoods, ThatBads, ThatSpeed, ThatForce, ThatStamina, ThatMark, ThatFreedom,
-                RecordsToString()
+                ThatID, ThatWDK, ThatName, ThatPlatoon, ThatGoods, ThatBads, ThatSpeed, ThatForce, ThatStamina, ThatMark, ThatFreedom, RecordsToString()
                 ));
+        }
+        //*///------------------------------------------------------------------------------------------
+        //*///------------------------------------------------------------------------------------------
+        public void DeleteFromDB()
+        {
+            Man.ThatData.Remove(this);
+            Man.ThatStorage.Remove(this);
+            SQLConnector.NoReturnQuery(string.Format("DELETE FROM Man WHERE id={0}", ThatID));
         }
         //*///------------------------------------------------------------------------------------------
         //*///------------------------------------------------------------------------------------------
         public string RecordsToString()
         {
             string result = "";
-            foreach(var e in ThatRecords)
+            foreach (var e in ThatRecords)
             {
                 result += e.ToStringForDB() + "|";
             }
-            
+
             result = result.Remove(result.Length - 1);
             return result;
         }
