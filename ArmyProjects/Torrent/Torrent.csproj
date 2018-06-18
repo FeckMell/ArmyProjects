@@ -54,7 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="TCPConnect.cs" />
+    <Compile Include="FSystem.cs" />
+    <Compile Include="TCPSocket.cs" />
+    <Compile Include="UDPSocket.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

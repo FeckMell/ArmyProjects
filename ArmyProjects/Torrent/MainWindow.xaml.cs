@@ -20,9 +20,27 @@ namespace Torrent
     /// </summary>
     public partial class MainWindow : Window
     {
+        private UDPSocket thatSocketSend = new UDPSocket("127.0.0.1", 10001, "127.0.0.1", 10000);
+        private UDPSocket thatSocketRecv = new UDPSocket("127.0.0.1", 10000, "127.0.0.1", 10001);
+        private delegate string UpdateProgressBarDelegate();
         public MainWindow()
         {
             InitializeComponent();
+            //MessageBox.Show(FSystem.ListDirContent("D:\\"));
+
+            //thatSocketRecv.ReceiveFrom();
+
+            UpdateProgressBarDelegate updatePbDelegate =new UpdateProgressBarDelegate(thatSocketRecv.ReceiveFrom);
+
+            //Application.Current.Dispatcher.Invoke(updatePbDelegate, System.Windows.Threading.DispatcherPriority.Background);
+
+     
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            thatSocketSend.SendTo("LETS FUCK");
         }
     }
 }

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torrent", "Torrent\Torrent.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deji", "Deji\Deji.csproj", "{1FEAA9D9-6F8B-4BAC-AC6E-4F45C42F295A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uval3", "Uval3\Uval3.csproj", "{69C34F73-66B4-4249-BA50-4C777B08B9F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uval4", "Uval4\Uval4.csproj", "{ABEC62D9-2EAB-4172-AF29-6081F2B4C45F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{1FEAA9D9-6F8B-4BAC-AC6E-4F45C42F295A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FEAA9D9-6F8B-4BAC-AC6E-4F45C42F295A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FEAA9D9-6F8B-4BAC-AC6E-4F45C42F295A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{69C34F73-66B4-4249-BA50-4C777B08B9F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{69C34F73-66B4-4249-BA50-4C777B08B9F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{69C34F73-66B4-4249-BA50-4C777B08B9F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{69C34F73-66B4-4249-BA50-4C777B08B9F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABEC62D9-2EAB-4172-AF29-6081F2B4C45F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABEC62D9-2EAB-4172-AF29-6081F2B4C45F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABEC62D9-2EAB-4172-AF29-6081F2B4C45F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABEC62D9-2EAB-4172-AF29-6081F2B4C45F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -119,6 +119,78 @@
                 </Grid>
             </TabItem>
 
+            <TabItem Header="Контрактники">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="3"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="3"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="3"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <DataGrid Name="GridContractNames" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                        GridLinesVisibility="All" ClipToBounds="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                        CanUserAddRows="False"  AutoGenerateColumns="False"  CanUserDeleteRows="False" CanUserSortColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ФИО" Width="auto" Binding="{Binding Path=ThatName}" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Canvas  Grid.Column="1" Grid.Row="2" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFD8D8D8" />
+
+                    <DataGrid Name="GridContractPrev" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                        GridLinesVisibility="All" ClipToBounds="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                        CanUserAddRows="False"  AutoGenerateColumns="False"  CanUserDeleteRows="False" CanUserSortColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="пн" Width="auto" Binding="{Binding Path=ThatPrev[0]}"/>
+                            <DataGridTextColumn Header="вт" Width="auto" Binding="{Binding Path=ThatPrev[1]}"/>
+                            <DataGridTextColumn Header="ср" Width="auto" Binding="{Binding Path=ThatPrev[2]}"/>
+                            <DataGridTextColumn Header="чт" Width="auto" Binding="{Binding Path=ThatPrev[3]}"/>
+                            <DataGridTextColumn Header="пт" Width="auto" Binding="{Binding Path=ThatPrev[4]}"/>
+                            <DataGridTextColumn Header="сб" Width="auto" Binding="{Binding Path=ThatPrev[5]}"/>
+                            <DataGridTextColumn Header="вс" Width="auto" Binding="{Binding Path=ThatPrev[6]}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Canvas Grid.Column="3" Grid.Row="2" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFD8D8D8" />
+
+                    <DataGrid Name="GridContractCur" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                        GridLinesVisibility="All" ClipToBounds="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                        CanUserAddRows="False"  AutoGenerateColumns="False"  CanUserDeleteRows="False" CanUserSortColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="пн" Width="auto" Binding="{Binding Path=ThatCur[0]}"/>
+                            <DataGridTextColumn Header="вт" Width="auto" Binding="{Binding Path=ThatCur[1]}"/>
+                            <DataGridTextColumn Header="ср" Width="auto" Binding="{Binding Path=ThatCur[2]}"/>
+                            <DataGridTextColumn Header="чт" Width="auto" Binding="{Binding Path=ThatCur[3]}"/>
+                            <DataGridTextColumn Header="пт" Width="auto" Binding="{Binding Path=ThatCur[4]}"/>
+                            <DataGridTextColumn Header="сб" Width="auto" Binding="{Binding Path=ThatCur[5]}"/>
+                            <DataGridTextColumn Header="вс" Width="auto" Binding="{Binding Path=ThatCur[6]}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Canvas Grid.Column="5" Grid.Row="2" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFD8D8D8" />
+
+                    <DataGrid Name="GridContractNext" Grid.Column="6" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                        GridLinesVisibility="All" ClipToBounds="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                        CanUserAddRows="False"  AutoGenerateColumns="False"  CanUserDeleteRows="False" CanUserSortColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="пн" Width="auto" Binding="{Binding Path=ThatNext[0]}"/>
+                            <DataGridTextColumn Header="вт" Width="auto" Binding="{Binding Path=ThatNext[1]}"/>
+                            <DataGridTextColumn Header="ср" Width="auto" Binding="{Binding Path=ThatNext[2]}"/>
+                            <DataGridTextColumn Header="чт" Width="auto" Binding="{Binding Path=ThatNext[3]}"/>
+                            <DataGridTextColumn Header="пт" Width="auto" Binding="{Binding Path=ThatNext[4]}"/>
+                            <DataGridTextColumn Header="сб" Width="auto" Binding="{Binding Path=ThatNext[5]}"/>
+                            <DataGridTextColumn Header="вс" Width="auto" Binding="{Binding Path=ThatNext[6]}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
             <TabItem Header="Редактирование списка роты и периодов">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
